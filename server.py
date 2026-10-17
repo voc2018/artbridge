@@ -174,7 +174,7 @@ class Handler(SimpleHTTPRequestHandler):
         else:
             rel = path.lstrip('/') or 'index.html'
             target = (ROOT / rel).resolve()
-            allowed_root = {'index.html','styles.css','i18n.js','matching.js','script.js','favicon.ico'}
+            allowed_root = {'index.html','styles.css','i18n.js','matching.js','script.js','artworks.js','favicon.ico'}
             # Never expose runtime CSV, .git, source code, secrets, or a directory listing.
             allowed = target.is_relative_to(ROOT) and target.is_file() and '..' not in Path(rel).parts and (
                 # Compare the resolved path too: /assets/../server.py is not an asset.

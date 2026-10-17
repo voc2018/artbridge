@@ -6,6 +6,24 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{header,footer,.modal-head,.form-actions,.button-row,main,#toast{display:none!important}dialog[open]{position:static;display:block;width:100%;max-width:none;max-height:none;border:0;padding:0;box-shadow:none}dialog::backdrop{background:none}.document-preview{border:0;max-height:none;overflow:visible}.tab-group,.helper,.translation-columns{display:none}}
 
+/* Actual artworks always retain their complete composition and signatures. */
+artbridge-artwork{display:block;min-width:0;background:#fff}
+artbridge-artwork img{width:100%;height:auto!important;object-fit:contain!important;filter:none!important;transform:none!important;padding:0!important}
+.artwork-pending{padding:64px 24px;text-align:center;color:#69645d;font-size:13px;min-height:180px;display:grid;place-items:center;margin:0}
+.original-works{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:30px;padding-bottom:100px}
+.original-works figure{margin:0;min-width:0}
+.original-works artbridge-artwork{aspect-ratio:1.6;display:flex;align-items:center;justify-content:center}
+.original-works figcaption{display:flex;justify-content:space-between;gap:10px;margin-top:16px;font-size:10px;letter-spacing:.06em}
+.original-works figcaption small{font-size:9px;color:#69645d}
+.original-plus{font:40px var(--serif);color:#a84f2c;text-align:center}
+.art-home .work-reveal{display:flex;flex-direction:column;align-items:stretch;gap:55px}
+.art-home .work-reveal .work-copy{max-width:820px;margin:auto;text-align:center}
+.art-home .work-reveal .work-copy p:last-child{max-width:650px;margin:28px auto 0}
+.art-home .work-reveal .collaboration-art{width:100%}
+.project-card artbridge-artwork{max-width:180px}
+.project-card .artwork-pending{padding:15px 8px;font-size:10px;min-height:95px}
+@media(max-width:700px){.original-works{grid-template-columns:1fr;gap:20px;padding-bottom:65px}.original-works figcaption{flex-wrap:wrap}.original-plus{font-size:32px}.art-home .work-reveal{gap:35px}}
+
 /* Editorial home — earth, light, and the first collaboration */
 .art-home{background:#f1eee6}.manifesto-hero{position:relative;min-height:calc(100svh - 104px);height:820px;max-height:980px;overflow:hidden;color:#fff8e9;background:#1d1b19}.manifesto-image{position:absolute;inset:0;object-fit:cover;object-position:center}.manifesto-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,13,11,.72) 0%,rgba(16,13,11,.38) 44%,rgba(16,13,11,.1) 72%),linear-gradient(0deg,rgba(10,10,10,.48),transparent 42%)}.manifesto-top{position:absolute;z-index:1;top:35px;left:4%;right:4%;display:flex;align-items:center;gap:18px;font-size:8px;letter-spacing:2.7px}.manifesto-line{height:1px;background:rgba(255,255,255,.45);flex:1}.manifesto-copy{position:relative;z-index:1;display:flex;min-height:100%;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:50px}.hero-kicker{font-size:9px;letter-spacing:3px;margin-bottom:38px;color:#ffe2b8}.manifesto-copy h1{max-width:1050px;font-size:clamp(70px,8.8vw,142px);line-height:.86;letter-spacing:-.055em;margin:0;text-wrap:balance;text-shadow:0 4px 32px rgba(0,0,0,.14)}.manifesto-copy h1 em{color:#ffc889}.hero-translation{font-size:16px;letter-spacing:.08em;margin:32px 0 0;color:rgba(255,248,233,.82)}.manifesto-actions{display:flex;gap:28px;align-items:center;margin-top:45px}.button.light{border-color:rgba(255,255,255,.68);background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(9px)}.button.light:hover{background:#fff;color:#24231f}.manifesto-link{font-size:11px;letter-spacing:.04em;border-bottom:1px solid currentColor;padding:5px 0}.manifesto-foot{position:absolute;z-index:1;left:4%;right:4%;bottom:29px;display:grid;grid-template-columns:1fr auto 1fr;font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.72)}.manifesto-foot span:last-child{text-align:right}
 .threshold{padding-top:150px;padding-bottom:160px;display:grid;grid-template-columns:1fr 4fr 1.3fr;gap:45px;align-items:start}.threshold-index{font-size:8px;letter-spacing:2px;color:#806e5e;padding-top:15px}.threshold h2{font-size:clamp(64px,7vw,112px);margin:0;line-height:.91;color:#28251f}.threshold h2 em{color:#a84f2c}.threshold-translation{grid-column:2;margin:20px 0 0;font-family:var(--serif);font-size:20px;color:#71695e}.threshold-note{font-size:12px;line-height:1.9;color:#6f6b63;margin-top:18px;border-top:1px solid #c8c0b4;padding-top:17px}

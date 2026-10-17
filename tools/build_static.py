@@ -7,7 +7,7 @@ OUTPUT = ROOT / 'dist'
 if OUTPUT.exists():
     shutil.rmtree(OUTPUT)
 OUTPUT.mkdir()
-for name in ('index.html', 'styles.css', 'script.js', 'i18n.js', 'matching.js'):
+for name in ('index.html', 'styles.css', 'script.js', 'i18n.js', 'matching.js', 'artworks.js'):
     shutil.copy2(ROOT / name, OUTPUT / name)
 for name in ('assets', 'legacy'):
     shutil.copytree(ROOT / name, OUTPUT / name)

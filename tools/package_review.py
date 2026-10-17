@@ -1,14 +1,20 @@
 """Package only public ArtBridge files for the existing Voice of Piece Worker."""
 from pathlib import Path
 import subprocess
+import shutil
 import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable, str(ROOT / 'tools/build_static.py')], check=True, cwd=ROOT)
-output = ROOT / 'downloads/ArtBridge-new.zip'
+output = ROOT / 'downloads/ArtBridge-blue-yellow.zip'
 output.parent.mkdir(exist_ok=True)
-instructions = '''ArtBridge 새 디자인 — 로컬 확인용
+instructions = '''ArtBridge Blue / Yellow — AB 로고, 영어·스와힐리어 기본 디자인
+
+이번 변경: 오른쪽 아치를 B로 수정한 AB 로고.
+흰색·파랑·노랑 Hero와 은은한 지도: 왼쪽 아프리카(탄자니아), 오른쪽 북미(LA).
+새 방문 시 영어가 기본이며 Hero에는 스와힐리어를 함께 표시합니다.
+한국어는 선택 항목으로 유지하며 기존에 선택한 언어 설정도 보존합니다.
 
 압축을 풀면 artbridge 폴더 하나가 있습니다.
 기존 vop-worker/public/artbridge를 별도 위치에 백업한 뒤,
@@ -43,4 +49,5 @@ with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         if path.is_file() and path.name != '404.html':
             archive.write(path, 'artbridge/' + path.relative_to(ROOT / 'dist').as_posix())
     archive.writestr('먼저 읽어주세요.txt', instructions)
+shutil.copyfile(output, ROOT / 'downloads/ArtBridge-new.zip')
 print(output)

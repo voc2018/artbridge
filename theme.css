@@ -1,0 +1,62 @@
+/* ArtBridge — porcelain, cobalt and softened golden yellow. */
+:root{--paper:#fcfcf8;--ink:#173765;--muted:#586b80;--line:#ccd6e2;--orange:#345d99;--soft:#edf2f8;--gold:#e2bd55}
+body,.art-home{background:var(--paper)}
+.brand svg{stroke:#345d99;stroke-linecap:round;stroke-linejoin:round}
+.site-header{border-bottom-color:#d6dfe9}
+.button.dark:hover{background:#345d99}
+.manifesto-hero{background:#f7fafc;color:#173765}
+.manifesto-shade{background:linear-gradient(90deg,rgba(252,252,248,.8),rgba(252,252,248,.6) 38%,rgba(252,252,248,.08) 70%),linear-gradient(0deg,rgba(245,248,252,.72),transparent 32%)}
+.manifesto-copy h1{max-width:960px;font-size:clamp(70px,7.4vw,118px);line-height:.94;color:#173765;text-shadow:none}
+.manifesto-copy h1 em{color:#345d99}
+.hero-kicker{color:#284b7c}
+.hero-translation{color:#24476e;max-width:600px;letter-spacing:.02em}
+.manifesto-top{color:#173765;font-weight:700;letter-spacing:1.5px}
+.manifesto-top>span:not(.manifesto-line){padding:7px 10px;background:rgba(252,252,248,.88)}
+.manifesto-line{background:#7f99b9}
+.manifesto-foot{color:#173765;font-weight:600}
+.manifesto-actions .button.light{background:#e2bd55;color:#173765;border-color:#d6b04b;backdrop-filter:none}
+.manifesto-actions .button.light:hover{background:#ecd17e}
+.manifesto-link{color:#173765}
+.threshold h2{color:#173765}
+.threshold h2 em,.case-heading h2 em,.chapter-copy h3 em,.work-copy h3 em,.closing-manifesto h2 em{color:#345d99}
+.threshold-index,.threshold-note,.threshold-translation{color:#586b80}
+.threshold-note,.case-intro,.story-chapter,.outcome-copy{border-color:#ccd6e2}
+.case-study{background:#f0f4f9}
+.case-intro>p:last-child,.chapter-copy>p:last-child,.work-copy p:last-child,.outcome-copy>p:last-child{color:#4b6079}
+.portrait-frame{background:#e1e8f1}
+.portrait figcaption small,.process-gallery figcaption small,.collaboration-art figcaption small,.outcome-grid figcaption{color:#586b80}
+.meeting-mark,.original-plus{color:#345d99}
+.chapter-number{color:#7d95b8}
+.process-gallery blockquote{background:#224779;color:#fcfcf8;box-shadow:0 16px 45px #17376518}
+.process-gallery blockquote>span{color:#e2bd55}
+.collaboration-art img{background:#fff}
+.agreement-band{background:#274d83;color:#fcfcf8}
+.agreement-grid h3 em,.agreement-languages{color:#e8c869}
+.agreement-copy>p{color:#e0e8f4}
+.agreement-languages{font:15px var(--sans);letter-spacing:.08em;border-color:#6784ac}
+.platform-journey{background:#173765;color:#fcfcf8}
+.journey-heading h2 em,.journey-steps li>span{color:#e8c869}
+.journey-heading>p{color:#dce5f3;border-color:#6a82a6}
+.journey-steps,.journey-steps li{border-color:#6a82a6}
+.journey-steps p{color:#d5e0ef}
+.journey-actions .button.light{background:#e2bd55;border-color:#e2bd55;color:#173765}
+.journey-actions .button.light:hover{background:#ecd17e}
+.closing-manifesto{background:#fcfcf8}
+.closing-orbit{border-color:#cfac47}
+.closing-orbit:after{background:#e2bd55}
+.original-works figcaption small,.artwork-pending{color:#586b80}
+body[lang=ko] #hero-title,body[lang=ko] .threshold h2{font-family:var(--serif);letter-spacing:-.035em}
+@media(max-width:1000px){.manifesto-copy h1{font-size:clamp(65px,9vw,100px)}}
+@media(max-width:700px){
+ .manifesto-hero{height:auto;min-height:0;max-height:none;background:#fcfcf8}
+ .manifesto-image{position:relative;inset:auto;width:100%;height:auto;object-fit:contain}
+ .manifesto-shade{display:none}
+ .manifesto-top{top:12px;gap:5px;font-size:6px;letter-spacing:.5px;left:3%;right:3%}
+ .manifesto-top>span:not(.manifesto-line){padding:5px 6px}
+ .manifesto-copy{min-height:0;padding-top:38px;padding-bottom:85px}
+ .manifesto-copy h1,body[lang=ko] #hero-title{font-size:clamp(48px,12.5vw,76px);line-height:.96}
+ .hero-kicker{font-size:8px;letter-spacing:2px;margin-bottom:24px}
+ .hero-translation{font-size:13px;line-height:1.7}
+ .manifesto-foot{font-size:6px;letter-spacing:.6px;grid-template-columns:1fr 1fr}
+ .agreement-languages{font-size:12px}
+}

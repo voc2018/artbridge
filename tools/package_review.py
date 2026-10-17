@@ -9,40 +9,27 @@ ROOT = Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable, str(ROOT / 'tools/build_static.py')], check=True, cwd=ROOT)
 output = ROOT / 'downloads/ArtBridge-blue-yellow.zip'
 output.parent.mkdir(exist_ok=True)
-instructions = '''ArtBridge Blue / Yellow — AB 로고, 영어·스와힐리어 기본 디자인
+instructions = '''ArtBridge — 선명한 색면과 지도, AB 라인 로고
 
-이번 변경: 오른쪽 아치를 B로 수정한 AB 로고.
-흰색·파랑·노랑 Hero와 은은한 지도: 왼쪽 아프리카(탄자니아), 오른쪽 북미(LA).
-새 방문 시 영어가 기본이며 Hero에는 스와힐리어를 함께 표시합니다.
-한국어는 선택 항목으로 유지하며 기존에 선택한 언어 설정도 보존합니다.
+Hero는 파랑·노랑·빨강·주황의 큰 면으로 다시 구성했습니다.
+탄자니아와 Arusha를 아프리카 지도에, Los Angeles를 북미 지도에 표시했습니다.
+사이트 헤더에는 확정한 연결형 AB 로고를 넣었습니다.
+Grace와 Ezekiel의 원본 작품 세 장을 원본 픽셀 그대로 포함했습니다.
+첫 방문은 영어, Hero에는 Kiswahili 문구를 함께 표시하며 한국어도 고를 수 있습니다.
 
-압축을 풀면 artbridge 폴더 하나가 있습니다.
-기존 vop-worker/public/artbridge를 별도 위치에 백업한 뒤,
-이 artbridge 폴더의 내용을 기존 public/artbridge 안에 복사하고 덮어쓰세요.
-폴더가 한 겹 더 생기지 않게 public/artbridge/index.html 위치를 확인하세요.
-기존에 추가해 둔 작품 파일은 지우지 마세요.
-다른 화가 폴더, src, wrangler.jsonc는 그대로 유지합니다.
+기존 vop-worker 프로젝트에 적용하려면:
+1. 기존 public/artbridge 폴더를 복사해 백업합니다.
+2. 이 압축의 artbridge 폴더 안에 있는 파일을 기존 public/artbridge 안에 복사합니다.
+3. 덮어쓰기를 확인합니다. public/artbridge/artbridge처럼 폴더가 중복되지 않았는지 확인합니다.
+4. 다른 화가 디렉토리와 src, wrangler.jsonc는 그대로 둡니다.
 
-아직 포함되지 않은 파일: 채팅에 올린 새 작품 이미지 세 장.
-보이는 미리보기 이미지를 작업 파일로 가져올 수 없어 ZIP에는 들어 있지 않습니다.
-예전 들소 작품을 대신 표시하지 않으며, 이미지가 없는 자리는 대기 상태로 표시합니다.
-세 그림을 아래 이름으로 artbridge/assets에 넣으면 HTML 수정 없이 표시됩니다.
-첫 번째(완성 콜라보): collaboration-final.png
-두 번째(Grace 인물): grace-original.png
-세 번째(Ezekiel 사자): ezekiel-original.png
-JPG/JPEG/WebP 파일이면 원래 확장자를 유지하세요. 같은 이름의 해당 확장자도 자동으로 찾습니다.
-예: collaboration-final.jpg
-이미지를 재생성하거나 자르지 않고 원본 비율과 서명을 유지합니다.
-
-VS Code에서 기존 vop-worker 폴더를 열고 터미널에서 실행:
+VS Code의 vop-worker 폴더에서 터미널을 열고 실행:
 py -m http.server 5500 --bind 127.0.0.1 --directory public/artbridge
-브라우저 주소:
-http://127.0.0.1:5500/
-새로고침: Ctrl+Shift+R
+브라우저 주소: http://127.0.0.1:5500/
+파일을 바꾼 뒤 Ctrl+Shift+R로 새로고침합니다.
 
-이 패키지는 로컬 검토용입니다. 실제 Cloudflare에는 배포하지 않았습니다.
-ArtBridge 데이터는 브라우저에 저장되며 자동 번역은 연결되어 있지 않습니다.
-원스톱 플랫폼 소개는 비전이고, 현재 계약 문서는 검토용 초안입니다.
+이 ZIP은 로컬 미리보기용입니다. Cloudflare에는 아직 배포하지 않았습니다.
+실제 작가의 참여 의사나 현재 플랫폼 기능을 보장하는 문구는 추가하지 않았습니다.
 '''
 with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
     for path in sorted((ROOT / 'dist').rglob('*')):

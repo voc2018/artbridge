@@ -1,0 +1,2 @@
+Map boundaries: Natural Earth, Admin 0 Countries, 1:110m scale. Public domain. https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/
+Tanzania is highlighted in orange; city markers indicate Arusha and Los Angeles.

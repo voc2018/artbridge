@@ -1,6 +1,22 @@
-__pycache__/
-*.pyc
-.env
-runtime-data/
+# OS / editor
 .DS_Store
-dist/
+Thumbs.db
+.vscode/
+.idea/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies / build caches
+node_modules/
+.wrangler/
+
+# Local ArtBridge application data
+/data/la-applications.csv
+/data/*.private.csv
+
+# Logs
+*.log
+npm-debug.log*

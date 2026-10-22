@@ -1,93 +1,144 @@
-'use strict';
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const langs=['en','ko','sw'];
-const KEY='artbridge.workspace.v1';
-let lang=localStorage.getItem('artbridge.language')||'en';if(!langs.includes(lang))lang='en';
-let records=[], samples=[], shortlisted=JSON.parse(localStorage.getItem('artbridge.shortlist')||'[]');
-let serverMode=false, translator=false, studioTab='projects', selectedProfile=localStorage.getItem('artbridge.matchAs')||'sample-maya';
-let toastTimer, activeDocument=null, activeRecord=null;
-const t=key=>window.ArtBridgeI18n[lang][key]||key;
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const textFor=(r,l=lang)=>r?.[l]||r?.[r.source_language]||'';
-const uid=()=>crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`;
-function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),4000);}
-function setLanguage(value){lang=value;document.documentElement.lang=lang;document.body.lang=lang;$('#language').value=lang;localStorage.setItem('artbridge.language',lang);$$('[data-i18n]').forEach(n=>n.textContent=t(n.dataset.i18n));$$('[data-i18n-html]').forEach(n=>n.innerHTML=t(n.dataset.i18nHtml));$$('[data-placeholder]').forEach(n=>n.placeholder=t(n.dataset.placeholder));$('#close-modal').setAttribute('aria-label',t('close'));renderDiscover();renderStudio();}
-function showPage(){let route=location.hash.slice(1)||'home';if(route==='story'){route='home';}if(!['home','discover','studio'].includes(route))route='home';$$('.page').forEach(n=>n.hidden=n.id!==route);$$('[data-route]').forEach(n=>{n.classList.toggle('active',n.dataset.route===route);if(n.dataset.route===route)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});if(route==='discover')renderDiscover();if(route==='studio')renderStudio();if(location.hash==='#story')requestAnimationFrame(()=>$('#story').scrollIntoView());else window.scrollTo(0,0);}
-function openModal(html){$('#modal-content').innerHTML=html;$('#modal').showModal();}
-function heading(title){return `<h2 id="modal-title">${esc(title)}</h2>`;}
-function closeModal(){$('#modal').close();activeRecord=null;activeDocument=null;}
-$('#close-modal').addEventListener('click',closeModal);
-$('#modal').addEventListener('click',e=>{if(e.target===$('#modal')&&e.clientX){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeModal();}});
-$('#language').addEventListener('change',e=>setLanguage(e.target.value));window.addEventListener('hashchange',showPage);
-function parseCSV(text){text=text.replace(/^\uFEFF/,'');const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){cell+='"';i++;}else if(quoted){quoted=false;}else if(!cell){quoted=true;}else throw Error('Malformed CSV');}else if(c===','&&!quoted){row.push(cell);cell='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(cell);if(row.some(x=>x.length))rows.push(row);row=[];cell='';}else cell+=c;}if(quoted)throw Error('Unclosed CSV quote');row.push(cell);if(row.some(x=>x.length))rows.push(row);if(!rows.length)return [];const headers=rows.shift();headers[0]=headers[0].replace(/^\uFEFF/,'');if(new Set(headers).size!==headers.length)throw Error('Duplicate header');return rows.map(r=>{if(r.length!==headers.length)throw Error('Column count');return Object.fromEntries(headers.map((h,i)=>[h,r[i]]));});}
-function csvCell(v){let s=String(v??'');if(/^[\s]*['=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
-const CSV_FIELDS=['id','kind','source_language','en','ko','sw','translation_status','updated_at','payload_json'];
-function toCSV(items){return '\uFEFF'+CSV_FIELDS.map(csvCell).join(',')+'\r\n'+items.map(r=>CSV_FIELDS.map(k=>csvCell(k==='payload_json'?JSON.stringify(r.meta||{}):r[k])).join(',')).join('\r\n');}
-function fromCSV(text){return parseCSV(text).map(row=>{for(const k of Object.keys(row)){if(row[k].startsWith("'")&&/^[\s]*['=+@\-\t\r]/.test(row[k].slice(1)))row[k]=row[k].slice(1);}if(!CSV_FIELDS.every(k=>k in row)||!['profile','project','note'].includes(row.kind)||!langs.includes(row.source_language)||!row.id||row.id.length>100)throw Error('Invalid record');const meta=JSON.parse(row.payload_json);if(!meta||typeof meta!=='object'||Array.isArray(meta))throw Error('Invalid metadata');for(const k of ['en','ko','sw'])if(row[k].length>20000)throw Error('Too long');const result=Object.fromEntries(CSV_FIELDS.filter(k=>k!=='payload_json').map(k=>[k,row[k]]));result.meta=meta;validateLocalRecord(result);return result;});}
-function validateLocalRecord(r){
- if(!/^[A-Za-z0-9_-]{1,100}$/.test(r.id)||!r[r.source_language]?.trim()||!['pending','machine','reviewed'].includes(r.translation_status)||!Number.isFinite(Date.parse(r.updated_at)))throw Error('Invalid record');
- const m=r.meta;
- if(r.kind==='profile'){
-  if(!['name','city'].every(k=>typeof m[k]==='string'&&m[k].trim()&&m[k].length<=120)||!['LA','TZ'].includes(m.region)||m.consent!==true)throw Error('Invalid profile');
-  const choices={skills:['drawing','painting','digital','printmaking','photography'],seeking:['drawing','painting','digital','printmaking','photography'],themes:['identity','nature','community','memory','culture'],formats:['joint-artwork','merchandise','exhibition','video'],partner_regions:['LA','TZ']};
-  for(const [k,allowed] of Object.entries(choices))if(!Array.isArray(m[k])||!m[k].length||m[k].some(x=>!allowed.includes(x)))throw Error('Invalid preferences');
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(m.available_from)||!/^\d{4}-\d{2}-\d{2}$/.test(m.available_to)||m.available_from>m.available_to)throw Error('Invalid dates');delete m.image;m.sample=false;
- }
- if(r.kind==='project'){
-  if(!['title','artist_a','artist_b'].every(k=>typeof m[k]==='string'&&m[k].trim()&&m[k].length<=200)||!['draft','planning','creating','review','archived'].includes(m.stage))throw Error('Invalid project');
-  if(m.revenue_a!==''&&(typeof m.revenue_a!=='number'||!Number.isFinite(m.revenue_a)||m.revenue_a<0||m.revenue_a>100))throw Error('Invalid share');
-  for(const l of langs)if(r[l]){const v=JSON.parse(r[l]);if(!v||!['brief','deliverables','credit','rights'].every(k=>typeof v[k]==='string'))throw Error('Invalid project translation');}
- }
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = [...document.querySelectorAll('.site-nav a')];
+const toast = document.querySelector('.toast');
+const form = document.querySelector('#artist-form');
+const saveDraftButton = document.querySelector('#save-draft');
+const languageButtons = [...document.querySelectorAll('[data-lang]')];
+const bilingualNodes = [...document.querySelectorAll('[data-en][data-sw]')];
+const successBox = document.querySelector('#form-success');
+const downloadButton = document.querySelector('#download-response');
+let toastTimer;
+let latestSubmission = null;
+
+function updateHeader() {
+  header.classList.toggle('scrolled', window.scrollY > 18);
 }
-function download(name,body,type='text/plain;charset=utf-8'){const blob=new Blob([body],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-async function api(path,body){const response=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const result=await response.json();if(!response.ok)throw Error(result.error||'Request failed');return result;}
-async function saveRecord(record,{translate=false}={}){record.updated_at=new Date().toISOString();validateLocalRecord(record);if(serverMode){record=await api('/api/records',{record,translate});}else{const next=records.filter(r=>r.id!==record.id).concat(record);localStorage.setItem(KEY,JSON.stringify(next));}records=records.filter(r=>r.id!==record.id).concat(record);renderDiscover();renderStudio();return record;}
-function profiles(){return [...samples,...records.filter(r=>r.kind==='profile').map(r=>({...r.meta,id:r.id,en:r.en,ko:r.ko,sw:r.sw,source_language:r.source_language,sample:false}))];}
-function tag(key){return `<span class="tag">${esc(t(key))}</span>`;}
-function matchReasons(m){return `<ul><li>${esc(t('sharedThemes'))}: ${m.shared.map(x=>esc(t(x))).join(', ')||'—'}</li><li>${esc(t('complementarySkills'))}: ${[...new Set([...m.offeredToYou,...m.offeredToThem])].map(x=>esc(t(x))).join(', ')||'—'}</li><li>${esc(t('commonFormats'))}: ${m.formats.map(x=>esc(t(x))).join(', ')}</li><li>${esc(t('scheduleFit'))}: ${esc(m.from)} → ${esc(m.to)}</li></ul>`;}
-function renderDiscover(){if(!samples.length)return;const all=profiles(),as=$('#match-as');if(!all.some(p=>p.id===selectedProfile))selectedProfile=all[0]?.id;as.innerHTML=all.map(p=>`<option value="${esc(p.id)}" ${p.id===selectedProfile?'selected':''}>${esc(p.name)}${p.sample?' · '+esc(t('sample')):''}</option>`).join('');const me=all.find(p=>p.id===selectedProfile);const query=$('#artist-search').value.toLocaleLowerCase(),region=$('#filter-region').value,savedOnly=$('#saved-only').checked;
- const ranked=ArtBridgeMatching.rank(me,all).filter(({profile:p})=>(region==='all'||p.region===region)&&(!savedOnly||shortlisted.includes(p.id))&&(!query||[p.name,p.city,textFor(p),...p.themes.map(x=>t(x))].join(' ').toLocaleLowerCase().includes(query)));
- $('#result-count').textContent=`${ranked.length} ${t('connections')}`;$('#no-artists').hidden=ranked.length>0;
- $('#artist-grid').innerHTML=ranked.map(({profile:p,match:m})=>`<article class="artist-card"><div class="artist-image"><img src="${esc(p.image||'assets/gallery-wall.webp')}" alt="${esc(p.sample?t('sample')+' · '+p.name:p.name)}" loading="lazy"><span class="pill">${esc(t(p.sample?'sample':'ownProfile'))}</span><button class="save-button" data-save="${esc(p.id)}" aria-pressed="${shortlisted.includes(p.id)}" aria-label="${esc(t('shortlist'))}">${shortlisted.includes(p.id)?'♥':'♡'}</button></div><div class="card-content"><div class="card-place">${esc(p.city)} · ${p.region==='LA'?'USA':'TANZANIA'}</div><h3>${esc(p.name)}</h3><p>${esc(textFor(p))}</p>${!p[lang]?`<p class="helper">${esc(t('source'))}: ${esc(p.source_language.toUpperCase())} · ${esc(t('pending'))}</p>`:''}<div class="tags">${p.skills.map(tag).join('')}</div><div class="match-box"><strong>${esc(t('connectionScore'))} ${m.score}/100</strong>${matchReasons(m)}<p class="helper">${esc(t('scoreNote'))}</p><button class="button" data-profile="${esc(p.id)}">${esc(t('viewProfile'))}</button></div></div></article>`).join('');}
-$('#match-as').addEventListener('change',e=>{selectedProfile=e.target.value;localStorage.setItem('artbridge.matchAs',selectedProfile);renderDiscover();});['artist-search','filter-region','saved-only'].forEach(id=>$('#'+id).addEventListener('input',renderDiscover));
-function choices(name,values,selected=[]){return `<div class="tag-options">${values.map(v=>`<label><input type="checkbox" name="${name}" value="${v}" ${selected.includes(v)?'checked':''}>${esc(t(v))}</label>`).join('')}</div>`;}
-const SKILLS=['drawing','painting','digital','printmaking','photography'],THEMES=['identity','nature','community','memory','culture'],FORMATS=['joint-artwork','merchandise','exhibition','video'];
-function languageOptions(current=lang){return langs.map(l=>`<option value="${l}" ${l===current?'selected':''}>${{en:'English',ko:'한국어',sw:'Kiswahili'}[l]}</option>`).join('');}
-function field(label,name,value='',extra='',type='text'){return `<label class="field"><span>${esc(t(label))}</span><input type="${type}" name="${name}" value="${esc(value)}" ${extra}></label>`;}
-function area(label,name,value='',extra=''){return `<label class="field full"><span>${esc(t(label))}</span><textarea name="${name}" ${extra}>${esc(value)}</textarea></label>`;}
-function translationConsent(){return `<p class="helper">${esc(t(translator?'hasTranslator':'noTranslator'))}</p>${translator?`<label class="checkbox-label"><input type="checkbox" name="translate" checked>${esc(t('autoTranslate'))}</label>`:''}`;}
-function profileForm(){const today=new Date().toISOString().slice(0,10),end=new Date();end.setMonth(end.getMonth()+6);openModal(heading(t('createProfile').replace(' ↗',''))+`<form id="profile-form"><div class="field-grid">${field('name','name','','required maxlength="120"')}${field('city','city','','required maxlength="120"')}<label class="field"><span>${esc(t('region'))}</span><select name="region"><option value="LA">Los Angeles</option><option value="TZ">Tanzania</option></select></label><label class="field"><span>${esc(t('sourceLanguage'))}</span><select name="source_language">${languageOptions()}</select></label>${area('bio','body','','required maxlength="6000" placeholder="'+esc(t('bioPlaceholder'))+'"')}</div><div class="field"><span>${esc(t('skills'))}</span>${choices('skills',SKILLS)}</div><div class="field"><span>${esc(t('seeking'))}</span>${choices('seeking',SKILLS)}</div><div class="field"><span>${esc(t('themes'))}</span>${choices('themes',THEMES)}</div><div class="field"><span>${esc(t('formats'))}</span>${choices('formats',FORMATS)}</div><label class="field"><span>${esc(t('partnerRegions'))}</span><select name="partner_regions"><option value="TZ">Tanzania</option><option value="LA">Los Angeles</option><option value="LA|TZ">Los Angeles + Tanzania</option></select></label><div class="field-grid">${field('availableFrom','available_from',today,'required','date')}${field('availableTo','available_to',end.toISOString().slice(0,10),'required','date')}</div><label class="checkbox-label"><input type="checkbox" name="consent" required>${esc(t('profileConsent'))}</label>${translationConsent()}<div class="form-actions"><p class="helper">${esc(t('saveHint'))}</p><button class="button dark" type="submit">${esc(t('saveProfile'))}</button></div></form>`);restoreDraft('profile-form');}
-function restoreDraft(id){const f=$('#'+id),draft=localStorage.getItem('artbridge.draft.'+id);if(draft){try{const values=JSON.parse(draft);for(const element of f.elements){if(!element.name)continue;const value=values[element.name];if(element.type==='checkbox')element.checked=Array.isArray(value)?value.includes(element.value):value==='on';else if(value!=null)element.value=value;}toast(t('draftRecovered'));}catch{}}
- f.addEventListener('input',()=>{const fd=new FormData(f),d={};for(const k of new Set([...fd.keys()])){const elements=[...f.elements].filter(e=>e.name===k);d[k]=elements.length>1?fd.getAll(k):fd.get(k);}try{localStorage.setItem('artbridge.draft.'+id,JSON.stringify(d));}catch{}});}
-function makeRecord(kind,body,source_language,meta={},id=uid()){return {id,kind,source_language,en:'',ko:'',sw:'',[source_language]:body,translation_status:'pending',meta,updated_at:new Date().toISOString()};}
-async function submitProfile(form){const d=new FormData(form);for(const name of ['skills','seeking','themes','formats'])if(!d.getAll(name).length){toast(t('missingRequired'));return;}if(d.get('available_from')>d.get('available_to')){toast(t('badDates'));return;}const meta={name:d.get('name').trim(),city:d.get('city').trim(),region:d.get('region'),partner_regions:d.get('partner_regions').split('|'),available_from:d.get('available_from'),available_to:d.get('available_to'),consent:d.get('consent')==='on',sample:false};for(const name of ['skills','seeking','themes','formats'])meta[name]=d.getAll(name);if(!meta.name||!meta.city||!d.get('body').trim()){toast(t('missingRequired'));return;}const r=await saveRecord(makeRecord('profile',d.get('body').trim(),d.get('source_language'),meta),{translate:d.get('translate')==='on'});selectedProfile=r.id;localStorage.removeItem('artbridge.draft.profile-form');localStorage.setItem('artbridge.matchAs',r.id);closeModal();location.hash='discover';renderDiscover();toast(t('saveSuccess'));}
-function viewProfile(id){const p=profiles().find(p=>p.id===id);if(!p)return;const me=profiles().find(p=>p.id===selectedProfile),m=ArtBridgeMatching.match(me,p);openModal(heading(p.name)+`<span class="pill">${esc(t(p.sample?'sample':'ownProfile'))}</span><p class="helper">${esc(p.city)} · ${p.region==='LA'?'USA':'Tanzania'}</p><p>${esc(textFor(p))}</p>${!p[lang]?`<p class="helper">${esc(t('source'))}: ${esc(p.source_language.toUpperCase())} · ${esc(t('pending'))}</p>`:''}<div class="tags">${p.skills.map(tag).join('')}</div>${m?`<div class="notice"><strong>${esc(t('connectionScore'))} ${m.score}/100</strong>${matchReasons(m)}<p class="helper">${esc(t('scoreNote'))}</p></div>`:''}<p class="helper">${esc(t('localDraft'))}</p><button class="button dark" data-start-project="${esc(p.id)}">${esc(t('startBrief'))}</button>`);}
-function projectForm(partnerId='',existing=null){const all=profiles(),partner=all.find(p=>p.id===partnerId),me=all.find(p=>p.id===selectedProfile),m=existing?.meta||{};openModal(heading(t(existing?'editProject':'newProject').replace('+ ',''))+`<p class="helper">${esc(t('newProjectHint'))}</p><form id="project-form" ${existing?`data-id="${esc(existing.id)}"`:''}><div class="field-grid">${field('projectTitle','title',m.title||'','required maxlength="200"')}${field('artistA','artist_a',m.artist_a||me?.name||'','required maxlength="120"')}${field('artistB','artist_b',m.artist_b||partner?.name||'','required maxlength="120"')}<label class="field"><span>${esc(t('sourceLanguage'))}</span><select name="source_language">${languageOptions(existing?.source_language||lang)}</select></label>${area('brief','body',existing?.[existing.source_language]||'','required maxlength="6000"')}${area('deliverables','deliverables',m.deliverables||'','maxlength="2000"')}${field('credit','credit',m.credit||'','maxlength="500"')}${field('dueDate','due_date',m.due_date||'','','date')}${area('rights','rights',m.rights||'','maxlength="2000"')}${field('revenue','revenue_a',m.revenue_a??'','min="0" max="100" step="0.1"','number')}</div><p class="helper">${esc(t('revenueHint'))}</p>${translationConsent()}<div class="form-actions"><p class="helper">${esc(t('saveHint'))}</p><button class="button dark" type="submit">${esc(t('createDraft'))}</button></div></form>`);if(!existing)restoreDraft('project-form');}
-async function submitProject(form){const d=new FormData(form),existing=records.find(r=>r.id===form.dataset.id),meta={...(existing?.meta||{}),stage:existing?.meta.stage||'draft',title:d.get('title').trim(),artist_a:d.get('artist_a').trim(),artist_b:d.get('artist_b').trim(),due_date:d.get('due_date'),revenue_a:d.get('revenue_a')===''?'':Number(d.get('revenue_a')),deliverables:d.get('deliverables'),credit:d.get('credit'),rights:d.get('rights')};if(!meta.title||!meta.artist_a||!meta.artist_b||!d.get('body').trim()){toast(t('missingRequired'));return;}
- // The project prose includes all free-text terms so translations cover them together.
- const sl=d.get('source_language');const content=JSON.stringify({brief:d.get('body').trim(),deliverables:meta.deliverables,credit:meta.credit,rights:meta.rights});
- const r=makeRecord('project',content,sl,meta,existing?.id);await saveRecord(r,{translate:d.get('translate')==='on'});localStorage.removeItem('artbridge.draft.project-form');closeModal();studioTab='projects';location.hash='studio';renderStudio();toast(t('saveSuccess'));}
-function projectContent(r,l=lang){const raw=r[l]||r[r.source_language]||'';try{const v=JSON.parse(raw);return typeof v==='object'&&v? v:{brief:raw};}catch{return {brief:raw};}}
-function renderStudio(){$('#storage-mode').textContent=t(serverMode?'csvMode':'browserMode');$$('[data-studio-tab]').forEach(b=>b.classList.toggle('active',b.dataset.studioTab===studioTab));if(studioTab==='projects'){const projects=records.filter(r=>r.kind==='project').sort((a,b)=>b.updated_at.localeCompare(a.updated_at));$('#studio-content').innerHTML=`<article class="project-card"><img src="assets/collaboration-cover.webp" alt="One Line, Two Worlds"><div><span class="pill">${esc(t('caseStudy'))}</span><h3>One Line, Two Worlds.</h3><p>Grace Lee × Ezekiel Charles Loishooki</p><p>Los Angeles ↔ Tanzania</p></div><div class="actions"><button class="button small" data-action="story">${esc(t('viewStory'))}</button></div></article>`+projects.map(r=>`<article class="project-card"><div class="mini-mark" aria-hidden="true">↔</div><div><span class="pill">${esc(t(r.meta.stage||'draft'))}</span><h3>${esc(r.meta.title)}</h3><p>${esc(r.meta.artist_a)} × ${esc(r.meta.artist_b)}</p><p>${esc(t('localDraft'))}</p></div><div class="actions"><button class="button small" data-open-project="${esc(r.id)}">${esc(t('openProject'))}</button><button class="text-link" data-document="${esc(r.id)}">${esc(t('makeDocument'))}</button></div></article>`).join('');}
- if(studioTab==='notes'){const notes=records.filter(r=>r.kind==='note').sort((a,b)=>b.updated_at.localeCompare(a.updated_at));$('#studio-content').innerHTML=`<div class="data-card"><h3>${esc(t('newNote'))}</h3><form id="note-form"><label class="field"><span>${esc(t('sourceLanguage'))}</span><select name="source_language">${languageOptions()}</select></label>${area('noteBody','body','','required maxlength="6000"')}${translationConsent()}<div class="form-actions"><p class="helper">${esc(t('saveHint'))}</p><button class="button dark" type="submit">${esc(t('saveNote'))}</button></div></form></div>`+(notes.length?notes.map(r=>`<article class="note-card"><span class="pill">${esc(t(r.translation_status))}</span><p>${esc(textFor(r))}</p>${!r[lang]?`<p class="helper">${esc(t('source'))}: ${esc(r.source_language.toUpperCase())}</p>`:''}<p class="helper">${esc(new Date(r.updated_at).toLocaleString(lang))}</p><button class="text-link" data-translate="${esc(r.id)}">${esc(t('editTranslations'))}</button></article>`).join(''):`<p class="helper">${esc(t('noNotes'))}</p>`);restoreDraft('note-form');}
- if(studioTab==='data'){const counts=['profile','project','note'].map((k,i)=>`<tr><td>${esc(t(['profileCount','projectCount','noteCount'][i]))}</td><td>${records.filter(r=>r.kind===k).length}</td></tr>`).join('');$('#studio-content').innerHTML=`<div class="data-card"><h3>${esc(t('localDataTitle'))}</h3><p>${esc(t(serverMode?'csvDataText':'browserDataText'))}</p><table><tbody>${counts}</tbody></table><div class="button-row"><button class="button dark" data-action="export">${esc(t('exportCsv'))}</button><label class="button" for="csv-import">${esc(t('importCsv'))}</label><input type="file" id="csv-import" class="sr-only" accept=".csv,text/csv"></div><p class="helper">${esc(t('importHint'))}</p></div><div class="data-card"><h3>${esc(t('notes'))}</h3><p>${esc(t(translator?'hasTranslator':'noTranslator'))}</p><p>${esc(t('dataPrivacy'))}</p></div><div class="data-card"><h3>${esc(t('profileCount'))}</h3>${records.filter(r=>r.kind==='profile').map(r=>`<p>${esc(r.meta.name)} · ${esc(t(r.translation_status))} <button class="text-link" data-translate="${esc(r.id)}">${esc(t('editTranslations'))}</button></p>`).join('')||'<p>—</p>'}</div>`;}}
-function openProject(id){const r=records.find(r=>r.id===id);if(!r)return;openModal(heading(r.meta.title)+`<p>${esc(r.meta.artist_a)} × ${esc(r.meta.artist_b)}</p><p>${esc(projectContent(r).brief)}</p><p class="helper">${esc(t('localDraft'))}</p><label class="field"><span>${esc(t('projectStage'))}</span><select data-stage="${esc(r.id)}">${['draft','planning','creating','review','archived'].map(v=>`<option value="${v}" ${r.meta.stage===v?'selected':''}>${esc(t(v))}</option>`).join('')}</select></label><div class="button-row"><button class="button dark" data-document="${esc(r.id)}">${esc(t('makeDocument'))}</button><button class="text-link" data-edit-project="${esc(r.id)}">${esc(t('editProject'))}</button><button class="text-link" data-translate="${esc(r.id)}">${esc(t('editTranslations'))}</button></div>`);}
-function editedTranslations(r,form){const d=new FormData(form),result={};for(const l of langs){if(r.kind==='project'){const v={};for(const key of ['brief','deliverables','credit','rights'])v[key]=String(d.get(l+'__'+key)||'').trim();result[l]=Object.values(v).some(Boolean)?JSON.stringify(v):'';}else result[l]=String(d.get(l)||'').trim();}return result;}
-function translationForm(id){const r=records.find(r=>r.id===id);if(!r)return;activeRecord=r;const columns=langs.map(l=>{const title={en:'English',ko:'한국어',sw:'Kiswahili'}[l],source=r.source_language===l?' · '+t('source'):'';if(r.kind==='project'){let v={};if(r[l])try{v=JSON.parse(r[l]);}catch{}return `<div><h3>${esc(title+source)}</h3>${['brief','deliverables','credit','rights'].map(k=>area(k,l+'__'+k,v[k]||'','maxlength="6000"')).join('')}</div>`;}return `<label class="field"><span>${esc(title+source)}</span><textarea name="${l}" maxlength="20000" placeholder="${esc(t('noTranslationText'))}">${esc(r[l])}</textarea></label>`;}).join('');openModal(heading(t('editTranslations'))+`<p class="helper">${esc(t('editingSource'))}</p><p class="pill">${esc(t(r.translation_status))}</p><form id="translation-form" data-id="${esc(id)}"><div class="translation-columns">${columns}</div><div class="button-row"><button class="button dark" type="submit">${esc(t('saveTranslations'))}</button>${translator?`<button class="button" type="button" data-retry="${esc(id)}">${esc(t('retryTranslation'))}</button>`:''}</div></form>`);}
-function documentText(r,l){const dict=ArtBridgeI18n[l],m=r.meta,content=projectContent(r,l),pending=!r[l],free=v=>v||dict.notSpecified;const share=m.revenue_a===''||m.revenue_a==null?dict.notSpecified:`${m.artist_a}: ${m.revenue_a}% / ${m.artist_b}: ${Math.round((100-Number(m.revenue_a))*10)/10}%`;
- return `${dict.documentTitle.toUpperCase()}\n${m.title}\n\n${dict[r.translation_status]}\n${dict.documentIntro}\n${pending?dict.pendingDocument+' ('+dict.source+': '+r.source_language.toUpperCase()+')\n':''}\n${dict.artistA}: ${m.artist_a}\n${dict.artistB}: ${m.artist_b}\n\n${dict.brief}\n${free(content.brief)}\n\n${dict.deliverables}\n${free(content.deliverables)}\n\n${dict.credit}\n${free(content.credit)}\n\n${dict.rights}\n${dict.originalRights}\n${free(content.rights)}\n\n${dict.revenueHeading}\n${share}\n\n${dict.dueDate}: ${free(m.due_date)}\n\n${dict.signatures}\n\nArtBridge · Voice of Piece\nID: ${r.id}\n${r.updated_at}`;}
-function openDocument(id,dl=lang){const r=records.find(r=>r.id===id);if(!r)return;activeDocument={id,lang:dl};openModal(heading(t('documentTitle'))+`<p class="helper">${esc(t('documentIntro'))}</p><div class="tab-group" role="group" aria-label="Document language">${langs.map(l=>`<button class="${dl===l?'active':''}" data-doc-lang="${l}" data-id="${esc(id)}">${esc({en:'English',ko:'한국어',sw:'Kiswahili'}[l])}</button>`).join('')}</div><pre class="document-preview" lang="${dl}">${esc(documentText(r,dl))}</pre><div class="button-row"><button class="button dark" data-download-document="${esc(id)}">${esc(t('exportDocument'))}</button><button class="button" data-action="print">${esc(t('print'))}</button></div>`);}
-function story(){openModal(heading('One Line, Two Worlds.')+`<p class="artists-line">Grace Lee × Ezekiel Charles Loishooki</p><p>${esc(t('storyDescription'))}</p><p>${esc(t('storyProcess'))}</p><img class="modal-photo" src="assets/collaboration-reference.webp" alt="Collaboration visual reference with lion and bison concepts"><p class="notice">${esc(t('caseNote'))}</p><details><summary>English / Kiswahili</summary><img class="modal-photo" src="assets/swahili-agreement.webp" alt="Kiswahili appendix from collaboration materials"></details>`);}
-function method(){openModal(heading(t('methodTitle'))+`<p>${esc(t('methodText'))}</p><ol><li><p>${esc(t('methodFilters'))}</p></li><li><p>${esc(t('methodWeights'))}</p></li><li><p>${esc(t('methodChoice'))}</p></li></ol><h3>${esc(t('research'))}</h3><p class="helper"><a href="https://papers.nips.cc/paper_files/paper/2018/hash/97af07a14cacba681feacf3012730892-Abstract.html" target="_blank" rel="noopener">Vitale et al. · Reciprocal Recommendation · NeurIPS 2018 ↗</a></p><p class="helper"><a href="https://doi.org/10.1111/jems.12296" target="_blank" rel="noopener">Büyükboyaci & Robbett · Complementary Skills · 2019 ↗</a></p><a class="text-link" href="docs/MATCHING-RESEARCH.md" target="_blank" rel="noopener">${esc(t('readMore'))} ↗</a>`);}
-document.addEventListener('click',async e=>{const b=e.target.closest('button,a[data-action]');if(!b)return;try{if(b.dataset.action==='profile')profileForm();if(b.dataset.action==='story')story();if(b.dataset.action==='method')method();if(b.dataset.action==='new-project')projectForm();if(b.dataset.action==='export'){download('artbridge-workspace.csv',toCSV(records),'text/csv;charset=utf-8');toast(t('backupSaved'));}if(b.dataset.action==='print')window.print();if(b.dataset.save){const id=b.dataset.save;shortlisted=shortlisted.includes(id)?shortlisted.filter(x=>x!==id):[...shortlisted,id];localStorage.setItem('artbridge.shortlist',JSON.stringify(shortlisted));renderDiscover();toast(t(shortlisted.includes(id)?'saved':'removed'));}if(b.dataset.profile)viewProfile(b.dataset.profile);if(b.dataset.startProject){closeModal();projectForm(b.dataset.startProject);}if(b.dataset.studioTab){studioTab=b.dataset.studioTab;renderStudio();}if(b.dataset.openProject)openProject(b.dataset.openProject);if(b.dataset.editProject){const r=records.find(r=>r.id===b.dataset.editProject);closeModal();projectForm('',{...r,[r.source_language]:projectContent(r,r.source_language).brief});}if(b.dataset.translate)translationForm(b.dataset.translate);if(b.dataset.document)openDocument(b.dataset.document);if(b.dataset.docLang)openDocument(b.dataset.id,b.dataset.docLang);if(b.dataset.downloadDocument){const r=records.find(r=>r.id===b.dataset.downloadDocument);download('artbridge-collaboration-'+r.id+'.txt',langs.map(l=>documentText(r,l)).join('\n\n\n────────────────────────\n\n\n'));}
- if(b.dataset.retry){b.disabled=true;const old=records.find(r=>r.id===b.dataset.retry),r=JSON.parse(JSON.stringify(old)),f=$('#translation-form');Object.assign(r,editedTranslations(r,f));if(r[r.source_language]!==old[old.source_language])for(const l of langs)if(l!==r.source_language&&r[l]===old[l])r[l]='';r.translation_status='pending';await saveRecord(r,{translate:true});translationForm(r.id);toast(t('saveSuccess'));}}
- catch{toast(t('error'));b.disabled=false;}});
-document.addEventListener('submit',async e=>{const form=e.target;if(!['profile-form','project-form','note-form','translation-form'].includes(form.id))return;e.preventDefault();if(!form.reportValidity())return;const submit=$('button[type=submit]',form),original=submit.textContent;submit.disabled=true;submit.textContent=t('loading');try{if(form.id==='profile-form')await submitProfile(form);if(form.id==='project-form')await submitProject(form);if(form.id==='note-form'){const d=new FormData(form);if(!d.get('body').trim())throw Error('Empty');await saveRecord(makeRecord('note',d.get('body').trim(),d.get('source_language')),{translate:d.get('translate')==='on'});localStorage.removeItem('artbridge.draft.note-form');renderStudio();toast(t('saveSuccess'));}if(form.id==='translation-form'){const d=new FormData(form),old=records.find(r=>r.id===form.dataset.id),r=JSON.parse(JSON.stringify(old));Object.assign(r,editedTranslations(r,form));if(!r[r.source_language])throw Error('Source required');if(r.kind==='project'){for(const l of langs)if(r[l]){const v=JSON.parse(r[l]);if(!v||!['brief','deliverables','credit','rights'].every(k=>typeof v[k]==='string'))throw Error('Invalid project text');}}
- if(r[r.source_language]!==old[old.source_language]){for(const l of langs)if(l!==r.source_language&&r[l]===old[l])r[l]='';}
- r.translation_status=langs.every(l=>r[l])?'reviewed':'pending';if(r.kind==='project'){const content=JSON.parse(r[r.source_language]);Object.assign(r.meta,{deliverables:content.deliverables,credit:content.credit,rights:content.rights});}await saveRecord(r);closeModal();toast(t('saveSuccess'));}}
- catch{toast(t('error'));}finally{if(submit.isConnected){submit.disabled=false;submit.textContent=original;}}});
-document.addEventListener('change',async e=>{if(e.target.dataset.stage){const r=records.find(r=>r.id===e.target.dataset.stage),copy={...r,meta:{...r.meta,stage:e.target.value}};try{await saveRecord(copy);toast(t('saveSuccess'));}catch{e.target.value=r.meta.stage;toast(t('error'));}}
- if(e.target.id==='csv-import'&&e.target.files[0]){try{if(e.target.files[0].size>2_000_000)throw Error('Too large');const incoming=fromCSV(await e.target.files[0].text());if(new Set(incoming.map(r=>r.id)).size!==incoming.length)throw Error('Duplicate IDs');if(serverMode){await api('/api/import',{records:incoming});records=(await api('/api/records')).records;}else{const next=records.concat(incoming.filter(r=>!records.some(old=>old.id===r.id)));localStorage.setItem(KEY,JSON.stringify(next));records=next;}renderDiscover();renderStudio();toast(t('importDone'));}catch{toast(t('importError'));}}});
-async function init(){try{const status=await api('/api/status');serverMode=status.storage==='csv';translator=Boolean(status.translation);records=(await api('/api/records')).records;}catch{try{records=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(records))records=[];else records=records.filter(r=>{try{validateLocalRecord(r);return true;}catch{return false;}});}catch{records=[];}}
- try{const response=await fetch('data/sample-artists.csv');if(!response.ok)throw Error('Sample data unavailable');samples=parseCSV(await response.text()).map(row=>{const p={...row};for(const k of ['skills','seeking','themes','formats','partner_regions'])p[k]=row[k].split('|');p.consent=row.consent==='true';p.sample=true;p.source_language='en';return p;});}catch{toast(t('error'));}setLanguage(lang);showPage();}
-init();
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = document.body.classList.toggle('menu-open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.body.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation');
+  });
+});
+
+function showToast(message) {
+  clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.classList.add('show');
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+const sections = [...document.querySelectorAll('main section[id]')];
+const observer = new IntersectionObserver(entries => {
+  const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+  if (!visible) return;
+  navLinks.forEach(item => item.classList.remove('active'));
+  const match = navLinks.find(item => item.getAttribute('href') === `#${visible.target.id}`);
+  if (match) match.classList.add('active');
+}, { threshold: [0.22, .42, .62], rootMargin: '-15% 0px -55% 0px' });
+sections.forEach(section => observer.observe(section));
+
+function setLanguage(mode) {
+  languageButtons.forEach(button => button.classList.toggle('active', button.dataset.lang === mode));
+  bilingualNodes.forEach(node => {
+    const en = node.dataset.en;
+    const sw = node.dataset.sw;
+    node.textContent = mode === 'en' ? en : mode === 'sw' ? sw : `${en} / ${sw}`;
+  });
+  localStorage.setItem('vopApplicationLanguage', mode);
+}
+
+languageButtons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+setLanguage(localStorage.getItem('vopApplicationLanguage') || 'both');
+
+function serializeForm() {
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.consent = form.elements.consent.checked;
+  data.savedAt = new Date().toISOString();
+  return data;
+}
+
+function restoreDraft() {
+  const raw = localStorage.getItem('vopArtistApplicationDraft');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    Object.entries(data).forEach(([key, value]) => {
+      const field = form.elements[key];
+      if (!field) return;
+      if (field.type === 'checkbox') field.checked = Boolean(value);
+      else field.value = value ?? '';
+    });
+    showToast('Saved application draft restored.');
+  } catch (_) {}
+}
+restoreDraft();
+
+saveDraftButton.addEventListener('click', () => {
+  const data = serializeForm();
+  localStorage.setItem('vopArtistApplicationDraft', JSON.stringify(data));
+  showToast('Draft saved on this device.');
+});
+
+function validateForm() {
+  let firstInvalid = null;
+  [...form.elements].forEach(field => {
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement)) return;
+    field.classList.remove('invalid');
+    if (!field.checkValidity()) {
+      field.classList.add('invalid');
+      if (!firstInvalid) firstInvalid = field;
+    }
+  });
+  if (firstInvalid) {
+    firstInvalid.focus({ preventScroll: true });
+    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return false;
+  }
+  return true;
+}
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!validateForm()) {
+    showToast('Please complete the required fields. / Tafadhali jaza sehemu zinazohitajika.');
+    return;
+  }
+  latestSubmission = serializeForm();
+  localStorage.setItem('vopArtistApplicationSubmission', JSON.stringify(latestSubmission));
+  localStorage.setItem('vopArtistApplicationDraft', JSON.stringify(latestSubmission));
+  successBox.hidden = false;
+  successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  showToast('Test application saved locally.');
+});
+
+[...form.querySelectorAll('input, textarea, select')].forEach(field => {
+  field.addEventListener('input', () => field.classList.remove('invalid'));
+  field.addEventListener('change', () => field.classList.remove('invalid'));
+});
+
+downloadButton.addEventListener('click', () => {
+  latestSubmission = latestSubmission || (() => {
+    const raw = localStorage.getItem('vopArtistApplicationSubmission');
+    return raw ? JSON.parse(raw) : serializeForm();
+  })();
+  const blob = new Blob([JSON.stringify(latestSubmission, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = `voice-of-piece-artist-application-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  URL.revokeObjectURL(url);
+});

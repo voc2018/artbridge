@@ -1,0 +1,45 @@
+/* ArtBridge Mondrian edition — a presentation layer; original scripts, text and art remain intact. */
+:root{--paper:#fffdf6;--ink:#171717;--muted:#42454b;--line:#171717;--orange:#ff6b25;--soft:#fff0c9;--gold:#ffd52a;--ab-blue:#064fea;--ab-red:#f23532}
+body,.art-home{background:var(--paper);color:var(--ink)}
+.site-header{border-bottom:5px solid #171717;background:#fffdf6;min-height:104px;gap:0;padding:0 0 0 3.5%}
+.brand svg{stroke:var(--ab-blue);width:52px;height:48px;stroke-width:2.25}.brand{color:#171717}
+.site-header nav{align-self:stretch;align-items:center;gap:0;margin-left:auto;border-left:5px solid #171717}
+.site-header nav a{display:flex;align-items:center;height:100%;padding:0 20px;border-right:2px solid #171717;font-weight:700}
+.site-header nav a.active{background:var(--gold);border-bottom:0}
+.header-actions{height:100%;gap:0}.header-actions select{height:100%;padding:0 14px;border-right:5px solid #171717;border-radius:0;background:white;color:#171717}
+.header-actions .button.dark{height:100%;min-height:99px;border:0;border-radius:0;background:var(--ab-blue);color:#fff;padding:10px 24px;font-weight:700}
+.button,.button.small{border-radius:0;font-weight:700}.button.dark:hover,.header-actions .button.dark:hover{background:#0038aa}
+.manifesto-hero{height:min(860px,calc(100svh - 104px));min-height:690px;border-bottom:7px solid #171717;color:white;background:#192e52}
+.manifesto-image{filter:saturate(1.32) contrast(1.12) brightness(.92);object-position:center center}
+.manifesto-shade{display:block;background:linear-gradient(90deg,rgba(5,16,35,.88) 0%,rgba(7,20,43,.69) 32%,rgba(7,20,43,.12) 65%,transparent 85%),linear-gradient(0deg,rgba(3,10,24,.6),transparent 22%)}
+.manifesto-copy h1{max-width:1050px;color:white;font-size:clamp(66px,7.8vw,127px);text-shadow:0 4px 25px rgba(0,0,0,.22)}
+.manifesto-copy h1 em{color:#ffd52a}.hero-kicker{color:#fff;font-weight:700}.hero-translation{color:#fff;font-weight:500}.manifesto-top,.manifesto-foot{color:white;font-weight:700}
+.manifesto-top>span:not(.manifesto-line){background:#fffdf6;color:#171717;padding:9px 12px;border:2px solid #171717}
+.manifesto-line{background:#fff}.manifesto-actions .button.light{background:var(--gold);color:#171717;border:3px solid #171717;box-shadow:5px 5px 0 #171717}
+.manifesto-actions .button.light:hover{background:#fff}.manifesto-link{color:#fff;font-weight:700}
+/* A restrained continental map motif below the real artwork, rather than hiding its original line. */
+.bridge-atlas{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,1.18fr) minmax(0,1fr);align-items:stretch;background:#fffdf6;border-bottom:7px solid #171717;min-height:242px;overflow:hidden}
+.bridge-atlas .atlas-location{z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:32px 7%;position:relative}
+.bridge-atlas .atlas-location:first-child{background:#064fea;color:#fff;border-right:6px solid #171717}
+.bridge-atlas .atlas-location:last-child{background:#ffd52a;border-left:6px solid #171717}
+.atlas-location .atlas-small{font-size:11px;letter-spacing:.19em;font-weight:800}.atlas-location strong{display:block;font-size:clamp(27px,3.5vw,55px);letter-spacing:-.055em;line-height:1.05;margin-top:12px}.atlas-location span:last-child{margin-top:10px;font-size:12px;font-weight:600}
+.atlas-center{position:relative;min-height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fffdf6}
+.atlas-center svg{position:absolute;inset:0;width:100%;height:100%}.atlas-center .atlas-statement{z-index:1;text-align:center;font-size:clamp(12px,1.6vw,21px);font-weight:850;letter-spacing:-.02em;background:#fffdf6d9;padding:12px 18px;border:2px solid #171717}
+.threshold{max-width:none;padding:110px max(5%,calc((100vw - 1440px)/2 + 5%));background:#fffdf6;grid-template-columns:1fr 4fr 1.4fr;border-bottom:7px solid #171717;gap:24px}
+.threshold h2{color:#171717}.threshold h2 em{color:var(--ab-blue)}.threshold-index{color:#171717;font-weight:800}.threshold-note{color:#171717;border-top:5px solid #171717;font-weight:600}.threshold-translation{color:#444}
+.case-study{background:#fff5dd;padding-top:100px}.case-heading h2 em,.chapter-copy h3 em,.work-copy h3 em,.closing-manifesto h2 em{color:var(--ab-red)}
+.case-heading,.portrait-pair,.story-chapter,.process-gallery,.original-works,.work-reveal{position:relative}
+.case-heading::before{content:'';position:absolute;top:-101px;right:4%;width:21%;height:22px;background:var(--gold);border:5px solid #171717;border-top:0}
+.portrait-frame{background:#fff;border:5px solid #171717!important;border-radius:0!important}.portrait img,.process-gallery figure img{filter:saturate(1.09)}.meeting-mark,.original-plus{color:var(--ab-blue)}.story-chapter{border-top:6px solid #171717}.chapter-number{color:var(--ab-blue)}
+.process-gallery blockquote{background:var(--ab-blue);box-shadow:10px 10px 0 #171717}.process-gallery blockquote>span{color:var(--gold)}
+.collaboration-art img{background:white;border:5px solid #171717}.original-works figure{border-top:5px solid #171717}
+.agreement-band{background:var(--ab-blue);border-top:7px solid #171717;border-bottom:7px solid #171717}.agreement-grid h3 em,.agreement-languages{color:var(--gold)}
+.outcome-grid{background:linear-gradient(90deg,transparent 0 69%,#ffd52a 69% 100%)}.outcome-grid figure img{border:5px solid #171717}.outcome-copy{border-top:5px solid #171717}
+.platform-journey{background:var(--ab-red);border-top:7px solid #171717;border-bottom:7px solid #171717;color:#171717}
+.journey-heading h2 em{color:#fff}.journey-heading>p,.journey-steps p{color:#171717}.journey-steps,.journey-steps li{border-color:#171717;border-width:3px}.journey-steps li:nth-child(4n + 1){background:#ffd52a}.journey-steps li:nth-child(4n + 2){background:#fffdf6}.journey-steps li:nth-child(4n + 3){background:#ff802b}.journey-steps li:nth-child(4n){background:#064fea;color:#fff}.journey-steps li:nth-child(4n) p{color:#fff}.journey-steps li>span{color:#171717}.journey-steps li:nth-child(4n)>span{color:#ffd52a}
+.journey-actions .manifesto-link{color:#171717}.journey-actions .button.light{background:var(--gold);border:3px solid #171717;color:#171717}
+.closing-manifesto{background:#fffdf6}.closing-manifesto h2 em{color:var(--ab-blue)}.closing-orbit{border-color:var(--ab-red)}.closing-orbit:after{background:var(--gold)}
+/* Other routes remain functional, with a restrained continuation of the same identity. */
+.workspace{background:#fffdf6}.workspace-heading{border-bottom:5px solid #171717}.artist-card,.project-card{border:2px solid #171717}
+@media(max-width:1000px){.site-header nav a{padding:0 11px}.header-actions .button.dark{padding:8px 12px}.bridge-atlas{grid-template-columns:1fr 1.25fr 1fr}.atlas-location strong{font-size:30px}}
+@media(max-width:700px){.site-header{padding:12px 5% 0;grid-template-columns:1fr auto}.site-header nav{grid-row:2;grid-column:1/-1;margin:8px -5.6% 0;border-left:0;border-top:4px solid #171717;justify-content:space-evenly;height:52px}.site-header nav a{font-size:11px;border-right:0;padding:0 5px}.header-actions{height:auto}.header-actions select{border:2px solid #171717;padding:8px}.header-actions .button.dark{display:none}.manifesto-hero{height:auto;min-height:0;max-height:none;background:#152747}.manifesto-image{display:block;position:relative;inset:auto;width:100%;height:auto;filter:saturate(1.32) contrast(1.1)}.manifesto-shade{display:none}.manifesto-top{top:9px;gap:5px}.manifesto-top>span:not(.manifesto-line){font-size:6px;padding:5px 4px;border-width:1px}.manifesto-copy{background:#092e8e;justify-content:flex-start;padding-top:38px;padding-bottom:94px;min-height:0}.manifesto-copy h1,body[lang=ko] #hero-title{color:#fff;font-size:clamp(44px,10.8vw,72px)}.manifesto-copy h1 em{color:var(--gold)}.hero-translation,.manifesto-link{color:#fff}.manifesto-foot{color:#fff;bottom:17px}.bridge-atlas{grid-template-columns:1fr 1fr;min-height:0}.atlas-center{grid-column:1/-1;grid-row:2;min-height:190px;border-top:5px solid #171717}.bridge-atlas .atlas-location{min-height:150px;padding:22px}.bridge-atlas .atlas-location:last-child{border-left:5px solid #171717}.atlas-location strong{font-size:28px}.atlas-location .atlas-small{font-size:9px}.threshold{display:block;padding:80px 6%;}.threshold h2{font-size:clamp(46px,11vw,66px)}.case-heading::before{display:none}.portrait-frame{border-width:3px!important}.outcome-grid{background:none}.platform-journey{color:#171717}.journey-heading>p{color:#171717}.journey-steps{border-width:3px}.journey-steps li{border-width:0 3px 3px 0}.journey-steps li p{color:#171717}}

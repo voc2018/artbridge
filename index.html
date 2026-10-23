@@ -1,530 +1,1078 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Voice of Piece — Los Angeles × Tanzania artist collaboration prototype." />
-  <title>Artbridge</title>
-  <link rel="stylesheet" href="styles.css?v=2.1" />
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eef0ee"><meta name="description" content="ArtBridge by Voice of Piece. An artist-led space connecting Tanzania and Los Angeles, with English and Kiswahili at its heart.">
+<title>ArtBridge — A world between us.</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="theme.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Voice of Piece home">
-      <span class="brand-mark" aria-hidden="true">VOP</span>
-      <span class="brand-text">
-        <strong>Voice of Piece</strong>
-        <small>LA × Tanzania</small>
-      </span>
-    </a>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+<header class="site-header">
+<a class="brand" href="#home" aria-label="ArtBridge home"><svg viewBox="380 166 784 712" aria-hidden="true"><path d="M409 842V375C409 276 489 195 588 195C687 195 767 276 767 375V690M767 375C767 276 845 195 941 195C1037 195 1115 276 1115 375C1115 452 1053 515 975 515H409M975 515C1063 515 1135 587 1135 670C1135 767 1053 848 951 848C850 848 767 770 767 690"/></svg><span>ArtBridge<small>BY VOICE OF PIECE</small></span></a>
+<nav aria-label="Main navigation"><a href="#home" data-route="home" data-i18n="navHome">The bridge</a><a href="#discover" data-route="discover" data-i18n="navDiscover">Find your people</a><a href="#studio" data-route="studio" data-i18n="navStudio">My studio</a><a href="#about" data-route="about" data-i18n="navAbout">Our story</a><a href="#research" data-route="research" data-i18n="navResearch">Research</a></nav>
+<div class="header-actions"><label class="sr-only" for="language" data-i18n="language">Language</label><select id="language" aria-label="Language"><option value="en">EN · English</option><option value="sw">SW · Kiswahili</option><option value="ko">KO · 한국어</option></select><a class="button dark small" href="#apply" data-i18n="join">Join the bridge ↗</a></div>
+</header>
+<main id="main" tabindex="-1">
+<section id="home" class="page art-home">
+<section class="manifesto-hero" aria-labelledby="hero-title">
+  <img class="manifesto-image" src="assets/hero-earth-light.webp" alt="Painting with a gold outline of Africa over red Tanzanian earth on the left and the Santa Monica pier with palm trees at sunset on the right, joined by flowing gold lines" data-i18n-alt="altHero">
+  <div class="manifesto-shade"></div>
+  <div class="manifesto-top"><span data-i18n="topTz">TANZANIA · AFRICA</span><span class="manifesto-line" aria-hidden="true"></span><span data-i18n="topLa">LOS ANGELES · NORTH AMERICA</span></div>
+  <div class="manifesto-copy wrap">
+    <p class="hero-kicker">ARTBRIDGE · VOICE OF PIECE</p>
+    <h1 id="hero-title" class="hero-question" data-i18n-html="heroQ">What could be born if artists<br>who would never meet, <em>met?</em></h1>
+    <p class="hero-translation" data-i18n="heroQSub">Nini kingezaliwa ikiwa wasanii ambao wasingekutana, wangekutana?</p>
+    <p class="hero-lead" data-i18n="heroLead">ArtBridge is a place where artists across oceans and languages discover each other, understand each other, and write the promises that protect each other.</p>
+    <div class="manifesto-actions"><a class="button light" href="#apply" data-i18n="heroJoin">I’m an artist — join the bridge ↗</a><a class="manifesto-link" href="#how" data-i18n="heroHow">How the bridge works ↓</a></div>
+  </div>
+  <div class="manifesto-foot"><span data-i18n="footTz">6.7924° S · TANZANIA</span><span data-i18n="heroFootQ">A PLACE FOR MEETINGS THAT NEVER HAPPENED</span><span data-i18n="footLa">34.0522° N · LOS ANGELES</span></div>
+</section>
 
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+<section class="why-bridge wrap" aria-labelledby="why-title">
+  <p class="eyebrow" data-i18n="whyLabel">WHY ARTBRIDGE EXISTS</p>
+  <h2 id="why-title" data-i18n-html="whyTitle">We showed their work to the world.<br><em>Now we show them to each other.</em></h2>
+  <div class="question-pair">
+    <div class="question-old"><p class="eyebrow" data-i18n="oldQLabel">THE OLD QUESTION</p><p class="question-text" data-i18n="oldQ">How can we show this painting to more people?</p></div>
+    <span class="question-arrow" aria-hidden="true">→</span>
+    <div class="question-new"><p class="eyebrow" data-i18n="newQLabel">THE QUESTION NOW</p><p class="question-text" data-i18n="newQ">If artists who could never have met were to meet, what could be born?</p></div>
+  </div>
+  <p class="why-text" data-i18n="whyText">Our eyes moved from the artwork to the artist, from the painting to the person. Fusion cannot be forced — we can only make a place where different worlds truly meet.</p>
+</section>
+<section class="first-case fc-poster" id="story" aria-labelledby="case-title">
+  <div class="wrap">
+    <header class="fc-head">
+      <div class="first-case-top"><p class="eyebrow" data-i18n="caseLabel">THE FIRST MEETING</p><span class="pill" data-i18n="caseTag">First case · 2026</span></div>
+      <h2 id="case-title" data-i18n-html="caseTitle">Lines drawn under different skies,<br><em>meeting as one.</em></h2>
+    </header>
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a class="active" href="#home">Home</a>
-      <a href="#about">About the Project</a>
-      <a href="#collaboration">One Line, Two Worlds</a>
-      <a href="#join">Join as an Artist</a>
-      <a class="nav-cta" href="#application">Artist Application</a>
-    </nav>
+    <div class="fc-stage">
+      <span class="fc-circle fc-circle--a" aria-hidden="true"></span>
+      <span class="fc-circle fc-circle--b" aria-hidden="true"></span>
+      <figure class="fc-art">
+        <img src="assets/one-line-two-worlds.webp" width="3300" height="2550" alt="One Line, Two Worlds: Ezekiel’s lion inside the outline of Africa beside Grace’s faces inside the outline of the United States" loading="lazy" decoding="async">
+        <figcaption class="fc-title"><span>ONE LINE, TWO WORLDS</span><small>EZEKIEL C. 2025 × GRACE L. 2026</small></figcaption>
+      </figure>
+
+      <svg class="fc-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="20,10 20,30 13.5,41"/>
+        <polyline points="90,4 90,28 87.3,39"/>
+        <polyline points="19,62 27,59"/>
+        <polyline points="70,79 70,60 72.5,45"/>
+        <ellipse cx="50" cy="52" rx="49" ry="34"/>
+      </svg>
+      <span class="fc-dot" style="left:13.5%;top:41%" aria-hidden="true"></span>
+      <span class="fc-dot" style="left:87.3%;top:39%" aria-hidden="true"></span>
+      <span class="fc-dot" style="left:27%;top:59%" aria-hidden="true"></span>
+      <span class="fc-dot" style="left:72.5%;top:45%" aria-hidden="true"></span>
+
+      <article class="fc-card fc-quote fc-quote--ezekiel">
+        <span class="fc-num">01</span>
+        <p data-i18n="ezekielQuote">It is an artistic bridge that connects the culture and the strength of Africa and America through sharing creativity and one language of peace.</p>
+        <cite>EZEKIEL CHARLES LOISHOOKI</cite>
+        <a class="voice-link" href="#ezekiel-voice" data-i18n="watchEzekiel">▶ Hear Ezekiel say it</a>
+      </article>
+
+      <article class="fc-card fc-person fc-person--ezekiel">
+        <img src="assets/ezekiel-portrait.webp" alt="Ezekiel Charles Loishooki" loading="lazy">
+        <div><strong>Ezekiel Charles Loishooki</strong><span>ARUSHA, TANZANIA</span></div>
+      </article>
+
+      <article class="fc-card fc-person fc-person--grace">
+        <img src="assets/grace-portrait.webp" alt="Grace Lee" loading="lazy">
+        <div><strong>Grace Lee</strong><span>LOS ANGELES, USA</span><em class="fc-work">Chronomorphosis</em></div>
+      </article>
+
+      <article class="fc-card fc-quote fc-quote--grace">
+        <span class="fc-num">02</span>
+        <p data-i18n="artistQuote">We created something new without changing or taking away from the original meaning of either artwork.</p>
+        <cite>GRACE LEE</cite>
+      </article>
+    </div>
+
+    <figure class="fc-pull">
+      <blockquote><p data-i18n="gracePull">What began as two individual artworks became part of something larger.</p></blockquote>
+      <figcaption><cite>GRACE LEE</cite><a href="#grace-voice" data-i18n="graceReadMore">Read Grace’s words →</a></figcaption>
+    </figure>
+
+    <div class="fc-story">
+      <p data-i18n="caseText1">Ezekiel, a young painter in Tanzania, drew a lion inside the outline of Africa. Grace, a high school student in Los Angeles, painted inside the outline of America. They had never met, and they did not share a language.</p>
+      <div>
+        <p data-i18n="caseText2">Grace did not see a work to promote. She saw a person she wanted to paint with. Between them, a third painting was born — one that belongs to neither of them alone. ArtBridge began with this meeting.</p>
+        <a class="button dark" href="#meeting" data-i18n="caseRead">Read the full story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bridge-artists-section" aria-labelledby="artists-title">
+  <div class="wrap">
+    <div class="section-heading"><div><p class="eyebrow" data-i18n="artistsLabel">ARTISTS ON THE BRIDGE</p><h2 id="artists-title" data-i18n-html="artistsTitle">17 artists in Tanzania.<br><em>Your name could be next to theirs.</em></h2></div><p data-i18n="artistsText">Every artist has their own page. Open one to see their work in their own words.</p></div>
+    <div id="bridge-artists" class="bridge-artist-grid"></div>
+  </div>
+</section>
+<section class="platform-journey" id="how">
+  <div class="wrap"><div class="journey-heading"><div><p class="eyebrow" data-i18n="journeyLabel">ONE PLACE, FROM INTRODUCTION TO AGREEMENT</p><h2 data-i18n-html="journeyTitle">A meeting becomes<br><em>a way forward.</em></h2></div><p data-i18n="journeyIntro">ArtBridge is envisioned as one continuous space where artists can be seen, discover a reciprocal connection, shape a project and write the terms that protect their collaboration.</p></div>
+  <ol class="journey-steps">
+    <li><span>01</span><h3 data-i18n="journeyProfile">Artist profile</h3><p data-i18n="journeyProfileText">Share your practice, themes, language and what you hope to find.</p></li>
+    <li><span>02</span><h3 data-i18n="journeyMatch">Meaningful matching</h3><p data-i18n="journeyMatchText">See reciprocal possibilities and understand why a connection is suggested.</p></li>
+    <li><span>03</span><h3 data-i18n="journeyBrief">Shared project brief</h3><p data-i18n="journeyBriefText">Turn an initial spark into a purpose, contribution and timeline both artists can shape.</p></li>
+    <li><span>04</span><h3 data-i18n="journeyTerms">Terms &amp; agreement</h3><p data-i18n="journeyTermsText">Draft credit, permissions, revenue and boundaries before the work travels.</p></li>
+    <li><span>05</span><h3 data-i18n="journeyLanguage">Translation &amp; review</h3><p data-i18n="journeyLanguageText">Keep every original while reviewing English, Korean and Kiswahili together.</p></li>
+    <li><span>06</span><h3 data-i18n="journeyArchive">Creation archive</h3><p data-i18n="journeyArchiveText">Hold the evolving brief, notes and decisions as part of the work’s history.</p></li>
+  </ol>
+  <div class="journey-actions"><a class="button light" href="#discover" data-i18n="tryMatching">Explore artist connections ↗</a><a class="manifesto-link" href="#studio" data-i18n="openStudio">Enter the studio ↗</a></div></div>
+</section>
+
+<section class="bridge-does wrap" aria-labelledby="does-title">
+  <p class="eyebrow" data-i18n="doesLabel">WHAT THE BRIDGE DOES</p>
+  <h2 id="does-title" data-i18n-html="doesTitle">ArtBridge does not paint for anyone.<br><em>It does not automate the artist.</em></h2>
+  <div class="does-grid">
+    <article><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg><h3 data-i18n="discoverT">Discover</h3><p data-i18n="discoverX"></p></article>
+    <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M8 4v2M6 6c0 4 3 7 6 8M11 6c-1 4-4 7-7 8M13 20l4-9 4 9M14.5 17h5"/></svg><h3 data-i18n="understandT">Understand</h3><p data-i18n="understandX"></p></article>
+    <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><h3 data-i18n="protectT">Protect</h3><p data-i18n="protectX"></p></article>
+  </div>
+</section>
+<section class="names-band" aria-labelledby="names-title">
+  <div class="wrap names-grid">
+    <div><p class="eyebrow" data-i18n="namesLabel">NAMES SIDE BY SIDE</p><h2 id="names-title" data-i18n-html="namesTitle">Not paperwork.<br><em>Respect.</em></h2><p data-i18n="namesText"></p></div>
+    <ol class="names-list"><li><span>1</span><p data-i18n="q1"></p></li><li><span>2</span><p data-i18n="q2"></p></li><li><span>3</span><p data-i18n="q3"></p></li><li><span>4</span><p data-i18n="q4"></p></li><li><span>5</span><p data-i18n="q5"></p></li></ol>
+  </div>
+</section>
+<section class="measure wrap" aria-labelledby="measure-title">
+  <p class="eyebrow" data-i18n="measureLabel">HOW WE MEASURE</p>
+  <h2 id="measure-title" data-i18n-html="measureTitle">We don’t count followers.<br><em>We count meetings.</em></h2>
+  <div class="measure-grid">
+    <div><strong>1</strong><h3 data-i18n="m1">Meeting</h3><p data-i18n="m1x"></p></div>
+    <div><strong>1</strong><h3 data-i18n="m2">New work</h3><p data-i18n="m2x"></p></div>
+    <div><strong id="artist-count">17</strong><h3 data-i18n="m3">Artists on the bridge</h3><p data-i18n="m3x"></p></div>
+  </div>
+</section>
+<section class="closing-manifesto wrap"><p class="eyebrow" data-i18n="closingLabel">THERE IS ROOM FOR YOUR PERSPECTIVE</p><h2 data-i18n-html="closingTitle">What could exist<br><em>because you met?</em></h2><a class="button dark" href="#apply" data-i18n="createProfile">Create your artist profile ↗</a><p class="closing-vop" data-i18n="closingVop">Already have a Voice of Piece page? You are already on the bridge.</p><span class="closing-orbit" aria-hidden="true"></span></section>
+</section>
+<section id="meeting" class="page art-home" hidden aria-label="One Line, Two Worlds — the full story">
+<div class="wrap meeting-back"><a class="text-link" href="#home">← ArtBridge</a></div>
+<section class="case-study" id="full-story">
+  <div class="wrap case-heading">
+    <div><p class="eyebrow" data-i18n="realCollaboration">A REAL COLLABORATION</p><h2>One Line,<br><em>Two Worlds.</em></h2></div>
+    <div class="case-intro"><p class="artists-line">Grace Lee <span>×</span> Ezekiel Charles Loishooki</p><p class="location-line" data-i18n="locPair2">LOS ANGELES, USA ↔ TANZANIA</p><p data-i18n="caseLead">Ezekiel’s lion takes the shape of Africa. Grace’s overlapping faces inhabit the outline of the United States. In One Line, Two Worlds, their distinct ways of seeing meet in one composition.</p></div>
+  </div>
+
+  <div class="portrait-pair wrap">
+    <figure class="portrait grace"><div class="portrait-frame"><img src="assets/grace-portrait.webp" alt="Portrait of artist Grace Lee" data-i18n-alt="altGrace" loading="lazy"></div><figcaption><span>GRACE LEE</span><small data-i18n="locLaUs">LOS ANGELES · UNITED STATES</small></figcaption></figure>
+    <div class="meeting-mark" aria-hidden="true"><span>×</span><svg viewBox="0 0 90 160"><path d="M45 0C8 38 82 66 45 104S8 139 45 160"/></svg></div>
+    <figure class="portrait ezekiel"><div class="portrait-frame"><img src="assets/ezekiel-portrait.webp" alt="Portrait of artist Ezekiel Charles Loishooki" data-i18n-alt="altEzekiel" loading="lazy"></div><figcaption><span>EZEKIEL CHARLES LOISHOOKI</span><small data-i18n="locArusha">ARUSHA · TANZANIA</small></figcaption></figure>
+  </div>
+
+  <div class="story-chapter wrap">
+    <div class="chapter-number">I</div>
+    <div class="chapter-copy"><p class="eyebrow" data-i18n="chapterOneLabel">THE QUESTION CHANGES</p><h3 data-i18n-html="chapterOneTitle">We had tried to show the artwork.<br><em>We had never helped the artists meet.</em></h3><p data-i18n="chapterOneText">Grace saw something different in Ezekiel’s work: not an image to promote, but a person she wanted to create with. That shift—from artwork to artist—opened a direction Voice of Piece had never imagined.</p></div>
+  </div>
+
+  <div class="process-gallery wrap">
+    <figure class="process-large"><img src="assets/grace-at-work.webp" alt="Grace Lee drawing at her studio table" data-i18n-alt="altGraceWork" loading="lazy"><figcaption><span data-i18n="graceProcess">Grace at work</span><small data-i18n="locGraceMedium">LOS ANGELES · INK &amp; GRAPHITE</small></figcaption></figure>
+    <figure class="process-small"><img src="assets/ezekiel-at-work.webp" alt="Ezekiel Charles Loishooki drawing a giraffe" data-i18n-alt="altEzekielWork" loading="lazy"><figcaption><span data-i18n="ezekielProcess">Ezekiel at work</span><small data-i18n="locEzekielMedium">ARUSHA · GRAPHITE</small></figcaption></figure>
+    <blockquote><span>“</span><p data-i18n="artistQuote">We created something new without changing or taking away from the original meaning of either artwork.</p><cite>GRACE LEE</cite></blockquote>
+  </div>
+
+  <div class="original-works wrap">
+    <figure><artbridge-artwork work="grace-original" label="Grace Lee’s overlapping faces within the outline of the United States"></artbridge-artwork><figcaption><span>GRACE LEE</span><small>CHRONOMORPHOSIS</small></figcaption></figure>
+    <span class="original-plus" aria-hidden="true">+</span>
+    <figure><artbridge-artwork work="ezekiel-original" label="Ezekiel’s lion within the outline of Africa"></artbridge-artwork><figcaption><span>EZEKIEL CHARLES LOISHOOKI</span><small data-i18n="originalArtwork">Original artwork</small></figcaption></figure>
+  </div>
+  <div class="grace-voice wrap" id="grace-voice">
+    <div class="gv-side">
+      <p class="eyebrow" data-i18n="graceVoiceLabel">IN HER OWN WORDS</p>
+      <h3 data-i18n-html="graceVoiceTitle">Chronomorphosis,<br><em>in Grace’s own words.</em></h3>
+      <div class="gv-person"><img src="assets/grace-portrait.webp" alt="Grace Lee" loading="lazy"><div><strong>Grace Lee</strong><span>LOS ANGELES, USA</span><small data-i18n="graceWritten">Written in English</small></div></div>
+    </div>
+    <div class="gv-text">
+      <p class="gv-lead" data-i18n="graceWords1a">The meaning behind my artwork comes from a piece I originally created called Chronomorphosis, which explores how my identity changes over time. I used the shape of the United States as the foundation, with different faces emerging from the map to represent the different versions of myself shaped by time, experience, and the people around me. As these faces overlap and blend together, it becomes difficult to distinguish who I am now from who I have been and how others perceive me. To me, identity is not fixed; it is constantly evolving as we move through different stages of life.</p>
+      <p data-i18n="graceWords1b">When I connected my work with your lion and Africa, I saw a similar idea. Your lion represents a part of your home and identity, while the face in my artwork represents myself and my connection to America. Bringing our works together allowed us to share parts of who we are and where we come from through art.</p>
+      <p data-i18n="graceWords1c">What makes this collaboration especially meaningful to me is that we created something new without changing or taking away from the original meaning of either artwork. Although we come from different countries and backgrounds, our works could exist alongside each other and form something that belonged to both of us.</p>
+    </div>
+  </div>
+  <div class="work-reveal wrap">
+    <div class="work-copy"><p class="eyebrow" data-i18n="thirdWorkLabel">THE THIRD WORK</p><h3 data-i18n-html="thirdWorkTitle">Neither one erased.<br><em>Something else born between them.</em></h3><p data-i18n="thirdWorkText">Ezekiel’s lion carries a sense of home and identity. Grace’s faces explore how identity changes through time and experience. The shared composition brings these ideas together while preserving the meaning of each original work.</p></div>
+    <figure class="collaboration-art"><artbridge-artwork work="collaboration-final" label="One Line, Two Worlds: Ezekiel’s African lion alongside Grace’s faces within the United States"></artbridge-artwork><figcaption><span>ONE LINE, TWO WORLDS</span><small>EZEKIEL C. × GRACE L.</small></figcaption></figure>
+  </div>
+
+  <div class="artist-voice wrap" id="ezekiel-voice">
+    <div class="voice-copy">
+      <p class="eyebrow" data-i18n="voiceLabel">IN HIS OWN VOICE</p>
+      <h3 data-i18n-html="voiceTitle">This meeting,<br><em>in Ezekiel’s own words.</em></h3>
+      <p data-i18n="voiceText">A video from Arusha. Ezekiel talks about the first time he saw his lion beside Grace’s work, why meetings like this matter for Tanzanian artists, and what Voice of Piece means to him.</p>
+      <p class="voice-meta"><span>EZEKIEL CHARLES LOISHOOKI</span><small data-i18n="voiceSubs">Spoken in English · English and Korean subtitles</small></p>
+    </div>
+    <figure class="voice-video">
+      <div class="voice-frame"><iframe id="ezekiel-video" data-youtube="mSTh0UQX0iU" src="https://www.youtube-nocookie.com/embed/mSTh0UQX0iU?cc_load_policy=1&amp;cc_lang_pref=en&amp;hl=en&amp;rel=0&amp;modestbranding=1" title="Ezekiel Charles on ArtBridge — One Line, Two Worlds" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <figcaption><span data-i18n="locArusha">ARUSHA · TANZANIA</span><small>3:38</small></figcaption>
+    </figure>
+  </div>
+
+  <div class="agreement-band">
+    <div class="wrap agreement-grid"><div><p class="eyebrow" data-i18n="agreementLabel">CREATION NEEDS MORE THAN INSPIRATION</p><h3 data-i18n-html="agreementTitle">The promise became<br><em>part of the artwork.</em></h3></div><div class="agreement-copy"><p data-i18n="agreementText">Credit, permission, authorship, compensation and future use were discussed across English, Korean and Kiswahili. The agreement was not paperwork after the art; it was how the artists protected one another while making it.</p><button class="text-link light-link" data-action="story" data-i18n="viewStory">Explore the collaboration ↗</button></div><div class="agreement-languages"><span>ENGLISH</span><span>KISWAHILI</span><span>한국어</span></div></div>
+  </div>
+
+  <div class="grace-direction wrap" id="grace-direction">
+    <div class="gd-head"><p class="eyebrow" data-i18n="graceDirectionLabel">A NEW DIRECTION</p><h3 data-i18n-html="graceDirectionTitle">What began as two individual artworks<br><em>became part of something larger.</em></h3></div>
+    <div class="gd-text">
+      <p data-i18n="graceWords2a">I also see a connection between this collaboration and the evolution of Voice of Piece itself. Much of the organization's earlier work focused on using technology to help existing artworks reach wider audiences. Through this project, however, we explored another possibility: bringing artists together to create entirely new work. As far as I understand it, this was a new direction for Voice of Piece, allowing artistic collaboration to become part of a project that had previously focused more heavily on technology.</p>
+      <p data-i18n="graceWords2b">In that sense, Chronomorphosis has taken on another meaning for me. Just as my identity changes over time, Voice of Piece is also evolving, shaped by the people who contribute to it and the possibilities they introduce. Our collaboration eventually helped inspire ArtBridge, extending the idea beyond one artwork and opening the door for more artists to connect and create together. What began as two individual artworks became part of something larger, and I think that is one of the most meaningful outcomes of our collaboration.</p>
+      <cite>— GRACE LEE</cite>
+    </div>
+  </div>
+
+  <div class="outcome-grid wrap">
+    <figure><img src="assets/collaboration-goods.webp" alt="One Line, Two Worlds collaborative artwork printed on tote bags" data-i18n-alt="altGoods" loading="lazy"><figcaption data-i18n="goodsCaption">From shared drawing to a tangible edition</figcaption></figure>
+    <figure><img src="assets/grace-exhibition.webp" alt="Grace Lee standing beside her work at an exhibition" data-i18n-alt="altGraceExhibit" loading="lazy"><figcaption data-i18n="exhibitionCaption">A collaboration carried into the artists’ next chapters</figcaption></figure>
+    <div class="outcome-copy"><p class="eyebrow" data-i18n="originLabel">THE ORIGIN OF ARTBRIDGE</p><p data-i18n="originText">The meeting revealed new questions: How do artists find one another? How can meaning cross languages? How can a shared work protect both names, both voices and both futures? ArtBridge grew from those questions.</p></div>
+  </div>
+</section>
+
+<div class="wrap meeting-back"><a class="button dark" href="#apply" data-i18n="createProfile">Create your artist profile ↗</a></div>
+</section>
+<section id="discover" class="page wrap workspace" hidden><div class="section-top"><p class="eyebrow" data-i18n="discoveryLabel">ARTIST CONNECTIONS</p><button class="text-link" data-action="method" data-i18n="howMatching">How connections are suggested ↗</button></div><div class="workspace-heading"><h1 data-i18n-html="discoverTitle">Find your<br><em>creative counterpart.</em></h1><p data-i18n="discoverText">A shared interest can start a conversation. A different way of working can take it somewhere new.</p></div><div class="notice" id="sample-notice" data-i18n="sampleNotice">Try the matching experience with clearly labeled fictional profiles. Their preferences are examples, not statements from real Voice of Piece artists.</div><div class="filter-panel"><label><span data-i18n="matchAs">Explore connections as</span><select id="match-as"></select></label><label><span data-i18n="region">Location</span><select id="filter-region"><option value="all" data-i18n="allLocations">All locations</option><option value="TZ" data-i18n="placeTZ">Tanzania</option><option value="LA" data-i18n="placeLA">Los Angeles</option></select></label><label><span data-i18n="search">Search</span><input type="search" id="artist-search" data-placeholder="searchPlaceholder" placeholder="Name or theme"></label><label class="check-filter"><input id="saved-only" type="checkbox"><span data-i18n="savedOnly">Shortlisted</span></label></div><div class="results-bar"><p id="result-count" aria-live="polite"></p><a class="text-link" href="#apply" data-i18n="addProfile">+ Add my profile</a></div><div id="artist-grid" class="artist-grid"></div><div class="empty-state" id="no-artists" hidden data-i18n="noArtists">No connections match these filters. Try another location or search.</div></section>
+<section id="studio" class="page wrap workspace" hidden><div class="section-top"><p class="eyebrow" data-i18n="studioLabel">YOUR CREATIVE SPACE</p><span id="storage-mode" class="pill"></span></div><div class="workspace-heading"><h1 data-i18n-html="studioTitle">A place to<br><em>make it happen.</em></h1><p data-i18n="studioText">Gather your ideas, build a shared brief, and keep the details in one place.</p></div><div class="studio-toolbar"><div class="tab-group" role="group" aria-label="Studio view"><button class="active" data-studio-tab="projects" data-i18n="projects">Projects</button><button data-studio-tab="notes" data-i18n="notes">Notes & translations</button><button data-studio-tab="data" data-i18n="data">My data</button></div><button class="button dark small" data-action="new-project" data-i18n="newProject">+ New project</button></div><div id="studio-content"></div></section>
+<section id="about" class="page about-page" hidden aria-labelledby="about-title">
+<article class="essay" data-lang="en">
+  <header class="essay-head">
+    <p class="essay-kicker" data-i18n="aboutKicker">Why we built ArtBridge</p>
+    <h1 id="about-title">The Question That Didn’t Exist Before We Met</h1>
+    <p class="essay-byline">Chuyeon Lee · President, Voice of Calling</p>
+      </header>
+  <figure class="essay-figure"><img src="assets/collaboration-final.png" alt="One Line, Two Worlds by Ezekiel Charles Loishooki and Grace Lee" loading="lazy"><div class="essay-figure-side"><div class="essay-originals"><figure><img src="assets/ezekiel-original.png" alt="Ezekiel’s original" loading="lazy"><span>EZEKIEL C.</span></figure><span class="essay-plus" aria-hidden="true">+</span><figure><img src="assets/grace-original.png" alt="Grace’s original" loading="lazy"><span>GRACE L.</span></figure></div><figcaption><strong>One Line, Two Worlds</strong>Two originals, one third painting. Ezekiel’s lion and Grace’s work became something that belongs to neither of them alone.</figcaption><a class="text-link" href="#meeting">Read the full story →</a></div></figure>
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="Chapters"><ol><li><button type="button" data-essay-jump="essay-ch-1"><span>1</span>The Lion and the Bison</button></li><li><button type="button" data-essay-jump="essay-ch-2"><span>2</span>We Only Tried to Show</button></li><li><button type="button" data-essay-jump="essay-ch-3"><span>3</span>The Question Changes</button></li><li><button type="button" data-essay-jump="essay-ch-4"><span>4</span>Writing Names Side by Side</button></li><li><button type="button" data-essay-jump="essay-ch-5"><span>5</span>The People Who Didn&#x27;t Have the Words &quot;That&#x27;s Not My Field&quot;</button></li><li><button type="button" data-essay-jump="essay-ch-6"><span>6</span>The Question That Didn&#x27;t Exist Before We Met</button></li><li><a class="essay-toc-story" href="#meeting"><span>7</span>Read Grace &amp; Ezekiel’s full story →</a></li></ol></nav>
+  <div class="essay-body" lang="en">
+<h2 class="essay-chapter" id="essay-ch-1"><span>1</span>The Lion and the Bison</h2>
+<p>A lion and a bison will never cross paths in their entire lives.</p>
+<p>One lives on the savannas of Africa, the other on the plains of North America. Between them lies an ocean.</p>
+<p>But this year, I saw the two of them recognize each other.</p>
+<p>Ezekiel, a young painter from Tanzania, painted a lion inside the outline of the African continent. Grace, a high school student in Los Angeles, painted a bison inside the outline of the American continent.</p>
+<p>The two had never met. They didn&#x27;t even speak the same language.</p>
+<p>But when I placed the two paintings side by side, I held my breath for a moment.</p>
+<p>Because it looked as if they had been searching for each other for a long time.</p>
+<p>I want to tell you what happened when these two paintings met. And about what that meeting taught me: the true meaning of the word we hear most often in the world these days, fusion.</p>
+<h2 class="essay-chapter" id="essay-ch-2"><span>2</span>We Only Tried to Show</h2>
+<p>In Tanzania, there are painters who paint all day long, yet still struggle to make a living from their paintings.</p>
+<p>It is not because they lack talent. It is because no one knows who they are.</p>
+<p>We met those painters, and we started Voice of Piece.</p>
+<p>We were people who were good at technology. So we gave our hearts in the way we knew how. We built websites, put their works online, and wrote their stories in many languages. We made merchandise and worked hard to promote them. We also sold some of the painters&#x27; works in the United States and returned the proceeds to them.</p>
+<p>We believed we were doing good work. And that was true.</p>
+<p>But looking back now, through all that time, we were holding on to just one question.</p>
+<p class="essay-pull">&quot;How can we show this painting to more people?&quot;</p>
+<p>Showing. That was where we poured all our effort.</p>
+<h2 class="essay-chapter" id="essay-ch-3"><span>3</span>The Question Changes</h2>
+<p>Then, in our third cohort, Grace joined us as a leader.</p>
+<p>Grace is not someone who writes code. She is someone who paints.</p>
+<p>It reminded me of how, before Steve Jobs made the Macintosh at Apple, he sat in on a calligraphy class that seemed far removed from engineering.</p>
+<p>Grace looked at Ezekiel&#x27;s painting with completely different eyes from our engineers.</p>
+<p>In that painting, our engineers saw &quot;a work that needed to be promoted.&quot; In that painting, Grace saw &quot;a person she wanted to paint with.&quot;</p>
+<p>That small difference changed everything.</p>
+<p>Between the two of them, a painting that had never existed in the world was born.</p>
+<p>That day, the road Voice of Piece had been walking since 2024 opened in a completely different direction.</p>
+<p>Standing before that painting, I realized.</p>
+<p>That all this time, we had only tried to show them to the world.</p>
+<p>That not once had we ever let them meet someone.</p>
+<p>That day, our question changed.</p>
+<p class="essay-pull">&quot;If artists who could never have met were to meet, what could be born?&quot;</p>
+<p>Our eyes had moved from the artwork to the artist, from the painting to the person.</p>
+<p>This question would never have come out of a room full of engineers.</p>
+<p>The moment an artist&#x27;s eyes came in, we began to see a world we had not been able to see.</p>
+<h2 class="essay-chapter" id="essay-ch-4"><span>4</span>Writing Names Side by Side</h2>
+<p>But the beautiful moment did not end there. The real difficulty came after.</p>
+<p>The languages were different. The cultures were different. For one person&#x27;s thoughts to reach the other, they had to pass through many translations and many misunderstandings.</p>
+<p>And questions we had never imagined came pouring in.</p>
+<ul class="essay-questions"><li>Whose name goes next to this painting, and how do we write the names side by side?</li><li>What do we do about copyright?</li><li>If the painting sells, how do we share the proceeds?</li><li>How far can the original work be transformed?</li><li>Who bears the cost of promotion, and how?</li></ul>
+<p>At first, I thought this was a paperwork problem. It wasn&#x27;t.</p>
+<p>It was a matter of respect.</p>
+<p>Would the name of a young painter across the ocean, his share, his rights, be properly protected? If we could not answer that question, even the most beautiful collaboration could become just another unfair story.</p>
+<p>That was when the engineers came back to the table.</p>
+<p>But this time was different. In the beginning, we had defined the problem and built the technology. This time, the engineers took up, with both hands, the wall that an artist had actually run into.</p>
+<p>And they began to ask.</p>
+<ul class="essay-questions"><li>Could we help a painter in LA and a painter in Tanzania discover that the other exists?</li><li>Even if their languages differ, could we help their hearts come across as they truly are?</li><li>When two people decide to join hands, could we help them write, together, the promises that will protect each other?</li></ul>
+<p>From those questions, ArtBridge was born.</p>
+<p>ArtBridge does not paint for anyone. It does not automate the artist either.</p>
+<p>It is a bridge that lets two people who would never have met discover each other.</p>
+<p>Art gave technology a question, and technology turned that question into a path that reaches more people.</p>
+<p>Without Grace, there would be no ArtBridge.</p>
+<p>Without the engineers, that meeting would have ended as one beautiful coincidence.</p>
+<h2 class="essay-chapter" id="essay-ch-5"><span>5</span>The People Who Didn&#x27;t Have the Words &quot;That&#x27;s Not My Field&quot;</h2>
+<p>Do you know who made all of this?</p>
+<p>Not experts at research institutes, nor researchers at prestigious universities.</p>
+<p>High school students.</p>
+<p>One student painted. One student wrote code. One student is preparing to go find the painters of LA in person and listen to their stories. One student wrestled with copyright and contracts.</p>
+<p>No one planned this from the beginning. There was a real problem in front of them, and that problem simply made them need one another.</p>
+<p>These students did not yet have these words.</p>
+<p class="essay-pull">&quot;That&#x27;s not my field.&quot;</p>
+<p>Adults, myself included, say these words far too often. Because I&#x27;m an engineer. Because I&#x27;m a designer. Because I&#x27;m in business. We neither take an interest in other people&#x27;s fields nor try them. At some point, we start to think that staying inside the area we already know well is more comfortable and safer.</p>
+<p>In chemistry, an atom bonds with other atoms when its outer shell has empty spaces.</p>
+<p>Hydrogen is a gas that explodes when it catches fire, and oxygen is a gas that makes fire burn bigger. But when two hydrogens fill oxygen&#x27;s two empty spaces and bond, they become water. Water that puts out fire. Something that resembles neither of them, something that is, in a way, their very opposite, has been newly created.</p>
+<p>On the other hand, an element like neon, whose shell is already full, bonds with no one. Born as neon, it lives as neon all the way.</p>
+<p>The students are not neon yet. They still have many empty spaces, and still many questions.</p>
+<p>And I now believe that this incompleteness is not a lack, but a place where something new can be born.</p>
+<p>To be honest, ArtBridge is not finished yet. It has just taken its first step, and the students are still researching and refining it.</p>
+<p>But there is something that strikes me even more deeply.</p>
+<p>ArtBridge did not come out of someone&#x27;s grand plan. It was born from the effort of students with different interests, each simply in the place they were given, with what they had, sincerely striving to make the best thing they could.</p>
+<p>To me, that fact means more than any finished result.</p>
+<h2 class="essay-chapter" id="essay-ch-6"><span>6</span>The Question That Didn&#x27;t Exist Before We Met</h2>
+<p>Let&#x27;s go back to the lion and the bison.</p>
+<p>A lion and a bison will never cross paths in their lives. But at the tips of two people&#x27;s brushes, they recognized each other.</p>
+<p>And that meeting did not end with a single painting. Grace, the engineers, and we are no longer the same since that meeting.</p>
+<p>Now I think I can tell you what that meeting taught me. What is the true meaning of fusion?</p>
+<p>Is it using AI to turn my portrait into a Van Gogh-style painting, or to turn a family photo into Ghibli style?</p>
+<p>These days, every project and every piece of research, even college admissions, asks this: &quot;What social problem do you want to solve? What solution will you offer for that problem?&quot;</p>
+<p>So we have ended up having to create problems first, just to offer solutions. Because we are told we must fuse the humanities and the sciences, that art and technology must be connected, we even force those connections.</p>
+<p>But Grace and Ezekiel&#x27;s story began the opposite way.</p>
+<p>No one said from the start, &quot;Let&#x27;s make a fusion project.&quot;</p>
+<p>No one said, &quot;Let&#x27;s build a solution called ArtBridge.&quot;</p>
+<p>First there were people, and there was a real meeting.</p>
+<p>Within that meeting, difficulties we had not expected arose. A real problem appeared in front of us.</p>
+<p>And when we began to look at that problem properly, the technology we needed followed.</p>
+<p>Now I can say this.</p>
+<p>True fusion is the birth of something new that neither of the two could ever have made alone.</p>
+<p>Like a third painting that is neither Ezekiel&#x27;s nor Grace&#x27;s. ArtBridge was born that way too.</p>
+<p>That new thing always begins with a question that did not exist before the meeting. And because of that question, everyone who I met became a slightly different person than before.</p>
+<p>So fusion cannot be forced. What we can do is create a place where different worlds can truly meet. That is where fusion begins. Because some possibilities remain invisible until you meet another world.</p>
+<p>That is also why I do not want to measure ArtBridge by the number of registered artists or followers. Two people who would never have met without ArtBridge meeting each other, and one more painting that would never have existed coming into the world. That is why ArtBridge exists.</p>
+  </div>
+  </div>
+</article>
+<article class="essay" data-lang="ko" lang="ko" hidden>
+  <header class="essay-head">
+    <p class="essay-kicker">ArtBridge를 만든 이유</p>
+    <h1 id="about-title-ko">만나기 전에는 없던 질문</h1>
+    <p class="essay-byline">이주연 · Voice of Calling 대표</p>
+  </header>
+  <figure class="essay-figure"><img src="assets/collaboration-final.png" alt="Ezekiel Charles Loishooki와 Grace Lee의 공동 작품 One Line, Two Worlds" loading="lazy"><div class="essay-figure-side"><div class="essay-originals"><figure><img src="assets/ezekiel-original.png" alt="Ezekiel의 원작" loading="lazy"><span>EZEKIEL C.</span></figure><span class="essay-plus" aria-hidden="true">+</span><figure><img src="assets/grace-original.png" alt="Grace의 원작" loading="lazy"><span>GRACE L.</span></figure></div><figcaption><strong>One Line, Two Worlds</strong>두 원작, 세 번째 그림. Ezekiel의 사자와 Grace의 그림이 어느 한 사람의 것도 아닌 작품이 되었습니다.</figcaption><a class="text-link" href="#meeting">이야기 전체 읽기 →</a></div></figure>
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="목차"><ol><li><button type="button" data-essay-jump="essay-ch-1-ko"><span>1</span>사자와 들소</button></li><li><button type="button" data-essay-jump="essay-ch-2-ko"><span>2</span>우리는 보여주려고만 했습니다</button></li><li><button type="button" data-essay-jump="essay-ch-3-ko"><span>3</span>질문이 바뀌다</button></li><li><button type="button" data-essay-jump="essay-ch-4-ko"><span>4</span>이름을 나란히 적는다는 것</button></li><li><button type="button" data-essay-jump="essay-ch-5-ko"><span>5</span>"그건 내 분야가 아니야"라는 말이 없던 사람들</button></li><li><button type="button" data-essay-jump="essay-ch-6-ko"><span>6</span>만나기 전에는 없던 질문</button></li><li><a class="essay-toc-story" href="#meeting"><span>7</span>Grace와 Ezekiel의 이야기 전체 읽기 →</a></li></ol></nav>
+  <div class="essay-body" lang="ko">
+<h2 class="essay-chapter" id="essay-ch-1-ko"><span>1</span>사자와 들소</h2>
+<p>사자와 들소는 평생 한 번도 마주칠 일이 없습니다.</p>
+<p>하나는 아프리카의 초원에, 하나는 북아메리카의 평원에 삽니다. 그 사이에는 바다가 있습니다.</p>
+<p>그런데 저는 올해, 그 둘이 서로를 알아보는 장면을 봤습니다.</p>
+<p>탄자니아의 젊은 화가 Ezekiel은 아프리카 대륙의 윤곽 안에 사자를 그렸습니다. 로스앤젤레스의 고등학생 Grace는 아메리카 대륙의 윤곽 안에 들소를 그렸습니다.</p>
+<p>두 사람은 만난 적이 없었습니다. 말도 통하지 않았습니다.</p>
+<p>그런데 두 그림을 나란히 놓았을 때, 저는 잠시 숨을 멈췄습니다.</p>
+<p>마치 오래전부터 서로를 찾고 있었던 것처럼 보였기 때문입니다.</p>
+<p>저는 이 두 그림이 만나서 어떤 일이 일어났는지 이야기하려 합니다. 그리고 그 만남이 제게 가르쳐준 것, 요즘 세상에서 가장 많이 들리는 말, <strong>융합</strong>의 진정한 의미에 대해서요.</p>
+<h2 class="essay-chapter" id="essay-ch-2-ko"><span>2</span>우리는 보여주려고만 했습니다</h2>
+<p>탄자니아에는 하루 종일 그림을 그리고도, 그 그림으로 살아가기 어려운 화가들이 있습니다.</p>
+<p>재능이 없어서가 아닙니다. 그들을 아는 사람이 없어서입니다.</p>
+<p>우리는 그 화가들을 만났고, Voice of Piece를 시작했습니다.</p>
+<p>우리는 기술을 잘하는 사람들이었습니다. 그래서 우리가 아는 방식으로 마음을 다했습니다. 웹사이트를 만들고, 작품을 온라인에 올리고, 여러 언어로 그들의 이야기를 썼습니다. 굿즈를 만들어서 그들을 홍보하려고 애를 썼습니다. 몇몇 화가의 작품을 미국에서 판매하여 그 수익을 화가들에게 돌려주기도 했습니다.</p>
+<p>우리는 좋은 일을 하고 있다고 믿었습니다. 그리고 그건 사실이었습니다.</p>
+<p>그런데 지금 돌아보면, 우리는 그 모든 시간 동안 단 하나의 질문만 붙들고 있었습니다.</p>
+<p class="essay-pull">"이 그림을, 어떻게 하면 더 많은 사람에게 보여줄 수 있을까?"</p>
+<p>보여주는 것. 그것이 우리가 온 힘을 쏟은 일이었습니다.</p>
+<h2 class="essay-chapter" id="essay-ch-3-ko"><span>3</span>질문이 바뀌다</h2>
+<p>그러다 세 번째 기수에 Grace가 리더로 합류했습니다.</p>
+<p>Grace는 코드를 쓰지 않는 사람입니다. 그림을 그리는 사람입니다.</p>
+<p>그때 저는 스티브 잡스가 애플에서 매킨토시를 만들기 전, 엔지니어링과는 거리가 멀어 보이는 캘리그래피 수업을 청강했던 일이 떠올랐습니다.</p>
+<p>Grace는 Ezekiel의 그림을 우리 엔지니어들과 전혀 다른 눈으로 봤습니다.</p>
+<p>엔지니어들은 그 그림에서 '알려야 할 작품'을 봤습니다. Grace는 그 그림에서 '함께 그리고 싶은 사람'을 봤습니다.</p>
+<p>그 작은 차이가, 모든 것을 바꿨습니다.</p>
+<p>두 사람 사이에서 세상에 없던 그림이 태어났습니다.</p>
+<p>2024년부터 걸어온 Voice of Piece의 길이, 그날 전혀 다른 방향으로 열렸습니다.</p>
+<p>그 그림 앞에서 저는 깨달았습니다.</p>
+<p>우리는 그동안 그들을 세상에 <strong>보여주려고만</strong> 했다는 것을.</p>
+<p>한 번도, 그들을 누군가와 <strong>만나게</strong> 해준 적은 없었다는 것을.</p>
+<p>그날 우리의 질문이 바뀌었습니다.</p>
+<p class="essay-pull">"서로 만날 수 없었던 예술가들이 만난다면, 무엇이 태어날 수 있을까?"</p>
+<p>우리의 시선이 작품에서 예술가에게로, 그림에서 사람에게로 옮겨간 겁니다.</p>
+<p>이 질문은 엔지니어들만 모인 방에서는 절대 나오지 않았을 겁니다.</p>
+<p>예술가의 눈이 들어온 순간, 우리가 보지 못하던 세계가 보이기 시작했습니다.</p>
+<h2 class="essay-chapter" id="essay-ch-4-ko"><span>4</span>이름을 나란히 적는다는 것</h2>
+<p>하지만 아름다운 순간은 거기서 끝나지 않았습니다. 진짜 어려움은 그다음부터였습니다.</p>
+<p>언어가 달랐습니다. 문화가 달랐습니다. 한 사람의 생각이 다른 사람에게 닿기까지, 몇 번의 번역과 몇 번의 오해를 지나야 했습니다.</p>
+<p>그리고 생각지도 못한 질문들이 쏟아졌습니다.</p>
+<ul class="essay-questions"><li>이 그림 옆에 누구의 이름을, 어떻게 나란히 적을 것인가.</li><li>저작권은 어떻게 할 것인가.</li><li>그림이 팔리면, 그 수익은 어떻게 나눌 것인가.</li><li>원작을 어디까지 변형해도 되는가.</li><li>홍보를 위한 비용은 누가 어떻게 감당할 것인가.</li></ul>
+<p>처음엔 이게 서류 문제인 줄 알았습니다. 아니었습니다.</p>
+<p><strong>그건 존중의 문제였습니다.</strong></p>
+<p>바다 건너 한 젊은 화가의 이름이, 그의 몫이, 그의 권리가 제대로 지켜지는가. 그 질문에 답하지 못하면, 아무리 아름다운 협업도 또 하나의 불공평한 이야기가 될 수 있었습니다.</p>
+<p>바로 그때, 엔지니어들이 다시 테이블로 돌아왔습니다.</p>
+<p>하지만 이번엔 달랐습니다. 처음엔 우리가 문제를 정하고 기술을 만들었습니다. 이번엔 한 예술가가 직접 부딪힌 벽을, 엔지니어들이 두 손으로 받아 들었습니다.</p>
+<p>그리고 묻기 시작했습니다.</p>
+<ul class="essay-questions"><li>LA의 화가와 탄자니아의 화가가 서로의 존재를 알게 할 수 있을까?</li><li>말이 달라도, 마음은 제대로 전해지게 할 수 있을까?</li><li>두 사람이 손을 잡기로 했을 때, 서로를 지켜줄 약속을 함께 쓰도록 도울 수 있을까?</li></ul>
+<p>그 질문들에서 <strong>ArtBridge</strong>가 태어났습니다.</p>
+<p>ArtBridge는 그림을 대신 그리지 않습니다. 예술가를 자동화하지도 않습니다.</p>
+<p>만나지 못했을 두 사람이 서로를 발견하게 하는, 다리입니다.</p>
+<p>예술이 기술에게 질문을 주었고, 기술은 그 질문을 더 많은 사람에게 닿는 길로 바꾸었습니다.</p>
+<p>Grace가 없었다면, ArtBridge는 없었습니다.</p>
+<p>엔지니어들이 없었다면, 그 만남은 한 번의 아름다운 우연으로 끝났을 겁니다.</p>
+<h2 class="essay-chapter" id="essay-ch-5-ko"><span>5</span>"그건 내 분야가 아니야"라는 말이 없던 사람들</h2>
+<p>이 모든 걸 만든 사람들이 누군지 아십니까?</p>
+<p>연구소의 전문가들도, 명문 대학의 연구자들도 아닙니다.</p>
+<p><strong>고등학생들입니다.</strong></p>
+<p>한 학생은 그림을 그렸습니다. 한 학생은 코드를 짰습니다. 한 학생은 LA의 화가들을 직접 찾아가 그들의 이야기를 들으려 합니다. 한 학생은 저작권과 계약서를 붙들고 씨름했습니다.</p>
+<p>누구도 처음부터 이걸 계획하지 않았습니다. 진짜 문제가 눈앞에 있었고, 그 문제가 서로를 필요하게 만들었을 뿐입니다.</p>
+<p>이 학생들에게는 아직 이런 말이 없었습니다.</p>
+<p class="essay-pull">"그건 내 분야가 아니야."</p>
+<p>저를 포함한 어른들은 이 말을 너무 자주 합니다. 나는 엔지니어니까. 나는 디자이너니까. 나는 경영을 하니까. 다른 사람의 분야에 관심을 갖지도, 시도하지도 않습니다. 어느 순간 우리는 내가 이미 잘 아는 영역 안에 머무는 것이 더 편하고 안전하다고 생각하게 됩니다.</p>
+<p>화학에서 원자는 바깥 껍질이 비어 있을 때 다른 원자와 결합합니다.</p>
+<p>수소는 불이 붙으면 폭발하는 기체이고, 산소는 불을 더 크게 키우는 기체입니다. 그런데 산소의 빈자리 둘을 수소 둘이 채우며 결합하면, 물이 됩니다. 불을 끄는 물입니다. 둘 중 어느 것과도 닮지 않은, 어떻게 보면 정반대인 무언가가 새로 창조된 거죠.</p>
+<p>반대로 네온처럼 이미 다 채워진 원소는 누구와도 결합하지 않습니다. 네온으로 태어나, 쭉 네온으로 살지요.</p>
+<p>학생들은 아직 네온이 아닙니다. 아직 비어 있는 자리가 많고, 아직 질문이 많습니다.</p>
+<p>그리고 저는 이제 그 불완전함이 부족함이 아니라, 무언가가 새로 태어날 수 있는 자리라고 믿습니다.</p>
+<p>솔직히 말씀드리면, ArtBridge는 아직 완성된 것이 아닙니다. 이제 막 첫걸음을 뗐고, 지금도 학생들이 연구하며 다듬어 가는 중입니다.</p>
+<p>하지만 제게 더 크게 다가오는 것은 따로 있습니다.</p>
+<p>ArtBridge는 누군가의 거창한 계획에서 나온 것이 아닙니다. 관심사가 서로 다른 학생들이 그저 자기가 맡은 자리에서, 자기가 가진 것을 가지고, 가장 좋은 것을 만들려고 성실하게 애쓴 그 노력에서 태어났습니다.</p>
+<p>저는 그 사실이, 완성된 어떤 결과보다 더 큰 의미로 다가옵니다.</p>
+<h2 class="essay-chapter" id="essay-ch-6-ko"><span>6</span>만나기 전에는 없던 질문</h2>
+<p>다시 사자와 들소로 돌아가 보겠습니다.</p>
+<p>사자와 들소는 평생 마주칠 일이 없습니다. 하지만 두 사람의 붓끝에서, 그 둘은 서로를 알아봤습니다.</p>
+<p>그리고 그 만남은 그림 한 점으로 끝나지 않았습니다. Grace도, 엔지니어들도, 우리도 그 만남 이후로 이전과 같지 않습니다.</p>
+<p>이제 그 만남이 제게 가르쳐준 것을 말씀드릴 수 있을 것 같습니다. <strong>융합의 진정한 의미는 무엇일까요?</strong></p>
+<p>AI를 이용해서 내 초상화를 반 고흐풍으로 바꾸거나, 가족사진을 지브리 스타일로 만드는 것일까요?</p>
+<p>요즘은 모든 프로젝트와 연구, 심지어 대학 입시까지 이렇게 묻습니다. "해결하고 싶은 사회 문제가 무엇인가? 그 문제에 어떤 솔루션을 내놓겠는가?"</p>
+<p>그래서 우리는 솔루션을 내놓기 위해 문제부터 만들어내야 하는 처지가 되었습니다. 문과와 이과를 융합해야 한다고, 예술과 기술을 이어야 한다고 하니, 그 연결마저 억지로 만들어 냅니다.</p>
+<p>하지만 Grace와 Ezekiel의 이야기는 정반대로 시작되었습니다.</p>
+<p>아무도 처음부터 "융합 프로젝트를 만들자"고 하지 않았습니다.</p>
+<p>아무도 "ArtBridge라는 솔루션을 만들자"고 하지 않았습니다.</p>
+<p>먼저 사람이 있었고, 실제 만남이 있었습니다.</p>
+<p>그 만남 속에서 예상하지 못했던 어려움이 생겼습니다. <strong>진짜 문제가 우리 앞에 나타난 겁니다.</strong></p>
+<p>그리고 그 문제를 제대로 바라보기 시작했을 때, 필요한 기술이 따라왔습니다.</p>
+<p>이제 저는 이렇게 말할 수 있습니다.</p>
+<p><strong>진짜 융합은, 둘 중 누구 혼자서는 결코 만들 수 없었던 하나가 새로 태어나는 것입니다.</strong></p>
+<p>Ezekiel의 그림도, Grace의 그림도 아닌 세 번째 그림처럼요. ArtBridge도 그렇게 태어났습니다.</p>
+<p>그 새로운 하나는 언제나, 만나기 전에는 없던 질문에서 시작됩니다. 그리고 그 질문 때문에, 만난 사람 모두가 이전과는 조금 다른 사람이 됩니다.</p>
+<p>그러니 융합은 억지로 만들 수 없습니다. 우리가 할 수 있는 일은 <strong>서로 다른 세계가 진짜로 만날 수 있는 자리를 만드는 것.</strong> 그것이 융합의 시작입니다. 어떤 가능성은 다른 세계를 만나기 전까지는 보이지 않기 때문입니다.</p>
+<p>ArtBridge를 등록한 예술가의 수나 팔로워 수로 재지 않으려는 이유도 여기에 있습니다. ArtBridge가 없었다면 만나지 못했을 두 사람이 만나고, 존재하지 않았을 그림 한 점이 세상에 하나 더 생기는 것. 그것이 ArtBridge가 존재하는 이유입니다.</p>
+  </div>
+  </div>
+</article>
+<article class="essay" data-lang="sw" lang="sw" hidden>
+  <header class="essay-head">
+    <p class="essay-kicker">Kwa nini tulijenga ArtBridge</p>
+    <h1 id="about-title-sw">Swali Ambalo Halikuwepo Kabla Hatujakutana</h1>
+    <p class="essay-byline">Chuyeon Lee · Rais, Voice of Calling</p>
+  </header>
+  <figure class="essay-figure"><img src="assets/collaboration-final.png" alt="One Line, Two Worlds ya Ezekiel Charles Loishooki na Grace Lee" loading="lazy"><div class="essay-figure-side"><div class="essay-originals"><figure><img src="assets/ezekiel-original.png" alt="Kazi ya asili ya Ezekiel" loading="lazy"><span>EZEKIEL C.</span></figure><span class="essay-plus" aria-hidden="true">+</span><figure><img src="assets/grace-original.png" alt="Kazi ya asili ya Grace" loading="lazy"><span>GRACE L.</span></figure></div><figcaption><strong>One Line, Two Worlds</strong>Kazi mbili za asili, mchoro wa tatu. Simba wa Ezekiel na kazi ya Grace vikawa kitu kisicho cha mmoja wao peke yake.</figcaption><a class="text-link" href="#meeting">Soma hadithi kamili →</a></div></figure>
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="Sura"><ol><li><button type="button" data-essay-jump="essay-ch-1-sw"><span>1</span>Simba na Nyati</button></li><li><button type="button" data-essay-jump="essay-ch-2-sw"><span>2</span>Tulijaribu Kuonyesha Tu</button></li><li><button type="button" data-essay-jump="essay-ch-3-sw"><span>3</span>Swali Linabadilika</button></li><li><button type="button" data-essay-jump="essay-ch-4-sw"><span>4</span>Kuandika Majina Pembeni kwa Pembeni</button></li><li><button type="button" data-essay-jump="essay-ch-5-sw"><span>5</span>Watu Ambao Hawakuwa na Maneno "Hiyo Si Fani Yangu"</button></li><li><button type="button" data-essay-jump="essay-ch-6-sw"><span>6</span>Swali Ambalo Halikuwepo Kabla Hatujakutana</button></li><li><a class="essay-toc-story" href="#meeting"><span>7</span>Soma hadithi kamili ya Grace na Ezekiel →</a></li></ol></nav>
+  <div class="essay-body" lang="sw">
+<h2 class="essay-chapter" id="essay-ch-1-sw"><span>1</span>Simba na Nyati</h2>
+<p>Simba na nyati hawatakutana hata mara moja katika maisha yao yote.</p>
+<p>Mmoja anaishi katika savana za Afrika, mwingine katika nyanda za Amerika Kaskazini. Kati yao kuna bahari.</p>
+<p>Lakini mwaka huu, niliwaona wawili hao wakitambuana.</p>
+<p>Ezekiel, mchoraji kijana kutoka Tanzania, alichora simba ndani ya umbo la bara la Afrika. Grace, mwanafunzi wa sekondari huko Los Angeles, alichora nyati ndani ya umbo la bara la Amerika.</p>
+<p>Wawili hao hawakuwahi kukutana. Hawakuzungumza hata lugha moja.</p>
+<p>Lakini nilipoweka michoro hiyo miwili pembeni kwa pembeni, nilishikwa na pumzi kwa muda.</p>
+<p>Kwa sababu ilionekana kana kwamba imekuwa ikitafutana kwa muda mrefu.</p>
+<p>Nataka kuwasimulia kilichotokea michoro hii miwili ilipokutana. Na kuhusu kile ambacho mkutano huo ulinifundisha: maana halisi ya neno tunalolisikia mara nyingi zaidi duniani siku hizi, <strong>muungano</strong>.</p>
+<h2 class="essay-chapter" id="essay-ch-2-sw"><span>2</span>Tulijaribu Kuonyesha Tu</h2>
+<p>Tanzania kuna wachoraji wanaochora siku nzima, lakini bado wanapata shida kuishi kwa michoro yao.</p>
+<p>Si kwa sababu hawana kipaji. Ni kwa sababu hakuna anayewajua.</p>
+<p>Tulikutana na wachoraji hao, na tukaanzisha Voice of Piece.</p>
+<p>Tulikuwa watu wenye ujuzi wa teknolojia. Kwa hiyo tulitoa mioyo yetu kwa njia tuliyoijua. Tulijenga tovuti, tukaweka kazi zao mtandaoni, na tukaandika hadithi zao kwa lugha nyingi. Tulitengeneza bidhaa na kujitahidi kuwatangaza. Pia tuliuza baadhi ya kazi za wachoraji nchini Marekani na kuwarudishia mapato.</p>
+<p>Tuliamini tunafanya kazi nzuri. Na hilo lilikuwa kweli.</p>
+<p>Lakini nikitazama nyuma sasa, katika muda wote huo tulikuwa tumeshikilia swali moja tu.</p>
+<p class="essay-pull">"Tunawezaje kuonyesha mchoro huu kwa watu wengi zaidi?"</p>
+<p>Kuonyesha. Hapo ndipo tulipoweka nguvu zetu zote.</p>
+<h2 class="essay-chapter" id="essay-ch-3-sw"><span>3</span>Swali Linabadilika</h2>
+<p>Kisha, katika kundi letu la tatu, Grace alijiunga nasi kama kiongozi.</p>
+<p>Grace si mtu anayeandika programu. Ni mtu anayechora.</p>
+<p>Ilinikumbusha jinsi Steve Jobs, kabla ya kutengeneza Macintosh pale Apple, alivyohudhuria darasa la kaligrafia lililoonekana kuwa mbali kabisa na uhandisi.</p>
+<p>Grace aliutazama mchoro wa Ezekiel kwa macho tofauti kabisa na wahandisi wetu.</p>
+<p>Katika mchoro ule, wahandisi wetu waliona "kazi inayohitaji kutangazwa." Katika mchoro ule, Grace aliona "mtu aliyetaka kuchora naye."</p>
+<p>Tofauti hiyo ndogo ilibadilisha kila kitu.</p>
+<p>Kati yao wawili, mchoro ambao haukuwahi kuwepo duniani ulizaliwa.</p>
+<p>Siku hiyo, njia ambayo Voice of Piece ilikuwa ikitembea tangu 2024 ilifunguka kuelekea upande tofauti kabisa.</p>
+<p>Nikiwa nimesimama mbele ya mchoro ule, niligundua.</p>
+<p>Kwamba muda wote huo, tulikuwa tumejaribu tu <strong>kuwaonyesha</strong> duniani.</p>
+<p>Kwamba hata mara moja hatukuwahi <strong>kuwakutanisha</strong> na mtu yeyote.</p>
+<p>Siku hiyo, swali letu lilibadilika.</p>
+<p class="essay-pull">"Ikiwa wasanii ambao wasingeweza kukutana wangekutana, nini kingezaliwa?"</p>
+<p>Macho yetu yalikuwa yamehama kutoka kwenye kazi ya sanaa hadi kwa msanii, kutoka kwenye mchoro hadi kwa mtu.</p>
+<p>Swali hili lisingeweza kamwe kutoka katika chumba kilichojaa wahandisi pekee.</p>
+<p>Pale macho ya msanii yalipoingia, tulianza kuona dunia ambayo hatukuweza kuiona.</p>
+<h2 class="essay-chapter" id="essay-ch-4-sw"><span>4</span>Kuandika Majina Pembeni kwa Pembeni</h2>
+<p>Lakini wakati ule mzuri haukuishia hapo. Ugumu halisi ulikuja baadaye.</p>
+<p>Lugha zilikuwa tofauti. Tamaduni zilikuwa tofauti. Ili mawazo ya mtu mmoja yamfikie mwingine, yalilazimika kupita katika tafsiri nyingi na kutoelewana kwingi.</p>
+<p>Na maswali ambayo hatukuwahi kuyafikiria yakaanza kumiminika.</p>
+<ul class="essay-questions"><li>Jina la nani liwekwe karibu na mchoro huu, na majina yaandikwe vipi pembeni kwa pembeni?</li><li>Tufanye nini kuhusu hakimiliki?</li><li>Mchoro ukiuzwa, mapato yagawanywe vipi?</li><li>Kazi ya asili inaweza kubadilishwa kwa kiasi gani?</li><li>Nani atabeba gharama za matangazo, na kwa namna gani?</li></ul>
+<p>Mwanzoni, nilidhani hili ni tatizo la makaratasi. Haikuwa hivyo.</p>
+<p><strong>Lilikuwa suala la heshima.</strong></p>
+<p>Je, jina la mchoraji kijana aliye ng'ambo ya bahari, sehemu yake, na haki zake zingelindwa ipasavyo? Kama tusingeweza kujibu swali hilo, hata ushirikiano mzuri zaidi ungeweza kuwa hadithi nyingine isiyo ya haki.</p>
+<p>Hapo ndipo wahandisi waliporudi mezani.</p>
+<p>Lakini safari hii ilikuwa tofauti. Mwanzoni, sisi ndio tulioamua tatizo na kujenga teknolojia. Safari hii, wahandisi walipokea kwa mikono miwili ukuta ambao msanii mwenyewe aligonga.</p>
+<p>Na wakaanza kuuliza.</p>
+<ul class="essay-questions"><li>Je, tunaweza kumsaidia mchoraji wa LA na mchoraji wa Tanzania kugundua kwamba mwingine yupo?</li><li>Hata kama lugha zao ni tofauti, je, tunaweza kusaidia mioyo yao ifikiane jinsi ilivyo kweli?</li><li>Watu wawili wanapoamua kushikana mikono, je, tunaweza kuwasaidia kuandika pamoja ahadi zitakazowalinda?</li></ul>
+<p>Kutoka katika maswali hayo, <strong>ArtBridge</strong> ilizaliwa.</p>
+<p>ArtBridge haichori kwa niaba ya mtu yeyote. Wala haimgeuzi msanii kuwa mashine.</p>
+<p>Ni daraja linalowawezesha watu wawili ambao wasingekutana kugunduana.</p>
+<p>Sanaa iliipa teknolojia swali, na teknolojia ikaligeuza swali hilo kuwa njia inayowafikia watu wengi zaidi.</p>
+<p>Bila Grace, kusingekuwa na ArtBridge.</p>
+<p>Bila wahandisi, mkutano ule ungeishia kuwa bahati nzuri ya mara moja tu.</p>
+<h2 class="essay-chapter" id="essay-ch-5-sw"><span>5</span>Watu Ambao Hawakuwa na Maneno "Hiyo Si Fani Yangu"</h2>
+<p>Je, mnajua ni nani aliyetengeneza haya yote?</p>
+<p>Si wataalamu wa taasisi za utafiti, wala watafiti wa vyuo vikuu maarufu.</p>
+<p><strong>Ni wanafunzi wa sekondari.</strong></p>
+<p>Mwanafunzi mmoja alichora. Mwanafunzi mmoja aliandika programu. Mwanafunzi mmoja anajiandaa kwenda kuwatafuta wachoraji wa LA ana kwa ana na kusikiliza hadithi zao. Mwanafunzi mmoja alipambana na hakimiliki na mikataba.</p>
+<p>Hakuna aliyepanga hili tangu mwanzo. Kulikuwa na tatizo halisi mbele yao, na tatizo hilo liliwafanya wahitajiane.</p>
+<p>Wanafunzi hawa bado hawakuwa na maneno haya.</p>
+<p class="essay-pull">"Hiyo si fani yangu."</p>
+<p>Watu wazima, mimi nikiwemo, tunasema maneno haya mara nyingi mno. Kwa sababu mimi ni mhandisi. Kwa sababu mimi ni mbunifu. Kwa sababu mimi niko kwenye biashara. Hatuvutiwi na fani za wengine, wala hatuzijaribu. Wakati fulani, tunaanza kufikiri kwamba kubaki ndani ya eneo tunalolijua vizuri ni rahisi zaidi na salama zaidi.</p>
+<p>Katika kemia, atomu huungana na atomu nyingine pale ganda lake la nje linapokuwa na nafasi tupu.</p>
+<p>Hidrojeni ni gesi inayolipuka inaposhika moto, na oksijeni ni gesi inayofanya moto uwake zaidi. Lakini hidrojeni mbili zinapojaza nafasi mbili tupu za oksijeni na kuungana, zinakuwa maji. Maji yanayozima moto. Kitu kisichofanana na yoyote kati yao, kwa namna fulani kinyume chao kabisa, kimeumbwa upya.</p>
+<p>Kwa upande mwingine, elementi kama neoni, ambayo ganda lake tayari limejaa, haiungani na yeyote. Huzaliwa ikiwa neoni, na huishi ikiwa neoni hadi mwisho.</p>
+<p>Wanafunzi bado si neoni. Bado wana nafasi nyingi tupu, na bado wana maswali mengi.</p>
+<p>Na sasa naamini kwamba hali hii ya kutokamilika si upungufu, bali ni mahali ambapo kitu kipya kinaweza kuzaliwa.</p>
+<p>Kusema kweli, ArtBridge bado haijakamilika. Imepiga hatua yake ya kwanza tu, na wanafunzi bado wanaifanyia utafiti na kuiboresha.</p>
+<p>Lakini kuna jambo linalonigusa zaidi.</p>
+<p>ArtBridge haikutoka katika mpango mkubwa wa mtu fulani. Ilizaliwa kutokana na juhudi za wanafunzi wenye mapendeleo tofauti, kila mmoja akiwa tu mahali alipopewa, kwa kile alichokuwa nacho, akijitahidi kwa dhati kutengeneza kitu bora zaidi alichoweza.</p>
+<p>Kwangu, ukweli huo una maana kubwa kuliko matokeo yoyote yaliyokamilika.</p>
+<h2 class="essay-chapter" id="essay-ch-6-sw"><span>6</span>Swali Ambalo Halikuwepo Kabla Hatujakutana</h2>
+<p>Turudi kwa simba na nyati.</p>
+<p>Simba na nyati hawatakutana katika maisha yao. Lakini kwenye ncha za brashi za watu wawili, walitambuana.</p>
+<p>Na mkutano huo haukuishia kwenye mchoro mmoja. Grace, wahandisi, na sisi hatuko tena kama tulivyokuwa kabla ya mkutano ule.</p>
+<p>Sasa nadhani naweza kuwaambia kile ambacho mkutano ule ulinifundisha. <strong>Maana halisi ya muungano ni nini?</strong></p>
+<p>Je, ni kutumia AI kugeuza picha yangu kuwa mchoro wa mtindo wa Van Gogh, au kugeuza picha ya familia kuwa mtindo wa Ghibli?</p>
+<p>Siku hizi, kila mradi na kila utafiti, hata udahili wa vyuo vikuu, unauliza hivi: "Ni tatizo gani la kijamii unalotaka kutatua? Utatoa suluhisho gani kwa tatizo hilo?"</p>
+<p>Kwa hiyo tumejikuta tukilazimika kutengeneza matatizo kwanza, ili tu tutoe suluhisho. Kwa sababu tunaambiwa lazima tuunganishe sanaa za kibinadamu na sayansi, kwamba sanaa na teknolojia lazima viunganishwe, tunalazimisha hata miunganiko hiyo.</p>
+<p>Lakini hadithi ya Grace na Ezekiel ilianza kwa njia iliyo kinyume.</p>
+<p>Hakuna aliyesema tangu mwanzo, "Tutengeneze mradi wa muungano."</p>
+<p>Hakuna aliyesema, "Tujenge suluhisho liitwalo ArtBridge."</p>
+<p>Kwanza walikuwepo watu, na kulikuwa na mkutano halisi.</p>
+<p>Ndani ya mkutano huo, magumu ambayo hatukuyatarajia yalijitokeza. <strong>Tatizo halisi lilitokea mbele yetu.</strong></p>
+<p>Na tulipoanza kulitazama tatizo hilo ipasavyo, teknolojia tuliyoihitaji ikafuata.</p>
+<p>Sasa naweza kusema hivi.</p>
+<p><strong>Muungano wa kweli ni kuzaliwa kwa kitu kipya ambacho hakuna kati ya wawili hao angeweza kukitengeneza peke yake.</strong></p>
+<p>Kama mchoro wa tatu ambao si wa Ezekiel wala wa Grace. ArtBridge nayo ilizaliwa hivyo.</p>
+<p>Kitu hicho kipya daima huanza na swali ambalo halikuwepo kabla ya mkutano. Na kwa sababu ya swali hilo, kila aliyekutana anakuwa mtu tofauti kidogo kuliko alivyokuwa awali.</p>
+<p>Kwa hiyo muungano hauwezi kulazimishwa. Tunachoweza kufanya ni <strong>kuandaa mahali ambapo dunia tofauti zinaweza kukutana kweli.</strong> Hapo ndipo muungano unapoanzia. Kwa sababu baadhi ya uwezekano hubaki usioonekana hadi unapokutana na dunia nyingine.</p>
+<p>Hiyo pia ndiyo sababu sitaki kupima ArtBridge kwa idadi ya wasanii waliojisajili au wafuasi. Watu wawili ambao wasingekutana bila ArtBridge wakikutana, na mchoro mmoja zaidi ambao usingekuwepo ukija duniani. Hiyo ndiyo sababu ArtBridge ipo.</p>
+  </div>
+  </div>
+</article>
+<section class="team" aria-labelledby="team-title">
+  <div class="team-inner">
+    <h2 id="team-title" data-i18n="teamTitle">Who made it</h2>
+    <p class="team-intro" data-i18n="teamIntro">ArtBridge was built by three members of Voice of Piece Cohort 3.</p>
+    <ul class="team-list">
+      <li><img class="team-photo" src="assets/grace-portrait.webp" alt="" loading="lazy"><div><h3>Grace Lee</h3><p data-i18n="roleArtist">Artist</p></div></li>
+      <li><img class="team-photo" src="assets/isaac-portrait.webp" alt="" loading="lazy"><div><h3>Isaac</h3><p data-i18n="roleEngineer">Engineer</p></div></li>
+      <li><img class="team-photo" src="assets/woorin-portrait.webp" alt="" loading="lazy"><div><h3>Woorin</h3><p data-i18n="roleMarketing">Marketing</p></div></li>
+    </ul>
+    <p class="team-cohort"><span data-i18n="teamCohort">Voice of Piece · Cohort 3</span> · <a class="text-link" href="#research" data-i18n="teamHowMatching">How the matching works →</a></p>
+    <a class="button dark" href="#apply" data-i18n="join">Join the bridge ↗</a>
+  </div>
+</section>
+</section>
+<section id="research" class="page about-page research-page" hidden aria-labelledby="research-title">
+<article class="essay" data-lang="en">
+  <header class="essay-head">
+    <p class="essay-kicker">Research · How ArtBridge suggests a meeting</p>
+    <h1 id="research-title">A meeting both artists would choose</h1>
+    <p class="research-lead">Most recommenders ask one question: <em>what will this person like?</em> ArtBridge has to ask two at once — would <strong>you</strong> want to create with them, and would <strong>they</strong> want to create with you? This page shows exactly how we compute that, which research it rests on, and what we have not proven yet.</p>
+    <p class="essay-byline">Voice of Piece · Cohort 3 · Research checked 17 October 2026</p>
+      </header>
+
+  <div class="research-summary">
+    <div><strong>2</strong><span>directions scored for every pair — A→B and B→A</span></div>
+    <div><strong>4</strong><span>hard rules a pair must pass before any score exists</span></div>
+    <div><strong>0</strong><span>signals about popularity, sales, followers or “quality” of art</span></div>
+  </div>
+
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="Sections"><ol>
+    <li><button type="button" data-essay-jump="rs-1"><span>1</span>The problem</button></li>
+    <li><button type="button" data-essay-jump="rs-2"><span>2</span>Four rules first</button></li>
+    <li><button type="button" data-essay-jump="rs-3"><span>3</span>Three measures</button></li>
+    <li><button type="button" data-essay-jump="rs-4"><span>4</span>Combining two directions</button></li>
+    <li><button type="button" data-essay-jump="rs-5"><span>5</span>A worked example</button></li>
+    <li><button type="button" data-essay-jump="rs-6"><span>6</span>Why these choices</button></li>
+    <li><button type="button" data-essay-jump="rs-7"><span>7</span>What we refuse to use</button></li>
+    <li><button type="button" data-essay-jump="rs-8"><span>8</span>Safeguards</button></li>
+    <li><button type="button" data-essay-jump="rs-9"><span>9</span>What we have not proven</button></li>
+    <li><button type="button" data-essay-jump="rs-10"><span>10</span>References</button></li>
+  </ol></nav>
+  <div class="essay-body research-body" lang="en">
+
+  <h2 class="essay-chapter" id="rs-1"><span>1</span>The problem is reciprocal</h2>
+  <p>On a shopping site, a book cannot refuse you. On ArtBridge, every “item” is a person with their own wishes. A suggestion that delights one artist and leaves the other cold is not a meeting — it is a polite rejection waiting to happen.</p>
+  <p>Research calls this <strong>reciprocal recommendation</strong>: people recommended to people, where success requires interest on both sides (Pizzato et al., 2010; Palomares et al., 2021). ArtBridge is built on that idea. Every number below is computed twice — once from each artist’s point of view — and then combined so that <em>neither</em> side can be ignored.</p>
+  <p>Everything is computed only from what artists themselves chose in the application: the same eight matching questions, with the same answer options, for artists in Tanzania and in Los Angeles.</p>
+
+  <h2 class="essay-chapter" id="rs-2"><span>2</span>Four rules before any score</h2>
+  <p>A pair receives no score at all — it is simply never shown — unless all four rules hold:</p>
+  <ol class="research-rules">
+    <li><strong>Both artists agreed to be suggested.</strong> “Not yet” means invisible.</li>
+    <li><strong>Each is in the region the other is looking for.</strong> (For LA applicants, the partner region is Tanzania.)</li>
+    <li><strong>Both answered the four matching lists</strong> — what I bring, what I seek, my themes, how I want to work. Missing answers never produce a confident guess.</li>
+    <li><strong>They share at least one way of working</strong> (e.g. both chose “joint artwork”). Two artists who want entirely different kinds of projects are not a meeting.</li>
+  </ol>
+
+  <h2 class="essay-chapter" id="rs-3"><span>3</span>Three measures, with exact weights</h2>
+  <p>For a pair that passes, we measure three things. Each is a number between 0 and 1.</p>
+
+  <div class="formula-card">
+    <p class="formula-name">Shared themes — Jaccard similarity <span>weight 0.35</span></p>
+    <p class="formula">J<sub>theme</sub> = |T<sub>A</sub> ∩ T<sub>B</sub>| ÷ |T<sub>A</sub> ∪ T<sub>B</sub>|</p>
+    <p>Themes both chose, divided by all themes either chose. Dividing by the union means ticking every box does not inflate a match (Jaccard, 1912).</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">Complementary techniques — coverage <span>weight 0.40</span></p>
+    <p class="formula">C<sub>A→B</sub> = |Seek<sub>A</sub> ∩ Bring<sub>B</sub>| ÷ |Seek<sub>A</sub>|</p>
+    <p>Of the techniques A hopes to find, the share B can bring. This one is <em>directional</em>: B may cover all of A’s wishes while A covers only half of B’s. That asymmetry is exactly what reciprocal scoring must see.</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">Ways of working — Jaccard similarity <span>weight 0.25</span></p>
+    <p class="formula">J<sub>format</sub> = |F<sub>A</sub> ∩ F<sub>B</sub>| ÷ |F<sub>A</sub> ∪ F<sub>B</sub>|</p>
+    <p>Joint artwork, exhibition, products, letter and sketch exchange, workshop, video.</p>
+  </div>
+  <p>The weights add to 1, so each directed score is also between 0 and 1:</p>
+  <p class="formula formula-wide">S<sub>A→B</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>A→B</sub> + 0.25·J<sub>format</sub></p>
+  <p class="formula formula-wide">S<sub>B→A</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>B→A</sub> + 0.25·J<sub>format</sub></p>
+
+  <h2 class="essay-chapter" id="rs-4"><span>4</span>Combining two directions: the harmonic mean</h2>
+  <p>We now have two numbers — how well B fits A, and how well A fits B. We combine them with the <strong>harmonic mean</strong> and show it out of 100:</p>
+  <p class="formula formula-wide">Connection = round( 100 × 2·S<sub>A→B</sub>·S<sub>B→A</sub> ÷ (S<sub>A→B</sub> + S<sub>B→A</sub>) )</p>
+  <p>The harmonic mean stays close to the <em>smaller</em> of the two numbers. A one-sided fit cannot hide behind an average:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Fit for A</th><th>Fit for B</th><th>Arithmetic mean</th><th>Geometric mean</th><th>Harmonic mean (ArtBridge)</th></tr></thead>
+    <tbody>
+      <tr><td>0.90</td><td>0.10</td><td>50</td><td>30</td><td><strong>18</strong></td></tr>
+      <tr><td>0.80</td><td>0.40</td><td>60</td><td>57</td><td><strong>53</strong></td></tr>
+      <tr><td>0.60</td><td>0.60</td><td>60</td><td>60</td><td><strong>60</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>A pair that is great for one artist and poor for the other drops from 50 to 18. A balanced pair keeps its full value. This is the property RECON introduced for reciprocal recommendation (Pizzato et al., 2010); the field’s major survey reports that more optimistic means — arithmetic and geometric — performed worse because they relax the requirement that <em>both</em> people be interested (Palomares et al., 2021, reviewing Neve &amp; Palomares).</p>
+
+  <h2 class="essay-chapter" id="rs-5"><span>5</span>A worked example</h2>
+  <p>Two <em>fictional</em> artists, computed by the same code that runs on the site:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th></th><th>Artist A · Los Angeles</th><th>Artist B · Tanzania</th></tr></thead>
+    <tbody>
+      <tr><td>I bring</td><td>Drawing, Digital art</td><td>Tingatinga, Painting</td></tr>
+      <tr><td>I seek</td><td>Tingatinga, Painting</td><td>Digital art, Photography</td></tr>
+      <tr><td>Themes</td><td>Wildlife, Family &amp; love, Identity</td><td>Wildlife, Family &amp; love, Culture, Community</td></tr>
+      <tr><td>Ways of working</td><td>Joint artwork, Exhibition</td><td>Joint artwork, Art merchandise</td></tr>
+      <tr><td>My work may be…</td><td>Combined, not redrawn</td><td>Redrawn in parts</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="research-steps">
+    <li><strong>Rules:</strong> both consented, regions match, all lists answered, shared format (Joint artwork). ✓</li>
+    <li><strong>Themes:</strong> shared {Wildlife, Family &amp; love} = 2; all = 5 → J<sub>theme</sub> = 2/5 = <strong>0.400</strong></li>
+    <li><strong>Formats:</strong> shared 1; all 3 → J<sub>format</sub> = 1/3 = <strong>0.333</strong></li>
+    <li><strong>A’s wishes:</strong> B brings both Tingatinga and Painting → C<sub>A→B</sub> = 2/2 = <strong>1.000</strong></li>
+    <li><strong>B’s wishes:</strong> A brings Digital art but not Photography → C<sub>B→A</sub> = 1/2 = <strong>0.500</strong></li>
+    <li>S<sub>A→B</sub> = 0.35×0.400 + 0.40×1.000 + 0.25×0.333 = 0.140 + 0.400 + 0.083 = <strong>0.623</strong></li>
+    <li>S<sub>B→A</sub> = 0.140 + 0.40×0.500 + 0.083 = <strong>0.423</strong></li>
+    <li>Harmonic mean = 2×0.623×0.423 ÷ (0.623+0.423) = 0.504 → <strong>Connection 50 / 100</strong> <span class="muted">(an arithmetic mean would have said 52)</span></li>
+    <li><strong>Agreed transformation:</strong> the more protective answer wins → <strong>“Combined, not redrawn.”</strong> This is not scored; it is carried into the promise both artists write.</li>
+  </ol>
+  <p>The artists see the reasons, not just the number: shared themes, what each brings the other, and the shared format. Dates and schedules are worked out together after the artists agree to meet.</p>
+
+  <h2 class="essay-chapter" id="rs-6"><span>6</span>Why these choices</h2>
+  <p><strong>Why complementarity weighs most (0.40).</strong> In a controlled experiment, Büyükboyacı and Robbett (2019) found a strong positive interaction between letting people choose their own teams and letting them specialise: self-chosen teams did best when members’ skills complemented each other. ArtBridge follows both halves — it rewards what each artist can bring the other, and it never assigns partners; artists choose.</p>
+  <p><strong>Why themes still matter (0.35).</strong> Complementary hands need a shared subject to work on. Lion and bison, mother and child, hope: a common theme gives two strangers something to talk about before they share a language.</p>
+  <p><strong>Why formats are both a rule and a weight (0.25).</strong> With no shared format there is no project, so it is a rule. Beyond one shared format, more agreement makes planning easier, so it also counts.</p>
+  <p><strong>Why harmonic mean.</strong> Mutual interest is the objective of reciprocal recommendation (Vitale et al., 2018; Palomares, 2020). The harmonic mean encodes that objective directly, and it is the operator the literature has tested most (Palomares et al., 2021).</p>
+  <p class="research-honest"><strong>What the papers do not give us:</strong> the exact weights 0.35 / 0.40 / 0.25. Those are our design choices, written down so they can be tested and changed — see section 9.</p>
+
+  <h2 class="essay-chapter" id="rs-7"><span>7</span>What we deliberately refuse to use</h2>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Approach</th><th>Why it is tempting</th><th>Why not now</th></tr></thead>
+    <tbody>
+      <tr><td>Popularity, followers, sales</td><td>Easy to measure</td><td>Shows the already-visible again. ArtBridge exists for artists no one knows yet.</td></tr>
+      <tr><td>Judging the artwork with AI</td><td>Feels “smart”</td><td>ArtBridge does not rank art. It does not paint for anyone, and it does not judge anyone’s painting.</td></tr>
+      <tr><td>Collaborative filtering</td><td>Learns from behaviour</td><td>A small first cohort has no reliable history; it would learn noise.</td></tr>
+      <tr><td>Language-model embeddings</td><td>Reads free text in any language</td><td>Opaque, costly, and unvalidated for this use. Artists’ own choices come first.</td></tr>
+      <tr><td>Automatic one-to-one assignment</td><td>Optimises a whole cohort</td><td>Treats a score as consent. Every meeting must be chosen by both artists.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Language never lowers a score. Kiswahili, English and Korean are handled by translation, with the original always kept beside it.</p>
+
+  <h2 class="essay-chapter" id="rs-8"><span>8</span>Safeguards</h2>
+  <ul class="research-list">
+    <li><strong>A suggestion is not a match.</strong> Saving someone or drafting a project sends nothing. Artists meet only when both say yes, and either can say no at any time.</li>
+    <li><strong>The more protective answer wins</strong> on how far a work may be transformed.</li>
+    <li><strong>Artists under 18</strong> need a parent or guardian’s name, email and consent before they can be matched.</li>
+    <li><strong>Data stays small.</strong> Only the answers in the application are used. Before the database exists, applications are stored in a private local CSV file.</li>
+  </ul>
+
+  <h2 class="essay-chapter" id="rs-9"><span>9</span>What we have not proven yet</h2>
+  <p>We will not claim ArtBridge “works” until the artists tell us. The pilot will compare our score with two simpler baselines — <strong>shared themes only</strong> and <strong>random eligible pairs</strong> — and measure:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Measure</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td>Mutual interest rate</td><td>Suggestions where <em>both</em> artists say yes ÷ suggestions shown</td></tr>
+      <tr><td>Explanation usefulness</td><td>Artists rate whether the reasons shown made sense (1–5)</td></tr>
+      <tr><td>Decline reasons</td><td>Why an artist said no — to find what the questions miss</td></tr>
+      <tr><td>Completed works</td><td>Meetings that produce a finished shared work with signed promises</td></tr>
+      <tr><td>Fair exposure</td><td>How evenly suggestions are spread across artists, so the same few are not shown again and again</td></tr>
+      <tr><td>Weight sensitivity</td><td>How rankings change if each weight moves ±0.10</td></tr>
+    </tbody>
+  </table></div>
+  <p>As the essay that started this project says, we do not measure ArtBridge by registered artists or followers. We measure it by two people who would never have met, meeting — and one more painting that would never have existed.</p>
+
+  <h2 class="essay-chapter" id="rs-10"><span>10</span>References</h2>
+  <ol class="research-refs">
+    <li>Pizzato, L., Rej, T., Chung, T., Koprinska, I., &amp; Kay, J. (2010). RECON: A reciprocal recommender for online dating. <em>Proceedings of the 4th ACM Conference on Recommender Systems (RecSys ’10)</em>. <a href="https://doi.org/10.1145/1864708.1864747" target="_blank" rel="noopener">doi:10.1145/1864708.1864747</a></li>
+    <li>Palomares, I., Porcel, C., Pizzato, L., Guy, I., &amp; Herrera-Viedma, E. (2021). Reciprocal recommender systems: Analysis of state-of-art literature, challenges and opportunities towards social recommendation. <em>Information Fusion, 69</em>, 103–127. <a href="https://doi.org/10.1016/j.inffus.2020.12.001" target="_blank" rel="noopener">doi:10.1016/j.inffus.2020.12.001</a></li>
+    <li>Vitale, F., Parotsidis, N., &amp; Gentile, C. (2018). Online reciprocal recommendation with theoretical performance guarantees. <em>Advances in Neural Information Processing Systems 31 (NeurIPS 2018)</em>. <a href="https://papers.nips.cc/paper_files/paper/2018/hash/97af07a14cacba681feacf3012730892-Abstract.html" target="_blank" rel="noopener">papers.nips.cc</a></li>
+    <li>Palomares, I. (2020). Reciprocal recommendation: Matching users with the right users. <em>Proceedings of SIGIR 2020</em>, 2429–2431. <a href="https://doi.org/10.1145/3397271.3401420" target="_blank" rel="noopener">doi:10.1145/3397271.3401420</a></li>
+    <li>Büyükboyacı, M., &amp; Robbett, A. (2019). Team formation with complementary skills. <em>Journal of Economics &amp; Management Strategy, 28</em>(4), 713–733. <a href="https://doi.org/10.1111/jems.12296" target="_blank" rel="noopener">doi:10.1111/jems.12296</a></li>
+    <li>Jaccard, P. (1912). The distribution of the flora in the alpine zone. <em>New Phytologist, 11</em>(2), 37–50. <a href="https://doi.org/10.1111/j.1469-8137.1912.tb05611.x" target="_blank" rel="noopener">doi:10.1111/j.1469-8137.1912.tb05611.x</a></li>
+  </ol>
+  <p class="muted">For developers: the algorithm is <code>matching.js</code>; internal design notes are in <code>docs/MATCHING-RESEARCH.md</code> in the project folder.</p>
+  </div>
+  </div>
+</article>
+<article class="essay" data-lang="ko" lang="ko" hidden>
+  <header class="essay-head">
+    <p class="essay-kicker">리서치 · ArtBridge는 만남을 어떻게 제안하나</p>
+    <h1 id="research-title-ko">두 작가 모두가 고를 만남</h1>
+    <p class="research-lead">대부분의 추천 시스템은 한 가지만 묻습니다. <em>이 사람은 무엇을 좋아할까?</em> ArtBridge는 두 가지를 동시에 물어야 합니다. <strong>나</strong>는 이 사람과 함께 작업하고 싶은가, 그리고 <strong>그 사람</strong>도 나와 함께 작업하고 싶은가? 이 페이지는 그것을 정확히 어떻게 계산하는지, 어떤 연구에 기대고 있는지, 그리고 아직 무엇을 증명하지 못했는지 보여줍니다.</p>
+    <p class="essay-byline">Voice of Piece · Cohort 3 · 2026년 10월 17일 연구 내용 확인</p>
   </header>
 
-  <main>
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Voice of Piece · Congressional App Challenge Prototype</p>
-        <h1 id="hero-title">Two Artists.<br />Two Cultures.<br /><span>One Creation.</span></h1>
-        <p class="hero-lede">
-          A platform helping emerging artists in Los Angeles and Tanzania discover one another,
-          build relationships across distance, and create meaningful work together.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#about">Explore the Project</a>
-          <a class="btn btn-secondary" href="#application">Apply as an Artist</a>
-        </div>
-        <div class="hero-tags" aria-label="Project focus">
-          <span>Los Angeles</span><span>↔</span><span>Tanzania</span><span>Artist-to-Artist</span>
-        </div>
-      </div>
+  <div class="research-summary">
+    <div><strong>2</strong><span>모든 짝마다 점수를 매기는 방향 — A→B와 B→A</span></div>
+    <div><strong>4</strong><span>점수를 매기기 전에 반드시 통과해야 하는 규칙</span></div>
+    <div><strong>0</strong><span>인기, 판매, 팔로워, 작품의 "수준"에 관한 신호</span></div>
+  </div>
 
-      <figure class="hero-city" aria-label="Artistic city collage connecting Los Angeles and Tanzania">
-        <img src="assets/la-tanzania-city.webp" alt="A stylized split city scene joining Los Angeles-inspired streets with a Tanzanian coastal city and public art murals." />
-        <div class="city-seam" aria-hidden="true"></div>
-        <figcaption>
-          <span>LOS ANGELES</span>
-          <strong>DISCOVER · CONNECT · CREATE</strong>
-          <span>TANZANIA</span>
-        </figcaption>
-      </figure>
-    </section>
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="목차"><ol>
+    <li><button type="button" data-essay-jump="rs-1-ko"><span>1</span>문제</button></li>
+    <li><button type="button" data-essay-jump="rs-2-ko"><span>2</span>먼저 네 가지 규칙</button></li>
+    <li><button type="button" data-essay-jump="rs-3-ko"><span>3</span>세 가지 측정값</button></li>
+    <li><button type="button" data-essay-jump="rs-4-ko"><span>4</span>두 방향 합치기</button></li>
+    <li><button type="button" data-essay-jump="rs-5-ko"><span>5</span>계산 예시</button></li>
+    <li><button type="button" data-essay-jump="rs-6-ko"><span>6</span>왜 이렇게 정했나</button></li>
+    <li><button type="button" data-essay-jump="rs-7-ko"><span>7</span>쓰지 않기로 한 것</button></li>
+    <li><button type="button" data-essay-jump="rs-8-ko"><span>8</span>보호 장치</button></li>
+    <li><button type="button" data-essay-jump="rs-9-ko"><span>9</span>아직 증명하지 못한 것</button></li>
+    <li><button type="button" data-essay-jump="rs-10-ko"><span>10</span>참고문헌</button></li>
+  </ol></nav>
+  <div class="essay-body research-body" lang="ko">
 
-    <section class="about section" id="about">
-      <div class="section-heading wide-heading">
-        <p class="section-kicker">ABOUT THE PROJECT</p>
-        <h2>What if the missing resource isn’t talent—but the chance to be discovered?</h2>
-      </div>
+  <h2 class="essay-chapter" id="rs-1-ko"><span>1</span>문제는 양방향입니다</h2>
+  <p>쇼핑 사이트에서 책은 당신을 거절할 수 없습니다. ArtBridge에서는 모든 "추천 대상"이 자기만의 바람을 가진 사람입니다. 한 작가는 기뻐하고 다른 작가는 시큰둥한 제안은 만남이 아닙니다. 예의 바른 거절이 기다리고 있을 뿐입니다.</p>
+  <p>연구에서는 이것을 <strong>상호 추천(reciprocal recommendation)</strong>이라고 부릅니다. 사람에게 사람을 추천하는 것으로, 양쪽 모두 관심이 있어야 성공입니다(Pizzato et al., 2010; Palomares et al., 2021). ArtBridge는 이 생각 위에 세워졌습니다. 아래의 모든 숫자는 두 번 계산됩니다. 각 작가의 입장에서 한 번씩 계산한 뒤, <em>어느 쪽도</em> 무시되지 않도록 합칩니다.</p>
+  <p>모든 계산은 작가가 신청서에서 직접 고른 답만으로 이루어집니다. 탄자니아와 로스앤젤레스의 작가가 같은 여덟 개의 매칭 질문에 같은 선택지로 답합니다.</p>
 
-      <div class="about-grid">
-        <div class="about-copy">
-          <p class="lead-copy">
-            Voice of Piece begins with a simple problem: talented emerging artists can live thousands of miles apart,
-            create work with powerful ideas, and still never have a reason or a way to meet.
-          </p>
-          <p>
-            This project tests whether technology can make that first connection easier. Instead of starting with a
-            complicated matching algorithm, we are starting with real artists, real stories, and real collaboration.
-          </p>
-          <div class="project-steps" aria-label="Project method">
-            <div><span>01</span><strong>Find real artists</strong><small>LA + Tanzania</small></div>
-            <div><span>02</span><strong>Understand real problems</strong><small>Listen before designing</small></div>
-            <div><span>03</span><strong>Make the first connection</strong><small>Artist to artist</small></div>
-            <div><span>04</span><strong>Create together</strong><small>One shared work</small></div>
-          </div>
-        </div>
+  <h2 class="essay-chapter" id="rs-2-ko"><span>2</span>점수를 매기기 전의 네 가지 규칙</h2>
+  <p>네 가지 규칙을 모두 만족하지 않으면 그 짝은 점수를 받지 않고, 아예 보이지 않습니다.</p>
+  <ol class="research-rules">
+    <li><strong>두 작가 모두 추천되는 것에 동의했습니다.</strong> "아직은 아니요"는 보이지 않는다는 뜻입니다.</li>
+    <li><strong>각자 상대가 찾는 지역에 있습니다.</strong> (LA 신청자의 상대 지역은 탄자니아입니다.)</li>
+    <li><strong>두 사람 모두 네 가지 매칭 목록에 답했습니다</strong> — 내가 가져오는 것, 내가 찾는 것, 나의 주제, 원하는 작업 방식. 빠진 답으로 확신에 찬 추측을 만들지 않습니다.</li>
+    <li><strong>적어도 하나의 작업 방식이 같습니다</strong> (예: 둘 다 "공동 작품"을 선택). 전혀 다른 종류의 프로젝트를 원하는 두 작가는 만남이 될 수 없습니다.</li>
+  </ol>
 
-        <div class="artist-collage" aria-label="Photographs from artist exhibitions and studio work">
-          <figure class="collage-large">
-            <img src="assets/exhibition-wide.webp" alt="Artist exhibition photograph inside a gallery booth." />
-          </figure>
-          <figure class="collage-small top">
-            <img src="assets/artist-drawing.webp" alt="Artist seated at a table working on a detailed drawing." />
-          </figure>
-          <figure class="collage-small bottom">
-            <img src="assets/exhibition-portrait.webp" alt="Artist standing in front of framed artwork at an exhibition." />
-          </figure>
-          <div class="collage-note">REAL ARTISTS<br />REAL WORK<br />REAL CONNECTIONS</div>
-        </div>
-      </div>
-    </section>
+  <h2 class="essay-chapter" id="rs-3-ko"><span>3</span>세 가지 측정값과 정확한 가중치</h2>
+  <p>규칙을 통과한 짝에 대해 세 가지를 잽니다. 각각 0과 1 사이의 숫자입니다.</p>
 
-    <section class="collaboration section section-dark" id="collaboration">
-      <div class="section-heading collaboration-heading">
-        <p class="section-kicker">ONE LINE, TWO WORLDS</p>
-        <h2>Grace Lee × Ezekiel Charles Loishooki</h2>
-        <p>
-          A real LA × Tanzania collaboration gives the project something more useful than a hypothetical:
-          a working example of how two visual languages can meet without erasing what makes each artist distinct.
-        </p>
-      </div>
+  <div class="formula-card">
+    <p class="formula-name">공통 주제 — 자카드 유사도 <span>가중치 0.35</span></p>
+    <p class="formula">J<sub>theme</sub> = |T<sub>A</sub> ∩ T<sub>B</sub>| ÷ |T<sub>A</sub> ∪ T<sub>B</sub>|</p>
+    <p>두 사람이 모두 고른 주제를, 한 사람이라도 고른 주제 전체로 나눈 값입니다. 합집합으로 나누기 때문에 모든 칸에 체크해도 점수가 부풀지 않습니다(Jaccard, 1912).</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">서로 채워주는 기법 — 충족률 <span>가중치 0.40</span></p>
+    <p class="formula">C<sub>A→B</sub> = |Seek<sub>A</sub> ∩ Bring<sub>B</sub>| ÷ |Seek<sub>A</sub>|</p>
+    <p>A가 찾는 기법 가운데 B가 가져올 수 있는 비율입니다. 이 값은 <em>방향이 있습니다</em>. B는 A의 바람을 모두 채워도, A는 B의 바람을 절반만 채울 수 있습니다. 상호 점수가 바로 이 비대칭을 보아야 합니다.</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">작업 방식 — 자카드 유사도 <span>가중치 0.25</span></p>
+    <p class="formula">J<sub>format</sub> = |F<sub>A</sub> ∩ F<sub>B</sub>| ÷ |F<sub>A</sub> ∪ F<sub>B</sub>|</p>
+    <p>공동 작품, 전시, 상품, 편지와 스케치 교환, 워크숍, 영상.</p>
+  </div>
+  <p>가중치의 합은 1이므로, 방향별 점수도 0과 1 사이입니다.</p>
+  <p class="formula formula-wide">S<sub>A→B</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>A→B</sub> + 0.25·J<sub>format</sub></p>
+  <p class="formula formula-wide">S<sub>B→A</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>B→A</sub> + 0.25·J<sub>format</sub></p>
 
-      <div class="collab-feature">
-        <figure class="agreement-cover">
-          <img src="assets/collaboration-cover.webp" alt="One Line, Two Worlds artistic collaboration agreement cover with a proposed lion-and-bison composition." />
-        </figure>
-        <div class="collab-story">
-          <p class="mini-label">THE COLLABORATION</p>
-          <h3>Two places become one composition.</h3>
-          <p>
-            The visual concept brings together wildlife imagery, geography, and detailed line work: an African lion
-            integrated with the shape of Africa and an American bison integrated with the shape of the United States.
-            The two remain recognizable, but the final work is designed to be read as one shared visual statement.
-          </p>
-          <div class="story-points">
-            <div><strong>Shared language</strong><span>Pen, line, texture, wildlife</span></div>
-            <div><strong>Different context</strong><span>LA / United States + Tanzania / Africa</span></div>
-            <div><strong>Common goal</strong><span>Create without flattening either perspective</span></div>
-          </div>
-          <a class="text-link light" href="#application">Build the next collaboration <span>↗</span></a>
-        </div>
-      </div>
+  <h2 class="essay-chapter" id="rs-4-ko"><span>4</span>두 방향 합치기: 조화평균</h2>
+  <p>이제 숫자가 두 개 있습니다. B가 A에게 얼마나 맞는지, A가 B에게 얼마나 맞는지. 이 둘을 <strong>조화평균</strong>으로 합쳐 100점 만점으로 보여줍니다.</p>
+  <p class="formula formula-wide">연결 점수 = round( 100 × 2·S<sub>A→B</sub>·S<sub>B→A</sub> ÷ (S<sub>A→B</sub> + S<sub>B→A</sub>) )</p>
+  <p>조화평균은 두 숫자 가운데 <em>작은 쪽</em>에 가깝게 머뭅니다. 한쪽만 맞는 짝은 평균 뒤에 숨을 수 없습니다.</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>A에게 맞는 정도</th><th>B에게 맞는 정도</th><th>산술평균</th><th>기하평균</th><th>조화평균 (ArtBridge)</th></tr></thead>
+    <tbody>
+      <tr><td>0.90</td><td>0.10</td><td>50</td><td>30</td><td><strong>18</strong></td></tr>
+      <tr><td>0.80</td><td>0.40</td><td>60</td><td>57</td><td><strong>53</strong></td></tr>
+      <tr><td>0.60</td><td>0.60</td><td>60</td><td>60</td><td><strong>60</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>한 작가에게는 훌륭하고 다른 작가에게는 부족한 짝은 50에서 18로 떨어집니다. 균형 잡힌 짝은 제 값을 그대로 유지합니다. 이것은 RECON이 상호 추천에 도입한 성질입니다(Pizzato et al., 2010). 이 분야의 대표적인 문헌 조사에 따르면, 더 낙관적인 평균인 산술평균과 기하평균은 <em>양쪽 모두</em> 관심이 있어야 한다는 조건을 느슨하게 만들어 성능이 더 낮았습니다(Palomares et al., 2021, Neve &amp; Palomares 검토).</p>
 
-      <div class="collab-evidence">
-        <figure>
-          <img src="assets/collaboration-reference.webp" alt="Visual reference page showing an original lion artwork and a proposed collaborative composition." />
-          <figcaption>Visual reference + rough collaborative composition</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/swahili-agreement.webp" alt="A Kiswahili-language appendix page from the collaboration agreement." />
-          <figcaption>Collaboration materials prepared across languages</figcaption>
-        </figure>
-      </div>
-    </section>
+  <h2 class="essay-chapter" id="rs-5-ko"><span>5</span>계산 예시</h2>
+  <p><em>가상의</em> 두 작가를, 사이트에서 실제로 돌아가는 같은 코드로 계산했습니다.</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th></th><th>작가 A · 로스앤젤레스</th><th>작가 B · 탄자니아</th></tr></thead>
+    <tbody>
+      <tr><td>내가 가져오는 것</td><td>드로잉, 디지털 아트</td><td>팅가팅가, 회화</td></tr>
+      <tr><td>내가 찾는 것</td><td>팅가팅가, 회화</td><td>디지털 아트, 사진</td></tr>
+      <tr><td>주제</td><td>야생동물, 가족과 사랑, 정체성</td><td>야생동물, 가족과 사랑, 문화, 공동체</td></tr>
+      <tr><td>작업 방식</td><td>공동 작품, 전시</td><td>공동 작품, 아트 상품</td></tr>
+      <tr><td>내 작품은…</td><td>합쳐도 되지만 다시 그리면 안 됨</td><td>일부를 다시 그려도 됨</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="research-steps">
+    <li><strong>규칙:</strong> 둘 다 동의, 지역 일치, 모든 목록 답변, 공통 작업 방식(공동 작품). ✓</li>
+    <li><strong>주제:</strong> 공통 {야생동물, 가족과 사랑} = 2개, 전체 = 5개 → J<sub>theme</sub> = 2/5 = <strong>0.400</strong></li>
+    <li><strong>작업 방식:</strong> 공통 1개, 전체 3개 → J<sub>format</sub> = 1/3 = <strong>0.333</strong></li>
+    <li><strong>A의 바람:</strong> B가 팅가팅가와 회화를 모두 가져옴 → C<sub>A→B</sub> = 2/2 = <strong>1.000</strong></li>
+    <li><strong>B의 바람:</strong> A가 디지털 아트는 가져오지만 사진은 아님 → C<sub>B→A</sub> = 1/2 = <strong>0.500</strong></li>
+    <li>S<sub>A→B</sub> = 0.35×0.400 + 0.40×1.000 + 0.25×0.333 = 0.140 + 0.400 + 0.083 = <strong>0.623</strong></li>
+    <li>S<sub>B→A</sub> = 0.140 + 0.40×0.500 + 0.083 = <strong>0.423</strong></li>
+    <li>조화평균 = 2×0.623×0.423 ÷ (0.623+0.423) = 0.504 → <strong>연결 점수 50 / 100</strong> <span class="muted">(산술평균이었다면 52)</span></li>
+    <li><strong>합의된 변형 범위:</strong> 더 보호적인 답이 우선합니다 → <strong>"합쳐도 되지만 다시 그리면 안 됨."</strong> 이것은 점수에 들어가지 않고, 두 작가가 함께 쓰는 약속으로 넘어갑니다.</li>
+  </ol>
+  <p>작가들은 숫자만이 아니라 이유를 봅니다. 공통 주제, 서로에게 가져올 수 있는 것, 공통 작업 방식. 일정은 두 작가가 만나기로 한 뒤에 함께 정합니다.</p>
 
-    <section class="work section" aria-labelledby="work-heading">
-      <div class="section-heading work-heading">
-        <p class="section-kicker">ART, NOT JUST A PROFILE</p>
-        <h2 id="work-heading">The work should stay at the center.</h2>
-        <p>
-          Artist discovery only matters if people can actually experience the art. The platform is designed to let
-          process, detail, and story do more than a short bio ever could.
-        </p>
-      </div>
+  <h2 class="essay-chapter" id="rs-6-ko"><span>6</span>왜 이렇게 정했나</h2>
+  <p><strong>왜 상호 보완이 가장 무거운가 (0.40).</strong> 통제 실험에서 Büyükboyacı와 Robbett(2019)는 사람들이 팀을 스스로 고르게 하는 것과 전문화하게 하는 것 사이에 강한 긍정적 상호작용이 있음을 발견했습니다. 스스로 고른 팀은 구성원의 기술이 서로를 보완할 때 가장 좋은 성과를 냈습니다. ArtBridge는 두 가지를 모두 따릅니다. 각 작가가 상대에게 가져올 수 있는 것에 점수를 주고, 짝을 배정하지 않습니다. 작가가 고릅니다.</p>
+  <p><strong>왜 주제도 여전히 중요한가 (0.35).</strong> 서로 채워주는 손에도 함께 다룰 소재가 필요합니다. 사자와 들소, 엄마와 아이, 희망. 공통 주제는 말이 통하기 전의 두 낯선 사람에게 이야깃거리를 줍니다.</p>
+  <p><strong>왜 작업 방식은 규칙이면서 가중치인가 (0.25).</strong> 공통 작업 방식이 없으면 프로젝트도 없으므로 규칙입니다. 하나를 넘어 더 많이 겹칠수록 계획이 쉬워지므로 점수에도 반영합니다.</p>
+  <p><strong>왜 조화평균인가.</strong> 상호 관심은 상호 추천의 목표입니다(Vitale et al., 2018; Palomares, 2020). 조화평균은 그 목표를 그대로 담고 있고, 문헌에서 가장 많이 검증된 방식입니다(Palomares et al., 2021).</p>
+  <p class="research-honest"><strong>논문이 알려주지 않는 것:</strong> 0.35 / 0.40 / 0.25라는 정확한 가중치. 이것은 우리의 설계 선택이며, 검증하고 바꿀 수 있도록 적어 두었습니다. 9장을 보세요.</p>
 
-      <div class="art-grid">
-        <figure class="art-card art-card-tall">
-          <img src="assets/elephant-art.webp" alt="Detailed monochrome drawing of an elephant." />
-          <figcaption><span>01</span><strong>Detail & patience</strong></figcaption>
-        </figure>
-        <figure class="art-card art-card-tall offset">
-          <img src="assets/giraffe-art.webp" alt="Monochrome giraffe drawing with a butterfly near its face." />
-          <figcaption><span>02</span><strong>Gentleness & connection</strong></figcaption>
-        </figure>
-        <figure class="art-card art-card-wide">
-          <img src="assets/rhino-art.webp" alt="Monochrome rhinoceros drawing with a small bird perched on its horn." />
-          <figcaption><span>03</span><strong>Shared space</strong></figcaption>
-        </figure>
-      </div>
+  <h2 class="essay-chapter" id="rs-7-ko"><span>7</span>일부러 쓰지 않기로 한 것</h2>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>방식</th><th>끌리는 이유</th><th>지금 쓰지 않는 이유</th></tr></thead>
+    <tbody>
+      <tr><td>인기, 팔로워, 판매</td><td>측정하기 쉬움</td><td>이미 보이는 사람을 다시 보여줍니다. ArtBridge는 아직 아무도 모르는 작가를 위해 있습니다.</td></tr>
+      <tr><td>AI로 작품 평가</td><td>"똑똑해" 보임</td><td>ArtBridge는 예술에 순위를 매기지 않습니다. 누구의 그림도 대신 그리지 않고, 누구의 그림도 평가하지 않습니다.</td></tr>
+      <tr><td>협업 필터링</td><td>행동에서 학습함</td><td>작은 첫 기수에는 믿을 만한 기록이 없어서 잡음만 배우게 됩니다.</td></tr>
+      <tr><td>언어 모델 임베딩</td><td>어떤 언어의 자유 서술도 읽음</td><td>불투명하고, 비용이 들고, 이 용도로 검증되지 않았습니다. 작가 본인의 선택이 먼저입니다.</td></tr>
+      <tr><td>자동 일대일 배정</td><td>기수 전체를 최적화함</td><td>점수를 동의로 착각합니다. 모든 만남은 두 작가가 직접 골라야 합니다.</td></tr>
+    </tbody>
+  </table></div>
+  <p>언어 때문에 점수가 낮아지는 일은 없습니다. 스와힐리어, 영어, 한국어는 번역으로 다루고, 원문은 언제나 곁에 남겨 둡니다.</p>
 
-      <div class="platform-strip">
-        <figure class="platform-image">
-          <img src="assets/gallery-wall.webp" alt="A wall display showing multiple wildlife artworks." />
-        </figure>
-        <div class="platform-copy">
-          <p class="mini-label">FROM ARTIST → AUDIENCE</p>
-          <h3>Discovery can continue beyond one webpage.</h3>
-          <p>
-            Voice of Piece can connect artist profiles, collaboration stories, exhibitions, social media, and physical
-            products—giving emerging artists more ways to be seen without making commerce the center of the project.
-          </p>
-        </div>
-        <figure class="platform-image landscape">
-          <img src="assets/vop-tote.webp" alt="A person carrying a Voice of Piece tote bag outdoors." />
-        </figure>
-      </div>
-    </section>
+  <h2 class="essay-chapter" id="rs-8-ko"><span>8</span>보호 장치</h2>
+  <ul class="research-list">
+    <li><strong>제안은 매칭이 아닙니다.</strong> 누군가를 저장하거나 프로젝트 초안을 써도 아무것도 전송되지 않습니다. 두 사람이 모두 "예"라고 할 때만 만나고, 누구든 언제든 "아니요"라고 할 수 있습니다.</li>
+    <li>작품을 어디까지 변형할 수 있는지는 <strong>더 보호적인 답이 우선합니다</strong>.</li>
+    <li><strong>18세 미만 작가</strong>는 매칭되기 전에 부모나 보호자의 이름, 이메일, 동의가 필요합니다.</li>
+    <li><strong>데이터는 최소한으로.</strong> 신청서의 답만 사용합니다. 데이터베이스가 생기기 전까지 신청서는 비공개 로컬 CSV 파일에 저장합니다.</li>
+  </ul>
 
-    <section class="join section" id="join">
-      <div class="join-grid">
-        <div>
-          <p class="section-kicker">JOIN AS AN ARTIST</p>
-          <h2>We’re building this with artists, not just for them.</h2>
-        </div>
-        <div class="join-copy">
-          <p class="lead-copy">
-            We are looking for emerging and independent visual artists in Los Angeles and Tanzania who are open to
-            meeting someone outside their usual creative circle.
-          </p>
-          <p>
-            You do not need gallery representation, a large following, or a perfect portfolio. We care more about the
-            work you are making, the ideas behind it, and whether you are curious about creating with someone new.
-          </p>
-          <div class="join-checks">
-            <span>✓ Emerging / independent artists</span>
-            <span>✓ Visual art, illustration, painting, drawing, mixed media & more</span>
-            <span>✓ LA-area or Tanzania-based</span>
-            <span>✓ Interested in cross-cultural collaboration</span>
-          </div>
-          <a class="btn btn-primary" href="#application">Start the Application</a>
-        </div>
-      </div>
-    </section>
+  <h2 class="essay-chapter" id="rs-9-ko"><span>9</span>아직 증명하지 못한 것</h2>
+  <p>작가들이 말해 주기 전까지 ArtBridge가 "효과가 있다"고 주장하지 않겠습니다. 시범 운영에서는 우리의 점수를 더 단순한 두 기준, <strong>공통 주제만 보는 방식</strong>과 <strong>조건을 갖춘 무작위 짝</strong>과 비교하고, 다음을 측정합니다.</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>측정 항목</th><th>정의</th></tr></thead>
+    <tbody>
+      <tr><td>상호 관심 비율</td><td><em>두</em> 작가 모두 "예"라고 한 제안 ÷ 보여준 제안</td></tr>
+      <tr><td>설명의 유용성</td><td>보여준 이유가 납득되었는지 작가가 평가 (1–5)</td></tr>
+      <tr><td>거절 이유</td><td>작가가 "아니요"라고 한 이유 — 질문이 놓치는 것을 찾기 위해</td></tr>
+      <tr><td>완성된 작품</td><td>서명한 약속과 함께 완성된 공동 작품으로 이어진 만남</td></tr>
+      <tr><td>공정한 노출</td><td>제안이 작가들에게 얼마나 고르게 돌아가는지 — 같은 몇 사람만 반복해서 보이지 않도록</td></tr>
+      <tr><td>가중치 민감도</td><td>각 가중치를 ±0.10 바꿀 때 순위가 어떻게 달라지는지</td></tr>
+    </tbody>
+  </table></div>
+  <p>이 프로젝트를 시작한 글에서 말했듯, 우리는 ArtBridge를 등록한 작가 수나 팔로워 수로 재지 않습니다. 만나지 못했을 두 사람이 만나는 것, 그리고 존재하지 않았을 그림 한 점이 하나 더 생기는 것으로 잽니다.</p>
 
-    <section class="application section" id="application">
-      <div class="application-intro">
-        <p class="section-kicker">ARTIST APPLICATION · MAOMBI YA MSANII</p>
-        <h2>Tell us who you are and what you want to create.</h2>
-        <div class="bilingual-intro">
-          <p><strong>English</strong><br />This short application helps us understand your art, what challenges you face, and what kind of collaboration would feel meaningful to you.</p>
-          <p lang="sw"><strong>Kiswahili</strong><br />Fomu hii fupi inatusaidia kuelewa sanaa yako, changamoto unazokutana nazo, na aina ya ushirikiano ambayo ungependa kushiriki.</p>
-        </div>
-      </div>
+  <h2 class="essay-chapter" id="rs-10-ko"><span>10</span>참고문헌</h2>
+  <ol class="research-refs">
+    <li>Pizzato, L., Rej, T., Chung, T., Koprinska, I., &amp; Kay, J. (2010). RECON: A reciprocal recommender for online dating. <em>Proceedings of the 4th ACM Conference on Recommender Systems (RecSys ’10)</em>. <a href="https://doi.org/10.1145/1864708.1864747" target="_blank" rel="noopener">doi:10.1145/1864708.1864747</a></li>
+    <li>Palomares, I., Porcel, C., Pizzato, L., Guy, I., &amp; Herrera-Viedma, E. (2021). Reciprocal recommender systems: Analysis of state-of-art literature, challenges and opportunities towards social recommendation. <em>Information Fusion, 69</em>, 103–127. <a href="https://doi.org/10.1016/j.inffus.2020.12.001" target="_blank" rel="noopener">doi:10.1016/j.inffus.2020.12.001</a></li>
+    <li>Vitale, F., Parotsidis, N., &amp; Gentile, C. (2018). Online reciprocal recommendation with theoretical performance guarantees. <em>Advances in Neural Information Processing Systems 31 (NeurIPS 2018)</em>. <a href="https://papers.nips.cc/paper_files/paper/2018/hash/97af07a14cacba681feacf3012730892-Abstract.html" target="_blank" rel="noopener">papers.nips.cc</a></li>
+    <li>Palomares, I. (2020). Reciprocal recommendation: Matching users with the right users. <em>Proceedings of SIGIR 2020</em>, 2429–2431. <a href="https://doi.org/10.1145/3397271.3401420" target="_blank" rel="noopener">doi:10.1145/3397271.3401420</a></li>
+    <li>Büyükboyacı, M., &amp; Robbett, A. (2019). Team formation with complementary skills. <em>Journal of Economics &amp; Management Strategy, 28</em>(4), 713–733. <a href="https://doi.org/10.1111/jems.12296" target="_blank" rel="noopener">doi:10.1111/jems.12296</a></li>
+    <li>Jaccard, P. (1912). The distribution of the flora in the alpine zone. <em>New Phytologist, 11</em>(2), 37–50. <a href="https://doi.org/10.1111/j.1469-8137.1912.tb05611.x" target="_blank" rel="noopener">doi:10.1111/j.1469-8137.1912.tb05611.x</a></li>
+  </ol>
+  <p class="muted">개발자용: 알고리즘은 <code>matching.js</code>에 있고, 내부 설계 노트는 프로젝트 폴더의 <code>docs/MATCHING-RESEARCH.md</code>에 있습니다.</p>
+  </div>
+  </div>
+</article>
+<article class="essay" data-lang="sw" lang="sw" hidden>
+  <header class="essay-head">
+    <p class="essay-kicker">Utafiti · Jinsi ArtBridge inavyopendekeza mkutano</p>
+    <h1 id="research-title-sw">Mkutano ambao wasanii wote wawili wangeuchagua</h1>
+    <p class="research-lead">Mifumo mingi ya mapendekezo huuliza swali moja: <em>mtu huyu atapenda nini?</em> ArtBridge lazima iulize mawili kwa wakati mmoja — je, <strong>wewe</strong> ungependa kuunda pamoja nao, na je, <strong>wao</strong> wangependa kuunda pamoja nawe? Ukurasa huu unaonyesha hasa jinsi tunavyokokotoa hilo, utafiti gani unaoliunga mkono, na kile ambacho bado hatujathibitisha.</p>
+    <p class="essay-byline">Voice of Piece · Cohort 3 · Utafiti ulikaguliwa tarehe 17 Oktoba 2026</p>
+  </header>
 
-      <div class="form-shell">
-        <div class="form-toolbar">
-          <div>
-            <strong>Display language</strong>
-            <span>Chagua lugha ya fomu</span>
-          </div>
-          <div class="language-toggle" role="group" aria-label="Application language">
-            <button type="button" data-lang="en">English</button>
-            <button type="button" data-lang="sw">Kiswahili</button>
-            <button type="button" data-lang="both" class="active">Both</button>
-          </div>
-        </div>
+  <div class="research-summary">
+    <div><strong>2</strong><span>pande zinazopimwa kwa kila jozi — A→B na B→A</span></div>
+    <div><strong>4</strong><span>kanuni ambazo jozi lazima izipite kabla ya alama yoyote kuwepo</span></div>
+    <div><strong>0</strong><span>ishara kuhusu umaarufu, mauzo, wafuasi au "ubora" wa sanaa</span></div>
+  </div>
 
-        <form id="artist-form" novalidate>
-          <fieldset>
-            <legend><span class="q-number">01</span><span data-en="Basic Information" data-sw="Taarifa za Msingi">Basic Information / Taarifa za Msingi</span></legend>
-            <div class="field-grid two-col">
-              <label>
-                <span data-en="Full name" data-sw="Jina kamili">Full name / Jina kamili</span>
-                <input type="text" name="fullName" required autocomplete="name" />
-              </label>
-              <label>
-                <span data-en="Artist name (if different)" data-sw="Jina la kisanii (ikiwa ni tofauti)">Artist name (if different) / Jina la kisanii</span>
-                <input type="text" name="artistName" />
-              </label>
-              <label>
-                <span data-en="City / location" data-sw="Jiji / eneo">City / location / Jiji / eneo</span>
-                <input type="text" name="location" required />
-              </label>
-              <label>
-                <span data-en="Region" data-sw="Eneo">Region / Eneo</span>
-                <select name="region" required>
-                  <option value="">Select / Chagua</option>
-                  <option value="la">Los Angeles area</option>
-                  <option value="tanzania">Tanzania</option>
-                  <option value="other">Other / Nyingine</option>
-                </select>
-              </label>
-              <label>
-                <span data-en="Email" data-sw="Barua pepe">Email / Barua pepe</span>
-                <input type="email" name="email" required autocomplete="email" />
-              </label>
-              <label>
-                <span data-en="Instagram or social profile" data-sw="Instagram au akaunti ya mitandao ya kijamii">Instagram or social profile / Instagram au akaunti ya kijamii</span>
-                <input type="url" name="instagram" placeholder="https://" />
-              </label>
-            </div>
-          </fieldset>
+  <div class="essay-layout">
+  <nav class="essay-toc" aria-label="Sehemu"><ol>
+    <li><button type="button" data-essay-jump="rs-1-sw"><span>1</span>Tatizo</button></li>
+    <li><button type="button" data-essay-jump="rs-2-sw"><span>2</span>Kanuni nne kwanza</button></li>
+    <li><button type="button" data-essay-jump="rs-3-sw"><span>3</span>Vipimo vitatu</button></li>
+    <li><button type="button" data-essay-jump="rs-4-sw"><span>4</span>Kuunganisha pande mbili</button></li>
+    <li><button type="button" data-essay-jump="rs-5-sw"><span>5</span>Mfano wa hesabu</button></li>
+    <li><button type="button" data-essay-jump="rs-6-sw"><span>6</span>Kwa nini chaguo hizi</button></li>
+    <li><button type="button" data-essay-jump="rs-7-sw"><span>7</span>Tusichokubali kutumia</button></li>
+    <li><button type="button" data-essay-jump="rs-8-sw"><span>8</span>Kinga</button></li>
+    <li><button type="button" data-essay-jump="rs-9-sw"><span>9</span>Tusichokithibitisha bado</button></li>
+    <li><button type="button" data-essay-jump="rs-10-sw"><span>10</span>Marejeo</button></li>
+  </ol></nav>
+  <div class="essay-body research-body" lang="sw">
 
-          <fieldset>
-            <legend><span class="q-number">02</span><span data-en="Artistic Background" data-sw="Historia ya Kiusanii">Artistic Background / Historia ya Kiusanii</span></legend>
-            <div class="field-grid">
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="How many years have you been making art?" data-sw="Umefanya sanaa kwa miaka mingapi?">How many years have you been making art? / Umefanya sanaa kwa miaka mingapi?</span>
-                  <input type="text" name="yearsMakingArt" />
-                </label>
-                <label>
-                  <span data-en="What type of art do you make?" data-sw="Unatengeneza aina gani ya sanaa?">What type of art do you make? / Unatengeneza aina gani ya sanaa?</span>
-                  <input type="text" name="artType" required placeholder="Drawing, painting, digital art, mixed media..." />
-                </label>
-              </div>
-              <label>
-                <span data-en="Tell us about your artistic journey. (3–5 sentences)" data-sw="Tuambie kuhusu safari yako ya kisanii. (Sentensi 3–5)">Tell us about your artistic journey. (3–5 sentences) / Tuambie kuhusu safari yako ya kisanii. (Sentensi 3–5)</span>
-                <textarea name="artisticJourney" rows="6" required></textarea>
-              </label>
-              <label>
-                <span data-en="How would you describe your style, themes, or subjects? (3–5 sentences)" data-sw="Unawezaje kuelezea mtindo, mada, au masomo ya kazi yako? (Sentensi 3–5)">How would you describe your style, themes, or subjects? / Unawezaje kuelezea mtindo, mada, au masomo ya kazi yako?</span>
-                <textarea name="styleThemes" rows="6" required></textarea>
-              </label>
-              <label>
-                <span data-en="What inspires you as an artist?" data-sw="Ni nini kinakuhamasisha kama msanii?">What inspires you as an artist? / Ni nini kinakuhamasisha kama msanii?</span>
-                <textarea name="inspiration" rows="5"></textarea>
-              </label>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-1-sw"><span>1</span>Tatizo ni la pande mbili</h2>
+  <p>Kwenye tovuti ya manunuzi, kitabu hakiwezi kukukataa. Kwenye ArtBridge, kila "kinachopendekezwa" ni mtu mwenye matakwa yake mwenyewe. Pendekezo linalomfurahisha msanii mmoja na kumwacha mwingine bila hamu si mkutano — ni kukataliwa kwa adabu kunakosubiri kutokea.</p>
+  <p>Utafiti unaliita hili <strong>mapendekezo ya pande mbili (reciprocal recommendation)</strong>: watu wanapendekezwa kwa watu, na mafanikio yanahitaji nia kutoka pande zote mbili (Pizzato et al., 2010; Palomares et al., 2021). ArtBridge imejengwa juu ya wazo hilo. Kila namba hapa chini inakokotolewa mara mbili — mara moja kutoka mtazamo wa kila msanii — kisha zinaunganishwa ili <em>hakuna</em> upande unaoweza kupuuzwa.</p>
+  <p>Kila kitu kinakokotolewa tu kutokana na kile ambacho wasanii wenyewe walichagua katika ombi: maswali yale yale manane ya kuunganisha, yenye majibu yale yale, kwa wasanii wa Tanzania na wa Los Angeles.</p>
 
-          <fieldset>
-            <legend><span class="q-number">03</span><span data-en="Artistic Process" data-sw="Mchakato wa Kiusanii">Artistic Process / Mchakato wa Kiusanii</span></legend>
-            <div class="field-grid">
-              <label>
-                <span data-en="Describe your creative process from idea to finished work." data-sw="Eleza mchakato wako wa ubunifu kutoka wazo hadi kazi iliyokamilika.">Describe your creative process from idea to finished work. / Eleza mchakato wako wa ubunifu kutoka wazo hadi kazi iliyokamilika.</span>
-                <textarea name="creativeProcess" rows="6"></textarea>
-              </label>
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="What materials, tools, or techniques do you use most?" data-sw="Ni vifaa, zana, au mbinu gani unazotumia zaidi?">Materials, tools, or techniques / Vifaa, zana, au mbinu</span>
-                  <textarea name="materialsTechniques" rows="5"></textarea>
-                </label>
-                <label>
-                  <span data-en="What part of the creative process is most challenging?" data-sw="Ni sehemu gani ya mchakato wa ubunifu yenye changamoto zaidi?">Most challenging part of your process / Sehemu yenye changamoto zaidi</span>
-                  <textarea name="processChallenges" rows="5"></textarea>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-2-sw"><span>2</span>Kanuni nne kabla ya alama yoyote</h2>
+  <p>Jozi haipati alama yoyote — haionyeshwi kabisa — isipokuwa kanuni zote nne zimetimia:</p>
+  <ol class="research-rules">
+    <li><strong>Wasanii wote wawili walikubali kupendekezwa.</strong> "Bado" inamaanisha hauonekani.</li>
+    <li><strong>Kila mmoja yuko katika eneo ambalo mwingine analitafuta.</strong> (Kwa waombaji wa LA, eneo la mshirika ni Tanzania.)</li>
+    <li><strong>Wote wawili walijibu orodha nne za kuunganisha</strong> — ninacholeta, ninachotafuta, mada zangu, jinsi ninavyotaka kufanya kazi. Majibu yanayokosekana hayatoi kamwe makisio ya uhakika.</li>
+    <li><strong>Wanashiriki angalau njia moja ya kufanya kazi</strong> (k.m. wote walichagua "kazi ya pamoja"). Wasanii wawili wanaotaka miradi ya aina tofauti kabisa si mkutano.</li>
+  </ol>
 
-          <fieldset>
-            <legend><span class="q-number">04</span><span data-en="Experience & Achievements" data-sw="Uzoefu na Mafanikio">Experience & Achievements / Uzoefu na Mafanikio</span></legend>
-            <div class="field-grid">
-              <label>
-                <span data-en="Have you participated in exhibitions, art events, or public displays? Tell us about them." data-sw="Umeshiriki katika maonyesho, matukio ya sanaa, au maonyesho ya umma? Tuambie kuhusu hayo.">Exhibitions, events, or public displays / Maonyesho na matukio ya sanaa</span>
-                <textarea name="exhibitions" rows="5"></textarea>
-              </label>
-              <label>
-                <span data-en="List any awards, recognition, commissions, or notable opportunities." data-sw="Orodhesha tuzo, utambuzi, oda za kazi, au fursa muhimu ulizopata.">Awards, recognition, commissions, or opportunities / Tuzo, utambuzi, au fursa</span>
-                <textarea name="achievements" rows="5"></textarea>
-              </label>
-              <label>
-                <span data-en="Have you collaborated with other artists before? If yes, how did you meet and what did you create?" data-sw="Umewahi kushirikiana na wasanii wengine? Ikiwa ndiyo, mlijuana vipi na mlitengeneza nini?">Previous collaborations / Ushirikiano wa awali</span>
-                <textarea name="previousCollaborations" rows="5"></textarea>
-              </label>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-3-sw"><span>3</span>Vipimo vitatu, na uzito kamili</h2>
+  <p>Kwa jozi inayopita, tunapima mambo matatu. Kila moja ni namba kati ya 0 na 1.</p>
 
-          <fieldset>
-            <legend><span class="q-number">05</span><span data-en="Art Portfolio" data-sw="Maktaba ya Kazi za Sanaa">Art Portfolio / Maktaba ya Kazi za Sanaa</span></legend>
-            <div class="field-grid">
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="Portfolio / website" data-sw="Portfolio / tovuti">Portfolio / website / Portfolio / tovuti</span>
-                  <input type="url" name="portfolio" placeholder="https://" />
-                </label>
-                <label>
-                  <span data-en="Additional work link" data-sw="Kiungo kingine cha kazi">Additional work link / Kiungo kingine cha kazi</span>
-                  <input type="url" name="workLink" placeholder="https://" />
-                </label>
-              </div>
-              <label>
-                <span data-en="Choose one work you are especially proud of. What inspired it and how did you make it?" data-sw="Chagua kazi moja unayoipenda sana. Ilihamasishwa na nini na uliitengenezaje?">Tell us about one favorite work / Tuambie kuhusu kazi moja unayoipenda</span>
-                <textarea name="favoriteWork" rows="6"></textarea>
-              </label>
-              <p class="upload-helper"><strong>Prototype note:</strong> file uploads are not enabled on this local test. Use portfolio links for now. / <strong>Maelezo:</strong> kupakia faili hakujawashwa kwenye jaribio hili la ndani; tumia viungo vya portfolio kwa sasa.</p>
-            </div>
-          </fieldset>
+  <div class="formula-card">
+    <p class="formula-name">Mada za pamoja — ufanano wa Jaccard <span>uzito 0.35</span></p>
+    <p class="formula">J<sub>theme</sub> = |T<sub>A</sub> ∩ T<sub>B</sub>| ÷ |T<sub>A</sub> ∪ T<sub>B</sub>|</p>
+    <p>Mada ambazo wote walichagua, zikigawanywa kwa mada zote ambazo yeyote kati yao alichagua. Kugawanya kwa muungano kunamaanisha kuweka alama kwenye kila kisanduku hakuongezi alama ya kuunganisha (Jaccard, 1912).</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">Mbinu zinazokamilishana — kiwango cha kufunika <span>uzito 0.40</span></p>
+    <p class="formula">C<sub>A→B</sub> = |Seek<sub>A</sub> ∩ Bring<sub>B</sub>| ÷ |Seek<sub>A</sub>|</p>
+    <p>Kati ya mbinu ambazo A anatumaini kupata, sehemu ambayo B anaweza kuleta. Hiki kina <em>mwelekeo</em>: B anaweza kufunika matakwa yote ya A wakati A anafunika nusu tu ya ya B. Tofauti hiyo ndiyo hasa ambayo alama ya pande mbili lazima ione.</p>
+  </div>
+  <div class="formula-card">
+    <p class="formula-name">Njia za kufanya kazi — ufanano wa Jaccard <span>uzito 0.25</span></p>
+    <p class="formula">J<sub>format</sub> = |F<sub>A</sub> ∩ F<sub>B</sub>| ÷ |F<sub>A</sub> ∪ F<sub>B</sub>|</p>
+    <p>Kazi ya pamoja, maonyesho, bidhaa, kubadilishana barua na michoro, warsha, video.</p>
+  </div>
+  <p>Uzito unajumlisha 1, kwa hiyo kila alama ya upande mmoja pia iko kati ya 0 na 1:</p>
+  <p class="formula formula-wide">S<sub>A→B</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>A→B</sub> + 0.25·J<sub>format</sub></p>
+  <p class="formula formula-wide">S<sub>B→A</sub> = 0.35·J<sub>theme</sub> + 0.40·C<sub>B→A</sub> + 0.25·J<sub>format</sub></p>
 
-          <fieldset>
-            <legend><span class="q-number">06</span><span data-en="Vision & Goals" data-sw="Maono na Malengo">Vision & Goals / Maono na Malengo</span></legend>
-            <div class="field-grid">
-              <label>
-                <span data-en="What are your short-term and long-term goals as an artist?" data-sw="Malengo yako ya muda mfupi na muda mrefu kama msanii ni yapi?">Short-term and long-term goals / Malengo ya muda mfupi na mrefu</span>
-                <textarea name="artistGoals" rows="6"></textarea>
-              </label>
-              <label>
-                <span data-en="How do you hope your art will affect your community or a broader audience?" data-sw="Unatumaini sanaa yako itaathiri vipi jamii yako au hadhira pana zaidi?">Community or broader impact / Athari kwa jamii au hadhira pana</span>
-                <textarea name="communityImpact" rows="5"></textarea>
-              </label>
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="Why are you interested in Voice of Piece?" data-sw="Kwa nini una nia ya Voice of Piece?">Why Voice of Piece? / Kwa nini Voice of Piece?</span>
-                  <textarea name="whyVop" rows="5"></textarea>
-                </label>
-                <label>
-                  <span data-en="What would you hope to gain from participating?" data-sw="Ungependa kupata nini kwa kushiriki?">What would you hope to gain? / Ungependa kupata nini?</span>
-                  <textarea name="hopedGain" rows="5"></textarea>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-4-sw"><span>4</span>Kuunganisha pande mbili: wastani wa kihamoni</h2>
+  <p>Sasa tuna namba mbili — jinsi B anavyomfaa A, na jinsi A anavyomfaa B. Tunaziunganisha kwa <strong>wastani wa kihamoni (harmonic mean)</strong> na kuuonyesha kati ya 100:</p>
+  <p class="formula formula-wide">Muunganiko = round( 100 × 2·S<sub>A→B</sub>·S<sub>B→A</sub> ÷ (S<sub>A→B</sub> + S<sub>B→A</sub>) )</p>
+  <p>Wastani wa kihamoni hubaki karibu na namba <em>ndogo</em> kati ya hizo mbili. Ufaafu wa upande mmoja hauwezi kujificha nyuma ya wastani:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Ufaafu kwa A</th><th>Ufaafu kwa B</th><th>Wastani wa kawaida</th><th>Wastani wa kijiometri</th><th>Wastani wa kihamoni (ArtBridge)</th></tr></thead>
+    <tbody>
+      <tr><td>0.90</td><td>0.10</td><td>50</td><td>30</td><td><strong>18</strong></td></tr>
+      <tr><td>0.80</td><td>0.40</td><td>60</td><td>57</td><td><strong>53</strong></td></tr>
+      <tr><td>0.60</td><td>0.60</td><td>60</td><td>60</td><td><strong>60</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>Jozi iliyo nzuri kwa msanii mmoja na dhaifu kwa mwingine inashuka kutoka 50 hadi 18. Jozi iliyosawazika inabaki na thamani yake kamili. Hii ndiyo sifa ambayo RECON iliianzisha kwa mapendekezo ya pande mbili (Pizzato et al., 2010); uchambuzi mkuu wa fani hii unaripoti kwamba wastani wenye matumaini zaidi — wa kawaida na wa kijiometri — ulifanya vibaya zaidi kwa sababu unalegeza sharti kwamba watu <em>wote wawili</em> wawe na nia (Palomares et al., 2021, wakipitia Neve &amp; Palomares).</p>
 
-          <fieldset>
-            <legend><span class="q-number">07</span><span data-en="Current Challenges" data-sw="Changamoto za Sasa">Current Challenges / Changamoto za Sasa</span></legend>
-            <div class="field-grid">
-              <label>
-                <span data-en="What is the biggest challenge you face as an emerging artist?" data-sw="Ni changamoto gani kubwa zaidi unayokutana nayo kama msanii anayeibukia?">What is the biggest challenge you face as an emerging artist? / Ni changamoto gani kubwa zaidi unayokutana nayo kama msanii anayeibukia?</span>
-                <textarea name="challenge" rows="5" required></textarea>
-              </label>
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="How difficult is it to reach new audiences?" data-sw="Ni vigumu kiasi gani kufikia hadhira mpya?">How difficult is it to reach new audiences? / Ni vigumu kiasi gani kufikia hadhira mpya?</span>
-                  <select name="audienceDifficulty" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="not-difficult">Not difficult / Si vigumu</option>
-                    <option value="somewhat">Somewhat difficult / Vigumu kiasi</option>
-                    <option value="very">Very difficult / Vigumu sana</option>
-                    <option value="unsure">Not sure / Sina uhakika</option>
-                  </select>
-                </label>
-                <label>
-                  <span data-en="How difficult is it to find collaboration partners?" data-sw="Ni vigumu kiasi gani kupata washirika wa ubunifu?">How difficult is it to find collaboration partners? / Ni vigumu kiasi gani kupata washirika wa ubunifu?</span>
-                  <select name="collabDifficulty" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="not-difficult">Not difficult / Si vigumu</option>
-                    <option value="somewhat">Somewhat difficult / Vigumu kiasi</option>
-                    <option value="very">Very difficult / Vigumu sana</option>
-                    <option value="unsure">Not sure / Sina uhakika</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-5-sw"><span>5</span>Mfano wa hesabu</h2>
+  <p>Wasanii wawili wa <em>kubuni</em>, wamekokotolewa kwa msimbo ule ule unaoendesha tovuti:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th></th><th>Msanii A · Los Angeles</th><th>Msanii B · Tanzania</th></tr></thead>
+    <tbody>
+      <tr><td>Ninacholeta</td><td>Uchoraji wa penseli, Sanaa ya kidijitali</td><td>Tingatinga, Uchoraji wa rangi</td></tr>
+      <tr><td>Ninachotafuta</td><td>Tingatinga, Uchoraji wa rangi</td><td>Sanaa ya kidijitali, Upigaji picha</td></tr>
+      <tr><td>Mada</td><td>Wanyamapori, Familia na upendo, Utambulisho</td><td>Wanyamapori, Familia na upendo, Utamaduni, Jamii</td></tr>
+      <tr><td>Njia za kufanya kazi</td><td>Kazi ya pamoja, Maonyesho</td><td>Kazi ya pamoja, Bidhaa za sanaa</td></tr>
+      <tr><td>Kazi yangu inaweza…</td><td>Kuunganishwa, si kuchorwa upya</td><td>Kuchorwa upya kwa sehemu</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="research-steps">
+    <li><strong>Kanuni:</strong> wote walikubali, maeneo yanalingana, orodha zote zimejibiwa, njia ya pamoja (Kazi ya pamoja). ✓</li>
+    <li><strong>Mada:</strong> za pamoja {Wanyamapori, Familia na upendo} = 2; zote = 5 → J<sub>theme</sub> = 2/5 = <strong>0.400</strong></li>
+    <li><strong>Njia:</strong> ya pamoja 1; zote 3 → J<sub>format</sub> = 1/3 = <strong>0.333</strong></li>
+    <li><strong>Matakwa ya A:</strong> B analeta Tingatinga na Uchoraji wa rangi → C<sub>A→B</sub> = 2/2 = <strong>1.000</strong></li>
+    <li><strong>Matakwa ya B:</strong> A analeta Sanaa ya kidijitali lakini si Upigaji picha → C<sub>B→A</sub> = 1/2 = <strong>0.500</strong></li>
+    <li>S<sub>A→B</sub> = 0.35×0.400 + 0.40×1.000 + 0.25×0.333 = 0.140 + 0.400 + 0.083 = <strong>0.623</strong></li>
+    <li>S<sub>B→A</sub> = 0.140 + 0.40×0.500 + 0.083 = <strong>0.423</strong></li>
+    <li>Wastani wa kihamoni = 2×0.623×0.423 ÷ (0.623+0.423) = 0.504 → <strong>Muunganiko 50 / 100</strong> <span class="muted">(wastani wa kawaida ungesema 52)</span></li>
+    <li><strong>Kiwango cha kubadilisha kilichokubaliwa:</strong> jibu linalolinda zaidi linashinda → <strong>"Kuunganishwa, si kuchorwa upya."</strong> Hili halipewi alama; linapelekwa kwenye ahadi ambayo wasanii wote wawili wanaandika.</li>
+  </ol>
+  <p>Wasanii wanaona sababu, si namba tu: mada za pamoja, kile kila mmoja anachomletea mwenzake, na njia ya pamoja. Ratiba hupangwa pamoja baada ya wasanii kukubali kukutana.</p>
 
-          <fieldset>
-            <legend><span class="q-number">08</span><span data-en="International Collaboration & Technology" data-sw="Ushirikiano wa Kimataifa na Teknolojia">International Collaboration & Technology / Ushirikiano wa Kimataifa na Teknolojia</span></legend>
-            <div class="field-grid">
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="Are you interested in collaborating with an artist from another country?" data-sw="Una nia ya kushirikiana na msanii kutoka nchi nyingine?">Interested in international collaboration? / Una nia ya ushirikiano wa kimataifa?</span>
-                  <select name="internationalInterest" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="yes">Yes / Ndiyo</option>
-                    <option value="maybe">Maybe / Labda</option>
-                    <option value="no">No / Hapana</option>
-                  </select>
-                </label>
-                <label>
-                  <span data-en="Would you consider an LA × Tanzania collaboration?" data-sw="Je, ungependa kushiriki katika ushirikiano wa LA × Tanzania?">Would you consider an LA × Tanzania collaboration? / Je, ungependa ushirikiano wa LA × Tanzania?</span>
-                  <select name="projectInterest" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="yes">Yes / Ndiyo</option>
-                    <option value="maybe">Maybe / Labda</option>
-                    <option value="not-now">Not right now / Sio kwa sasa</option>
-                  </select>
-                </label>
-              </div>
-              <label>
-                <span data-en="What barriers might make international collaboration difficult for you?" data-sw="Ni vikwazo gani vinaweza kufanya ushirikiano wa kimataifa kuwa mgumu kwako?">Barriers to international collaboration / Vikwazo vya ushirikiano wa kimataifa</span>
-                <textarea name="internationalBarriers" rows="5"></textarea>
-              </label>
-              <label>
-                <span data-en="If technology could solve one problem for artists, what should it solve?" data-sw="Kama teknolojia ingeweza kutatua tatizo moja la wasanii, ingeweza kutatua nini?">If technology could solve one problem for artists, what should it solve? / Kama teknolojia ingeweza kutatua tatizo moja la wasanii, ingeweza kutatua nini?</span>
-                <textarea name="technologyNeed" rows="5" required></textarea>
-              </label>
-              <label>
-                <span data-en="Is there an idea, theme, place, or story you would want to explore with another artist?" data-sw="Kuna wazo, mada, mahali, au hadithi ambayo ungependa kuchunguza na msanii mwingine?">A collaboration idea you would like to explore / Wazo la ushirikiano ungependa kuchunguza</span>
-                <textarea name="collabIdea" rows="5"></textarea>
-              </label>
-            </div>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-6-sw"><span>6</span>Kwa nini chaguo hizi</h2>
+  <p><strong>Kwa nini ukamilishano una uzito mkubwa zaidi (0.40).</strong> Katika jaribio lililodhibitiwa, Büyükboyacı na Robbett (2019) waligundua mwingiliano mkubwa chanya kati ya kuwaacha watu wachague timu zao wenyewe na kuwaacha wabobee: timu zilizojichagua zilifanya vizuri zaidi pale ujuzi wa wanachama ulipokamilishana. ArtBridge inafuata nusu zote mbili — inatuza kile kila msanii anachoweza kumletea mwenzake, na haipangii mtu mshirika kamwe; wasanii wanachagua.</p>
+  <p><strong>Kwa nini mada bado ni muhimu (0.35).</strong> Mikono inayokamilishana inahitaji somo la pamoja la kufanyia kazi. Simba na nyati, mama na mtoto, matumaini: mada ya pamoja inawapa wageni wawili jambo la kuzungumzia kabla hawajashiriki lugha.</p>
+  <p><strong>Kwa nini njia za kufanya kazi ni kanuni na pia uzito (0.25).</strong> Bila njia ya pamoja hakuna mradi, kwa hiyo ni kanuni. Zaidi ya njia moja ya pamoja, makubaliano zaidi hurahisisha mipango, kwa hiyo pia inahesabiwa.</p>
+  <p><strong>Kwa nini wastani wa kihamoni.</strong> Nia ya pande zote mbili ndiyo lengo la mapendekezo ya pande mbili (Vitale et al., 2018; Palomares, 2020). Wastani wa kihamoni unaweka lengo hilo moja kwa moja, na ndio njia iliyojaribiwa zaidi katika maandiko (Palomares et al., 2021).</p>
+  <p class="research-honest"><strong>Kile ambacho tafiti hazitupi:</strong> uzito kamili 0.35 / 0.40 / 0.25. Hayo ni maamuzi yetu ya usanifu, yameandikwa ili yaweze kujaribiwa na kubadilishwa — tazama sehemu ya 9.</p>
 
-          <fieldset>
-            <legend><span class="q-number">09</span><span data-en="Additional Information & Consent" data-sw="Taarifa za Ziada na Ruhusa">Additional Information & Consent / Taarifa za Ziada na Ruhusa</span></legend>
-            <div class="field-grid">
-              <div class="field-grid two-col">
-                <label>
-                  <span data-en="Preferred language" data-sw="Lugha unayopendelea">Preferred language / Lugha unayopendelea</span>
-                  <select name="preferredLanguage" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="english">English</option>
-                    <option value="swahili">Kiswahili</option>
-                    <option value="korean">한국어 / Korean</option>
-                    <option value="other">Other / Nyingine</option>
-                  </select>
-                </label>
-                <label>
-                  <span data-en="Best way to contact you" data-sw="Njia bora ya kuwasiliana nawe">Best way to contact you / Njia bora ya kuwasiliana nawe</span>
-                  <select name="contactMethod" required>
-                    <option value="">Select / Chagua</option>
-                    <option value="email">Email</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="whatsapp">WhatsApp</option>
-                  </select>
-                </label>
-              </div>
-              <label>
-                <span data-en="Is there anything else you would like us to know?" data-sw="Kuna jambo lingine ungependa tujue?">Anything else you would like us to know? / Kuna jambo lingine ungependa tujue?</span>
-                <textarea name="additionalInfo" rows="5"></textarea>
-              </label>
-            </div>
-            <label class="check-row">
-              <input type="checkbox" name="consent" required />
-              <span data-en="I agree that Voice of Piece may contact me about artist research and possible collaboration opportunities." data-sw="Nakubali Voice of Piece kuwasiliana nami kuhusu utafiti wa wasanii na fursa zinazowezekana za ushirikiano.">I agree that Voice of Piece may contact me about artist research and possible collaboration opportunities. / Nakubali Voice of Piece kuwasiliana nami kuhusu utafiti wa wasanii na fursa zinazowezekana za ushirikiano.</span>
-            </label>
-          </fieldset>
+  <h2 class="essay-chapter" id="rs-7-sw"><span>7</span>Tunachokataa kutumia kwa makusudi</h2>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Mbinu</th><th>Kwa nini inavutia</th><th>Kwa nini si sasa</th></tr></thead>
+    <tbody>
+      <tr><td>Umaarufu, wafuasi, mauzo</td><td>Rahisi kupima</td><td>Inaonyesha tena wale wanaoonekana tayari. ArtBridge ipo kwa ajili ya wasanii ambao bado hakuna anayewajua.</td></tr>
+      <tr><td>Kuhukumu kazi ya sanaa kwa AI</td><td>Inaonekana "akili"</td><td>ArtBridge haipangi sanaa kwa daraja. Haichori kwa niaba ya mtu yeyote, na haihukumu mchoro wa mtu yeyote.</td></tr>
+      <tr><td>Uchujaji shirikishi (collaborative filtering)</td><td>Hujifunza kutokana na tabia</td><td>Kundi dogo la kwanza halina historia ya kuaminika; lingejifunza kelele tu.</td></tr>
+      <tr><td>Uwakilishi wa modeli za lugha (embeddings)</td><td>Husoma maandishi huru kwa lugha yoyote</td><td>Haieleweki ndani, ina gharama, na haijathibitishwa kwa matumizi haya. Chaguo za wasanii wenyewe zinakuja kwanza.</td></tr>
+      <tr><td>Kupanga jozi kiotomatiki moja kwa moja</td><td>Huboresha kundi zima</td><td>Huichukulia alama kama ridhaa. Kila mkutano lazima uchaguliwe na wasanii wote wawili.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Lugha haipunguzi alama kamwe. Kiswahili, Kiingereza na Kikorea vinashughulikiwa kwa tafsiri, na maandishi ya asili yakiwekwa pembeni daima.</p>
 
-          <div class="form-actions">
-            <button type="button" class="btn btn-secondary" id="save-draft">Save Draft / Hifadhi Rasimu</button>
-            <button type="submit" class="btn btn-primary">Submit Test Application / Tuma Jaribio</button>
-          </div>
+  <h2 class="essay-chapter" id="rs-8-sw"><span>8</span>Kinga</h2>
+  <ul class="research-list">
+    <li><strong>Pendekezo si muunganiko.</strong> Kumhifadhi mtu au kuandika rasimu ya mradi hakutumi chochote. Wasanii hukutana tu wote wawili wanaposema ndiyo, na yeyote anaweza kusema hapana wakati wowote.</li>
+    <li><strong>Jibu linalolinda zaidi linashinda</strong> kuhusu kiasi ambacho kazi inaweza kubadilishwa.</li>
+    <li><strong>Wasanii walio chini ya miaka 18</strong> wanahitaji jina, barua pepe na ridhaa ya mzazi au mlezi kabla ya kuunganishwa.</li>
+    <li><strong>Data inabaki ndogo.</strong> Majibu ya ombi pekee ndiyo yanayotumika. Kabla hifadhidata haijakuwepo, maombi yanahifadhiwa kwenye faili binafsi la CSV.</li>
+  </ul>
 
-          <div class="local-note">
-            <strong>Local test mode:</strong> this prototype does not send data to a server. Drafts and test submissions stay in this browser only.
-            For the current live Google Form, use the link below.
-          </div>
+  <h2 class="essay-chapter" id="rs-9-sw"><span>9</span>Kile ambacho bado hatujathibitisha</h2>
+  <p>Hatutadai kwamba ArtBridge "inafanya kazi" hadi wasanii watuambie. Majaribio ya awali yatalinganisha alama yetu na vipimo viwili rahisi zaidi — <strong>mada za pamoja pekee</strong> na <strong>jozi za nasibu zinazostahili</strong> — na kupima:</p>
+  <div class="table-wrap"><table class="research-table">
+    <thead><tr><th>Kipimo</th><th>Maana</th></tr></thead>
+    <tbody>
+      <tr><td>Kiwango cha nia ya pande zote</td><td>Mapendekezo ambapo wasanii <em>wote wawili</em> wanasema ndiyo ÷ mapendekezo yaliyoonyeshwa</td></tr>
+      <tr><td>Manufaa ya maelezo</td><td>Wasanii wanapima kama sababu zilizoonyeshwa zilieleweka (1–5)</td></tr>
+      <tr><td>Sababu za kukataa</td><td>Kwa nini msanii alisema hapana — ili kugundua kile ambacho maswali yanakosa</td></tr>
+      <tr><td>Kazi zilizokamilika</td><td>Mikutano inayozaa kazi ya pamoja iliyokamilika yenye ahadi zilizosainiwa</td></tr>
+      <tr><td>Kuonekana kwa haki</td><td>Jinsi mapendekezo yanavyogawanywa kwa usawa kati ya wasanii, ili wale wale wachache wasionyeshwe tena na tena</td></tr>
+      <tr><td>Unyeti wa uzito</td><td>Jinsi mpangilio unavyobadilika kila uzito ukisogea ±0.10</td></tr>
+    </tbody>
+  </table></div>
+  <p>Kama insha iliyoanzisha mradi huu inavyosema, hatupimi ArtBridge kwa wasanii waliojisajili au wafuasi. Tunaipima kwa watu wawili ambao wasingekutana, wakikutana — na mchoro mmoja zaidi ambao usingekuwepo.</p>
 
-          <a class="legacy-form" href="https://docs.google.com/forms/d/e/1FAIpQLScWTVRoVKu-4ahg83vAvCJ43nuIzKccUdH2qLFkbINTRI7wNA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
-            Open existing Google Form / Fungua Google Form iliyopo <span>↗</span>
-          </a>
+  <h2 class="essay-chapter" id="rs-10-sw"><span>10</span>Marejeo</h2>
+  <ol class="research-refs">
+    <li>Pizzato, L., Rej, T., Chung, T., Koprinska, I., &amp; Kay, J. (2010). RECON: A reciprocal recommender for online dating. <em>Proceedings of the 4th ACM Conference on Recommender Systems (RecSys ’10)</em>. <a href="https://doi.org/10.1145/1864708.1864747" target="_blank" rel="noopener">doi:10.1145/1864708.1864747</a></li>
+    <li>Palomares, I., Porcel, C., Pizzato, L., Guy, I., &amp; Herrera-Viedma, E. (2021). Reciprocal recommender systems: Analysis of state-of-art literature, challenges and opportunities towards social recommendation. <em>Information Fusion, 69</em>, 103–127. <a href="https://doi.org/10.1016/j.inffus.2020.12.001" target="_blank" rel="noopener">doi:10.1016/j.inffus.2020.12.001</a></li>
+    <li>Vitale, F., Parotsidis, N., &amp; Gentile, C. (2018). Online reciprocal recommendation with theoretical performance guarantees. <em>Advances in Neural Information Processing Systems 31 (NeurIPS 2018)</em>. <a href="https://papers.nips.cc/paper_files/paper/2018/hash/97af07a14cacba681feacf3012730892-Abstract.html" target="_blank" rel="noopener">papers.nips.cc</a></li>
+    <li>Palomares, I. (2020). Reciprocal recommendation: Matching users with the right users. <em>Proceedings of SIGIR 2020</em>, 2429–2431. <a href="https://doi.org/10.1145/3397271.3401420" target="_blank" rel="noopener">doi:10.1145/3397271.3401420</a></li>
+    <li>Büyükboyacı, M., &amp; Robbett, A. (2019). Team formation with complementary skills. <em>Journal of Economics &amp; Management Strategy, 28</em>(4), 713–733. <a href="https://doi.org/10.1111/jems.12296" target="_blank" rel="noopener">doi:10.1111/jems.12296</a></li>
+    <li>Jaccard, P. (1912). The distribution of the flora in the alpine zone. <em>New Phytologist, 11</em>(2), 37–50. <a href="https://doi.org/10.1111/j.1469-8137.1912.tb05611.x" target="_blank" rel="noopener">doi:10.1111/j.1469-8137.1912.tb05611.x</a></li>
+  </ol>
+  <p class="muted">Kwa wasanidi programu: algoriti iko katika <code>matching.js</code>; maelezo ya ndani ya usanifu yako katika <code>docs/MATCHING-RESEARCH.md</code> ndani ya folda ya mradi.</p>
+  </div>
+  </div>
+</article>
 
-          <div class="form-success" id="form-success" hidden>
-            <strong>Test application saved.</strong>
-            <span>Your response is stored only on this device.</span>
-            <button type="button" id="download-response">Download Test Response (.json)</button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div>
-      <strong>Voice of Piece</strong>
-      <span>Connecting artists across distance.</span>
+</section>
+<section id="apply" class="page wrap workspace" hidden aria-label="Artist application"><div id="apply-root"></div></section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <a href="#home" class="footer-logo" aria-label="ArtBridge home"><svg viewBox="380 166 784 712" aria-hidden="true"><path d="M409 842V375C409 276 489 195 588 195C687 195 767 276 767 375V690M767 375C767 276 845 195 941 195C1037 195 1115 276 1115 375C1115 452 1053 515 975 515H409M975 515C1063 515 1135 587 1135 670C1135 767 1053 848 951 848C850 848 767 770 767 690"/></svg><span>ArtBridge<small>BY VOICE OF PIECE</small></span></a>
+      <p data-i18n="footerText">Different worlds. A shared place to create.</p>
+      <a class="footer-join" href="#apply" data-i18n="join">Join the bridge ↗</a>
     </div>
-    <div class="footer-links">
-      <a href="https://voiceofpiece.org" target="_blank" rel="noopener noreferrer">voiceofpiece.org</a>
-      <a href="#application">Artist Application</a>
-    </div>
-    <div class="footer-right">
-      <span>Local Prototype · 2026</span>
-      <span>LA × Tanzania Artist Collaboration</span>
-    </div>
-  </footer>
-
-  <div class="toast" role="status" aria-live="polite"></div>
-  <script src="script.js?v=2.1"></script>
-</body>
-</html>
+    <nav class="footer-col" aria-label="ArtBridge">
+      <h2>ArtBridge</h2>
+      <a href="#home" data-i18n="navHome">The bridge</a>
+      <a href="#discover" data-i18n="navDiscover">Find your people</a>
+      <a href="#studio" data-i18n="navStudio">My studio</a>
+      <a href="#apply" data-i18n="footApply">Artist application</a>
+    </nav>
+    <nav class="footer-col" aria-label="About">
+      <h2 data-i18n="footAbout">About</h2>
+      <a href="#about" data-i18n="navAbout">Our story</a>
+      <a href="#meeting" data-i18n="footMeeting">The first meeting</a>
+      <a href="#research" data-i18n="navResearch">Research</a>
+    </nav>
+    <nav class="footer-col" aria-label="Voice of Piece">
+      <h2>Voice of Piece</h2>
+      <a href="https://voiceofpiece.org/" target="_blank" rel="noopener" data-i18n="footGallery">Gallery ↗</a>
+      <a href="https://voiceofpiece.com/" target="_blank" rel="noopener" data-i18n="footShop">Shop ↗</a>
+    </nav>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Voice of Piece</span><span data-i18n="footPlaces">Tanzania · Los Angeles</span></div>
+</footer>
+<dialog id="modal" aria-labelledby="modal-title"><div class="modal-head"><p class="eyebrow" id="modal-label">ARTBRIDGE / STUDIO</p><button class="icon-button" id="close-modal" aria-label="Close dialog">×</button></div><div id="modal-content"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="i18n.js"></script><script src="artworks.js"></script><script src="matching.js"></script><script src="application-schema.js"></script><script src="apply.js"></script><script src="home.js"></script><script src="translation.js"></script><script src="script.js"></script>
+</body></html>
